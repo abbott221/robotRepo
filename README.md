@@ -1,4 +1,3 @@
-
 ===============SET UP (ONE TIME THING)===============
 
 //make github account
@@ -8,10 +7,13 @@
 //On flash drive "Git" folder -> "Git Bash"
 
 mkdir project
+
 cd project
+
 git init
 
 git config --global user.name "abbott221"
+
 git config --global user.email "abbottm07@gmail.com"
 
 git remote add thisURL https://github.com/abbott221/robotRepo.git
@@ -26,6 +28,7 @@ git remote add thisURL https://github.com/abbott221/robotRepo.git
 git pull thisURL master
 
 //drag all that stuff in the folder into the corresponding QT Creator folder
+
 //make changes
 
 ===============AFTER MAKING CHANGES===============
@@ -35,6 +38,12 @@ git pull thisURL master
 //right click on a file and open the GUI
 
 "commit" on toolbar -> "Stage changed files to commit"
+
 type a message for the commit
+
 press "push" button to push the code to the internet
+
 type your username and password
+
+
+
