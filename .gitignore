@@ -1,0 +1,8 @@
+*.o
+*.d
+*.config
+*.includes
+*.s19
+*.map
+*.creator
+*.elf
