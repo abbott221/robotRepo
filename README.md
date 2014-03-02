@@ -1,8 +1,8 @@
 
-
 ===============SET UP (ONE TIME THING)===============
 
 //make github account
+
 //put this on flashdrive: http://msysgit.github.io/
 
 //On flash drive "Git" folder -> "Git Bash"
