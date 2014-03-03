@@ -25,7 +25,12 @@ git remote add thisURL https://github.com/abbott221/robotRepo.git
 
 //On flash drive "Git" folder -> "Git Bash"
 
-git pull thisURL master
+cd project
+
+//not working
+//git pull thisURL master
+
+git clone https://github.com/abbott221/robotRepo.git
 
 //drag all that stuff in the folder into the corresponding QT Creator folder
 
