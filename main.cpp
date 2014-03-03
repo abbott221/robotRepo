@@ -55,7 +55,7 @@ float optoThresh = 0.5;
 bool configLightStart = true;
 bool configCourseTimer = true;
 bool configDelay = true;
-bool configRPS = false;
+bool configRPS = true;
 
 
 //movement moves[12];
@@ -465,6 +465,10 @@ int main(void)
             //mid-opto values
             else if (configureChoice == 6)
             {
+                while( buttons.MiddlePressed() )
+                {
+                    //this menu is entered by pressing the middle button
+                }
                 while( !buttons.MiddlePressed() )
                 {
                     LCD.WriteLine(optoMid.Value());
@@ -477,8 +481,12 @@ int main(void)
             }
 
             //CDS values
-            else if (configureChoice == 6)
+            else if (configureChoice == 7)
             {
+                while( buttons.MiddlePressed() )
+                {
+                    //this menu is entered by pressing the middle button
+                }
                 while( !buttons.MiddlePressed() )
                 {
                     LCD.WriteLine(CDS.Value());

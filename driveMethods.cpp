@@ -227,7 +227,20 @@ void DisplayLightValue()
     average = average / 100.0;
 
     LCD.Write("Value of Light = ");
-    LCD.WriteLine(average);
+    //LCD.WriteLine(average);
+
+    //Blue = 0.367
+    //Red = 0.164
+    //Threshold = 0.265
+
+    if (average < 0.265)
+    {
+        LCD.WriteLine("Red");
+    }
+    else
+    {
+        LCD.WriteLine("Blue");
+    }
 }
 
 

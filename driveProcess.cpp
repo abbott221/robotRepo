@@ -146,6 +146,15 @@ void theLoop(movement loopMoves[], int numMoves)
         goForTime = loopMoves[i].getDoubleValue();
         useIntValue = loopMoves[i].getIntValue();
 
+        if (configRPS)
+        {
+            LCD.Write(TheRPS.Heading());
+            LCD.Write(" ");
+            LCD.Write(TheRPS.X());
+            LCD.Write(" ");
+            LCD.WriteLine(TheRPS.Y());
+        }
+
         if (loopMoves[i].getIsSet() == true)
         {
             if (loopMoves[i].getOperationType() == STRAIGHT)
