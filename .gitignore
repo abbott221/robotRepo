@@ -5,4 +5,7 @@
 *.s19
 *.map
 *.creator
+*.creator.user
 *.elf
+*.files
+Makefile
