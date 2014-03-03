@@ -47,6 +47,8 @@ extern int servoMax;
 extern float lowThresh;
 extern float highThresh;
 
+extern float optoThresh;
+
 
 extern bool configLightStart;
 extern bool configCourseTimer;

@@ -190,11 +190,11 @@ void theLoop(movement loopMoves[], int numMoves)
 
             else if (loopMoves[i].getOperationType() == 9)
             {
-                LineFromRight(goForTime);
+                LineFromLeft(goForTime);
             }
             else if (loopMoves[i].getOperationType() == 10)
             {
-                LineFromLeft(goForTime);
+                LineFromRight(goForTime);
             }
 
 
@@ -202,11 +202,11 @@ void theLoop(movement loopMoves[], int numMoves)
             //METHOD 12
             else if (loopMoves[i].getOperationType() == 12)
             {
-                LineFromLeft(goForTime);
+                ChangeOptoThreshold(goForTime);
             }
             else if (loopMoves[i].getOperationType() == 13)
             {
-                LineFromLeft(goForTime);
+                DisplayLightValue();
             }
         }
 

@@ -50,6 +50,8 @@ int servoMax = 2500;
 float lowThresh = 0.388;
 float highThresh = 1.547;
 
+float optoThresh = 0.5;
+
 bool configLightStart = true;
 bool configCourseTimer = true;
 bool configDelay = true;
@@ -329,6 +331,7 @@ int main(void)
             LCD.WriteLine(lolBattery.Voltage());
 
             configureSelect[0].setOption(2, "  Calibrate Power");
+
             configureSelect[1].setOption(3, "  Calibrate Servo");
 
             configureSelect[2].setOption(4, "  Start with Light");
@@ -343,10 +346,14 @@ int main(void)
             configureSelect[5].setOption(7, "  Use RPS");
             configureSelect[5].setState(configRPS);
 
+            configureSelect[6].setOption(8, "  Read mid-opto value");
+
+            configureSelect[7].setOption(9, "  Read CDS values");
 
 
 
-            configureChoice = UserInterface(configureSelect, 6);
+
+            configureChoice = UserInterface(configureSelect, 8);
 
 
             //calibrate motor
@@ -452,6 +459,34 @@ int main(void)
                 else
                 {
                     configRPS = true;
+                }
+            }
+
+            //mid-opto values
+            else if (configureChoice == 6)
+            {
+                while( !buttons.MiddlePressed() )
+                {
+                    LCD.WriteLine(optoMid.Value());
+                    Sleep(.10);
+                }
+                while( buttons.MiddlePressed() )
+                {
+                    //nothing
+                }
+            }
+
+            //CDS values
+            else if (configureChoice == 6)
+            {
+                while( !buttons.MiddlePressed() )
+                {
+                    LCD.WriteLine(CDS.Value());
+                    Sleep(.10);
+                }
+                while( buttons.MiddlePressed() )
+                {
+                    //nothing
                 }
             }
 
