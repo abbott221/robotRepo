@@ -40,15 +40,35 @@ git clone https://github.com/abbott221/robotRepo.git
 
 //drag all that stuff back into the folder on your flashdrive for replacements
 
+//DO NOT HAVE THAT SECOND INTERNAL FOLDER THIS TIME, THAT MAY CAUSE ERRORS
+
 //right click on a file and open the GUI
+//OR via command
+
+$git gui
 
 "commit" on toolbar -> "Stage changed files to commit"
 
+//CHECK THAT THE NEW LINEUP OF FILES DON'T CONTAIN A BUNCH OF RED X's NEXT TO THEM,
+
+//THAT MEANS YOU STILL NEED TO DELETE THE SECOND INTERNAL FILE AS MENTIONED ABOVE
+
 type a message for the commit
 
-press "push" button to push the code to the internet
+
+press "commit" button
+
+then, remote ->  push to push code to the internet
+//straight up "push" button oddly doesn't work
 
 type your username and password
+
+if failed to send,
+$git pull thisURL master
+
+then, press push button again
+
+
 
 
 
