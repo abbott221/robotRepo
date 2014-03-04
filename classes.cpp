@@ -26,6 +26,8 @@ void movement::setMovement(int dType, double dValue)
     type = dType;
     doubleValue = dValue;
     isSet = true;
+
+    myDataType = IM_A_DOUBLE;
 }
 
 //IMPORTANT: this is an overloaded method
@@ -34,6 +36,8 @@ void movement::setMovement(int dType, int dValue)
     type = dType;
     intValue = dValue;
     isSet = true;
+
+    myDataType = IM_A_INTEGER;
 }
 
 void movement::setState(bool state)
@@ -45,6 +49,32 @@ void movement::setState(bool state)
     else
     {
         isSet = false;
+    }
+}
+
+//NEW METHODS
+
+void movement::setCompletion(bool complete)
+{
+    if (complete == true)
+    {
+        completion = true;
+    }
+    else
+    {
+        completion = false;
+    }
+}
+
+void movement::setDataType(bool data)
+{
+    if (data == IM_A_DOUBLE)
+    {
+        myDataType = IM_A_DOUBLE;
+    }
+    else
+    {
+        myDataType = IM_A_INTEGER;
     }
 }
 
@@ -67,6 +97,18 @@ int movement::getIntValue()
 bool movement::getIsSet()
 {
     return isSet;
+}
+
+//NEW METHODS
+
+bool movement::getCompletion()
+{
+    return completion;
+}
+
+bool movement::getDataType()
+{
+    return myDataType;
 }
 
 

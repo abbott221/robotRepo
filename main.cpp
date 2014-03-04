@@ -1,4 +1,3 @@
-
 #include <string.h>
 #include <stdio.h>
 
@@ -24,8 +23,8 @@ FEHEncoder  rightEncoder( FEHIO::P0_1);
 AnalogInputPin CDS(FEHIO::P0_7);
 
 AnalogInputPin optoLeft(FEHIO::P2_0);
-AnalogInputPin optoMid(FEHIO::P2_1);
-AnalogInputPin optoRight(FEHIO::P2_2);
+AnalogInputPin optoMid(FEHIO::P2_2);
+AnalogInputPin optoRight(FEHIO::P2_4);
 
 
 
@@ -56,6 +55,9 @@ bool configLightStart = true;
 bool configCourseTimer = true;
 bool configDelay = true;
 bool configRPS = true;
+
+
+int milliCounter = 0;
 
 
 //movement moves[12];
@@ -171,16 +173,18 @@ int main(void)
 
         LCD.WriteLine("Robot UI 4.02 has loaded");
 
-        mainSelect[0].setOption(2, "  Display Movements");
-        mainSelect[1].setOption(3, "  Turn On Movement");
-        mainSelect[2].setOption(4, "  Turn Off Movement");
-        mainSelect[3].setOption(5, "  Turn On Page");
-        mainSelect[4].setOption(6, "  Turn Off Page");
-        mainSelect[5].setOption(7, "  Adjust Movement");
-        mainSelect[6].setOption(8, "  Run");
-        mainSelect[7].setOption(9, "  Calibrate/Configure");
+        //The array position of each option is the option's value returned from userInterface
+        mainSelect[0].setOption(2, "  PLACE HOLDER :)");
+        mainSelect[1].setOption(3, "  Run");
+        mainSelect[2].setOption(4, "  Adjust Movement");
+        mainSelect[3].setOption(5, "  Display Movements");
+        mainSelect[4].setOption(6, "  Turn On Movement");
+        mainSelect[5].setOption(7, "  Turn Off Movement");
+        mainSelect[6].setOption(8, "  Turn On Page");
+        mainSelect[7].setOption(9, "  Turn Off Page");
+        mainSelect[8].setOption(10, "  Calibrate/Configure");
 
-        mainChoice = UserInterface(mainSelect, 8);
+        mainChoice = UserInterface(mainSelect, 9);
 
         //END USER INTERFACE: MAIN MENU
 
@@ -192,72 +196,18 @@ int main(void)
 
         if (mainChoice == 0)
         {
-            //Option 0: Display movements
-
-            //moveChoice = pageAndMoveInterface();
-            pageAndMoveInterface(moreMoves);
-
+            //in case your finger slips, 2 or 3 fewer button presses
         }
-        if (mainChoice == 1)
+
+        else if (mainChoice == 1)
         {
-            //Option 1: Add movement
+            //Option 1: Run
 
-            moveChoice = pageAndMoveInterface(moreMoves);
-
-            moreMoves[moveChoice].setState(true);
+            driveProcess(moreMoves);
 
         }
+
         else if (mainChoice == 2)
-        {
-            //Option 3: Delete Movement
-
-            moveChoice = pageAndMoveInterface(moreMoves);
-
-            moreMoves[moveChoice].setState(false);
-
-            //moreMoves[moveChoice].setMovement(STRAIGHT, 0.0);
-
-        }
-        if (mainChoice == 3)
-        {
-            //Option 1: Add page
-            LCD.Clear( FEHLCD::Black );
-            LCD.SetFontColor( FEHLCD::White );
-
-            LCD.WriteLine("Select Page");
-
-            //pageChoice = pageInterface();
-            pageChoice = UserInterface(pageSelect, 12);
-
-
-            for (int i = 0; i < 12; i++)
-            {
-                moreMoves[i + (12 * pageChoice)].setState(true);
-            }
-
-            pageSelect[pageChoice].setState(true);
-
-        }
-        else if (mainChoice == 4)
-        {
-            //Option 3: Delete Page
-            LCD.Clear( FEHLCD::Black );
-            LCD.SetFontColor( FEHLCD::White );
-
-            LCD.WriteLine("Select Page");
-
-            //pageChoice = pageInterface();
-            pageChoice = UserInterface(pageSelect, 12);
-
-            for (int i = 0; i < 12; i++)
-            {
-                moreMoves[i + (12 * pageChoice)].setState(false);
-            }
-
-            pageSelect[pageChoice].setState(false);
-
-        }
-        else if (mainChoice == 5)
         {
             //Option 2: Adjust (Set) Movement
 
@@ -311,16 +261,78 @@ int main(void)
             }
 
         }
+
+        else if (mainChoice == 3)
+        {
+            //Option 3: Display movements
+
+            //moveChoice = pageAndMoveInterface();
+            pageAndMoveInterface(moreMoves);
+
+        }
+        else if (mainChoice == 4)
+        {
+            //Option 4: Turn on (Old Add) movement
+
+            moveChoice = pageAndMoveInterface(moreMoves);
+
+            moreMoves[moveChoice].setState(true);
+
+        }
+        else if (mainChoice == 5)
+        {
+            //Option 5: Turn off (Old Delete) Movement
+
+            moveChoice = pageAndMoveInterface(moreMoves);
+
+            moreMoves[moveChoice].setState(false);
+
+            //moreMoves[moveChoice].setMovement(STRAIGHT, 0.0);
+
+        }
         else if (mainChoice == 6)
         {
-            //Option 4: Run
+            //Option 6: Add page
+            LCD.Clear( FEHLCD::Black );
+            LCD.SetFontColor( FEHLCD::White );
 
-            driveProcess(moreMoves);
+            LCD.WriteLine("Select Page");
+
+            //pageChoice = pageInterface();
+            pageChoice = UserInterface(pageSelect, 12);
+
+
+            for (int i = 0; i < 12; i++)
+            {
+                moreMoves[i + (12 * pageChoice)].setState(true);
+            }
+
+            pageSelect[pageChoice].setState(true);
 
         }
         else if (mainChoice == 7)
         {
-            //Option 6: Calibrate/Configure
+            //Option 7: Delete Page
+            LCD.Clear( FEHLCD::Black );
+            LCD.SetFontColor( FEHLCD::White );
+
+            LCD.WriteLine("Select Page");
+
+            //pageChoice = pageInterface();
+            pageChoice = UserInterface(pageSelect, 12);
+
+            for (int i = 0; i < 12; i++)
+            {
+                moreMoves[i + (12 * pageChoice)].setState(false);
+            }
+
+            pageSelect[pageChoice].setState(false);
+
+        }
+
+        else if (mainChoice == 8)
+        {
+            //Option 8: Calibrate/Configure
 
             LCD.Clear( FEHLCD::Black );
             LCD.SetFontColor( FEHLCD::White );
@@ -350,10 +362,12 @@ int main(void)
 
             configureSelect[7].setOption(9, "  Read CDS values");
 
+            configureSelect[8].setOption(10, "  Read RPS values");
 
 
 
-            configureChoice = UserInterface(configureSelect, 8);
+
+            configureChoice = UserInterface(configureSelect, 9);
 
 
             //calibrate motor
@@ -492,6 +506,31 @@ int main(void)
                     LCD.WriteLine(CDS.Value());
                     Sleep(.10);
                 }
+                while( buttons.MiddlePressed() )
+                {
+                    //nothing
+                }
+            }
+
+            //RPS values
+            else if (configureChoice == 8)
+            {
+                while( buttons.MiddlePressed() )
+                {
+                    //this menu is entered by pressing the middle button
+                }
+                TheRPS.InitializeMenu();
+                TheRPS.Enable();
+                while( !buttons.MiddlePressed() )
+                {
+                    LCD.Write(TheRPS.Heading());
+                    LCD.Write(" ");
+                    LCD.Write(TheRPS.X());
+                    LCD.Write(" ");
+                    LCD.WriteLine(TheRPS.Y());
+                    Sleep(.10);
+                }
+                TheRPS.Disable();
                 while( buttons.MiddlePressed() )
                 {
                     //nothing

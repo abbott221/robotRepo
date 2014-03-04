@@ -3,13 +3,39 @@
 #include "main.h"
 
 
+void logDataStuffs()
+{
+    if (milliCounter % 10 == 0)
+    {
+        LCD.Write(TheRPS.Heading());
+        LCD.Write(" ");
+        LCD.Write(TheRPS.X());
+        LCD.Write(" ");
+        LCD.WriteLine(TheRPS.Y());
+    }
+
+    milliCounter++;
+}
+
+
+
 //METHOD 0
 //goes "straight" for specified time
 void DriveForTime(double time)
 {
     rMotor.SetPercent(rightPower);
     lMotor.SetPercent(-1 * leftPower);
-    Sleep(time);
+
+    //Sleep(time);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+    while( dTime < time)
+    {
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+
     rMotor.Stop();
     lMotor.Stop();
 }
@@ -21,7 +47,17 @@ void TurnLeftForTime(double time)
 {
     rMotor.SetPercent(rightPower);
     lMotor.SetPercent(leftPower);
-    Sleep(time);
+
+    //Sleep(time);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+    while( dTime < time)
+    {
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+
     rMotor.Stop();
     lMotor.Stop();
 }
@@ -32,7 +68,17 @@ void TurnRightForTime(double time)
 {
     rMotor.SetPercent(-1 * rightPower);
     lMotor.SetPercent(-1 * leftPower);
-    Sleep(time);
+
+    //Sleep(time);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+    while( dTime < time)
+    {
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+
     rMotor.Stop();
     lMotor.Stop();
 }
@@ -45,7 +91,17 @@ void BackwardsForTime(double time)
 {
     rMotor.SetPercent(-1 * rightPower);
     lMotor.SetPercent(leftPower);
-    Sleep(time);
+
+    //Sleep(time);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+    while( dTime < time)
+    {
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+
     rMotor.Stop();
     lMotor.Stop();
 }
@@ -54,7 +110,6 @@ void BackwardsForTime(double time)
 
 
 //METHOD 4
-//goes "straight" for specified time
 void EncForward(double distance)
 {
     rMotor.SetPercent(rightPower);
@@ -62,7 +117,7 @@ void EncForward(double distance)
 
     while (leftEncoder.Counts() <= ((distance * 200) / (3 * 3.1415)))
     {
-        //do nothing
+        logDataStuffs();
     }
 
     rMotor.Stop();
@@ -71,7 +126,6 @@ void EncForward(double distance)
 
 
 //METHOD 5
-//goes "straight" for specified time
 void EncLeft(double distance)
 {
     rMotor.SetPercent(-1 * rightPower);
@@ -79,7 +133,7 @@ void EncLeft(double distance)
 
     while (leftEncoder.Counts() <= ((distance * 200) / (3 * 3.1415)))
     {
-        //do nothing
+        logDataStuffs();
     }
 
     rMotor.Stop();
@@ -88,7 +142,6 @@ void EncLeft(double distance)
 
 
 //METHOD 6
-//definitely turns left for specified time
 void EncRight(double distance)
 {
     rMotor.SetPercent(rightPower);
@@ -96,7 +149,7 @@ void EncRight(double distance)
 
     while (leftEncoder.Counts() <= ((distance * 200) / (3 * 3.1415)))
     {
-        //do nothing
+        logDataStuffs();
     }
 
     rMotor.Stop();
@@ -106,7 +159,6 @@ void EncRight(double distance)
 
 
 //METHOD 7
-//definitely turns right for specified time
 void EncBackward(double distance)
 {
     rMotor.SetPercent(-1 * rightPower);
@@ -114,7 +166,7 @@ void EncBackward(double distance)
 
     while (leftEncoder.Counts() <= ((distance * 200) / (3 * 3.1415)))
     {
-        //do nothing
+        logDataStuffs();
     }
 
     rMotor.Stop();
@@ -126,7 +178,17 @@ void EncBackward(double distance)
 //METHOD 8
 void SetServoDegree(int degrees)
 {
-    Sleep(500);
+
+    //Sleep(500);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+    while( dTime < 0.5)
+    {
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+
     lolServo.SetDegree(degrees);
 }
 
@@ -159,6 +221,7 @@ void LineFromLeft(double goThisLong)
             rMotor.SetPercent(15);
         }
 
+        logDataStuffs();
         dTime = TimeNow() - startTime;
     }
 
@@ -193,6 +256,7 @@ void LineFromRight(double goThisLong)
             rMotor.SetPercent(85);
         }
 
+        logDataStuffs();
         dTime = TimeNow() - startTime;
     }
 
@@ -222,12 +286,15 @@ void DisplayLightValue()
     {
         average += CDS.Value();
 
+        logDataStuffs();
         Sleep(1);
     }
     average = average / 100.0;
 
     LCD.Write("Value of Light = ");
-    //LCD.WriteLine(average);
+
+    //COMMENT OUT THIS LINE IF YOU DON'T WANT IT
+    LCD.WriteLine(average);
 
     //Blue = 0.367
     //Red = 0.164

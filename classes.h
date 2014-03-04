@@ -24,13 +24,24 @@ class movement
         bool getIsSet();
 
 
+        void setCompletion(bool complete);
+        bool getCompletion();
+
+        void setDataType(bool data);
+        bool getDataType();
+
+
     private:
         int type;
+
+        bool myDataType;
 
         double doubleValue;
         int intValue;
 
         bool isSet;
+
+        bool completion;
 };
 
 

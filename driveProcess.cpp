@@ -140,12 +140,26 @@ void theLoop(movement loopMoves[], int numMoves)
     double goForTime = 0.0;
     int useIntValue = 0;
 
+    /*
+     * THE METHOD "logDataStuffs()" HAS REMOVED THE NEED FOR THE COMPLETION VARIABLE
+     *
+     *
+    for (int i = 0; i < numMoves; i++)
+    {
+        loopMoves[i].setCompletion(false);
+    }
+    */
+
     for (int i = 0; i < numMoves; i++)
     {
 
         goForTime = loopMoves[i].getDoubleValue();
         useIntValue = loopMoves[i].getIntValue();
 
+        /*
+         * USE "logDataStuffs()" INSTEAD
+         *
+         *
         if (configRPS)
         {
             LCD.Write(TheRPS.Heading());
@@ -154,9 +168,12 @@ void theLoop(movement loopMoves[], int numMoves)
             LCD.Write(" ");
             LCD.WriteLine(TheRPS.Y());
         }
+        */
 
         if (loopMoves[i].getIsSet() == true)
         {
+            milliCounter = 0;
+
             if (loopMoves[i].getOperationType() == STRAIGHT)
             {
                 DriveForTime(goForTime);

@@ -2,7 +2,8 @@
 #define MAIN_H
 
 
-
+#define IM_A_DOUBLE 0
+#define IM_A_INTEGER 1
 
 #define STRAIGHT 0
 #define LEFT 1
@@ -54,6 +55,9 @@ extern bool configLightStart;
 extern bool configCourseTimer;
 extern bool configDelay;
 extern bool configRPS;
+
+
+extern int milliCounter;
 
 
 /**/
