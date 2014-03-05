@@ -173,6 +173,7 @@ void theLoop(movement loopMoves[], int numMoves)
         if (loopMoves[i].getIsSet() == true)
         {
             milliCounter = 0;
+            initialAngle = TheRPS.Heading();
 
             if (loopMoves[i].getOperationType() == STRAIGHT)
             {

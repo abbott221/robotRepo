@@ -1,11 +1,23 @@
-
-
 #include "main.h"
 
 
+void straightenUp()
+{
+    double tolerance = initialAngle - TheRPS.Heading();
+    if (tolerance < 0.0)
+    {
+        tolerance = tolerance * -1;
+    }
+
+    if (tolerance > 0.2 && tolerance < 179.8)
+    {
+        LCD.WriteLine("Straighten Up");
+    }
+}
+
 void logDataStuffs()
 {
-    if (milliCounter % 10 == 0)
+    if (milliCounter % dataSpew == 0)
     {
         //LCD.Write(TheRPS.Heading());
         //LCD.Write(" ");
@@ -38,6 +50,7 @@ void DriveForTime(double time)
     double dTime = 0.0;
     while( dTime < time)
     {
+
         logDataStuffs();
         dTime = TimeNow() - startTime;
     }
@@ -121,8 +134,20 @@ void EncForward(double distance)
     rMotor.SetPercent(rightPower);
     lMotor.SetPercent(-1 * leftPower);
 
-    while (leftEncoder.Counts() <= ((distance * 200) / (3 * 3.1415)))
+    while (leftEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
     {
+        if(leftEncoder.Counts() - rightEncoder.Counts() > 4){
+            rMotor.SetPercent(rightPower+3);
+            lMotor.SetPercent(-1 * leftPower);
+        }
+        if(leftEncoder.Counts() - rightEncoder.Counts() < -4){
+            rMotor.SetPercent(rightPower);
+            lMotor.SetPercent(-1 * leftPower+3);
+        }
+        if(leftEncoder.Counts() - rightEncoder.Counts() > -4 && leftEncoder.Counts() - rightEncoder.Counts() < 4 ){
+            rMotor.SetPercent(rightPower);
+            lMotor.SetPercent(-1 * leftPower);
+        }
         logDataStuffs();
     }
 
