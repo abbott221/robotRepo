@@ -145,11 +145,13 @@ void EncForward(double distance)
         if(leftEncoder.Counts() - rightEncoder.Counts() < -4){
             rMotor.SetPercent(rightPower);
 
-            lMotor.SetPercent(-1 * leftPower+4);
+            lMotor.SetPercent(-1 * (leftPower+4));
 
         }
         if(leftEncoder.Counts() - rightEncoder.Counts() > -4 && leftEncoder.Counts() - rightEncoder.Counts() < 4 ){
+            
             rMotor.SetPercent(rightPower);
+            
             lMotor.SetPercent(-1 * leftPower);
         }
         logDataStuffs();
@@ -168,6 +170,25 @@ void EncLeft(double distance)
 
     while (leftEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
     {
+        if(leftEncoder.Counts() - rightEncoder.Counts() > 4){
+            
+             rMotor.SetPercent(-1 * (rightPower+6));
+             
+             lMotor.SetPercent(leftPower);
+        }
+        if(leftEncoder.Counts() - rightEncoder.Counts() < -4){
+            
+             rMotor.SetPercent(-1 * rightPower);
+             
+             lMotor.SetPercent(leftPower+4);
+
+        }
+        if(leftEncoder.Counts() - rightEncoder.Counts() > -4 && leftEncoder.Counts() - rightEncoder.Counts() < 4 ){
+            
+             rMotor.SetPercent(-1 * rightPower);
+             
+             lMotor.SetPercent(leftPower);
+        }
         logDataStuffs();
     }
 
@@ -184,6 +205,25 @@ void EncRight(double distance)
 
     while (leftEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
     {
+        if(leftEncoder.Counts() - rightEncoder.Counts() > 4){
+            
+              rMotor.SetPercent(rightPower+6);
+              
+              lMotor.SetPercent(leftPower);
+        }
+        if(leftEncoder.Counts() - rightEncoder.Counts() < -4){
+            
+              rMotor.SetPercent(rightPower);
+              
+              lMotor.SetPercent(leftPower+4);
+
+        }
+        if(leftEncoder.Counts() - rightEncoder.Counts() > -4 && leftEncoder.Counts() - rightEncoder.Counts() < 4 ){
+            
+              rMotor.SetPercent(rightPower);
+              
+              lMotor.SetPercent(leftPower);
+        }
         logDataStuffs();
     }
 
@@ -197,17 +237,35 @@ void EncRight(double distance)
 void EncBackward(double distance)
 {
     rMotor.SetPercent(-1 * rightPower);
-    lMotor.SetPercent(-1 * leftPower);
+    lMotor.SetPercent(leftPower);
 
     while (leftEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
     {
+        if(leftEncoder.Counts() - rightEncoder.Counts() > 4){
+
+             rMotor.SetPercent(-1 * (rightPower+6));
+             
+             lMotor.SetPercent(leftPower);
+        }
+        if(leftEncoder.Counts() - rightEncoder.Counts() < -4){
+            
+             rMotor.SetPercent(-1 * rightPower);
+             
+             lMotor.SetPercent(leftPower+4);
+
+        }
+        if(leftEncoder.Counts() - rightEncoder.Counts() > -4 && leftEncoder.Counts() - rightEncoder.Counts() < 4 ){
+            
+             rMotor.SetPercent(-1 * rightPower);
+             
+             lMotor.SetPercent(leftPower);
+        }
         logDataStuffs();
     }
 
     rMotor.Stop();
     lMotor.Stop();
 }
-
 
 
 //METHOD 8
