@@ -265,7 +265,7 @@ void EncBackward(double distance)
 
     rMotor.Stop();
     lMotor.Stop();
-
+}
 
 
 //METHOD 8
