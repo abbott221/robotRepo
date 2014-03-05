@@ -113,7 +113,7 @@ void BackwardsForTime(double time)
 
 
 
-//METHOD 4 TESTING
+//METHOD 4
 void EncForward(double distance)
 {
     rMotor.SetPercent(rightPower);
