@@ -50,6 +50,7 @@ void DriveForTime(double time)
     double dTime = 0.0;
     while( dTime < time)
     {
+
         logDataStuffs();
         dTime = TimeNow() - startTime;
     }
@@ -136,12 +137,16 @@ void EncForward(double distance)
     while (leftEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
     {
         if(leftEncoder.Counts() - rightEncoder.Counts() > 4){
+
             rMotor.SetPercent(rightPower+6);
+
             lMotor.SetPercent(-1 * leftPower);
         }
         if(leftEncoder.Counts() - rightEncoder.Counts() < -4){
             rMotor.SetPercent(rightPower);
+
             lMotor.SetPercent(-1 * leftPower+4);
+
         }
         if(leftEncoder.Counts() - rightEncoder.Counts() > -4 && leftEncoder.Counts() - rightEncoder.Counts() < 4 ){
             rMotor.SetPercent(rightPower);
