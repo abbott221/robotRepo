@@ -1,5 +1,4 @@
 
-
 #include "main.h"
 
 
@@ -173,6 +172,8 @@ void theLoop(movement loopMoves[], int numMoves)
         if (loopMoves[i].getIsSet() == true)
         {
             milliCounter = 0;
+            leftEncoder.ResetCounts();
+            rightEncoder.ResetCounts();
 
             if (loopMoves[i].getOperationType() == STRAIGHT)
             {
