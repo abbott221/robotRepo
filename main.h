@@ -60,6 +60,9 @@ extern bool configRPS;
 extern int milliCounter;
 
 
+extern double initialAngle;
+
+
 /**/
 
 

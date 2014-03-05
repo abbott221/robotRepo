@@ -27,7 +27,6 @@ typeSelect[8].setOption(10, "  Set Servo Position");
 
 //PINS FOR THE WIRES
 
-
 FEHMotor rMotor(FEHMotor::Motor1);
 
 //-power is forward
@@ -35,12 +34,22 @@ FEHMotor lMotor(FEHMotor::Motor0);
 
 ButtonBoard buttons( FEHIO::Bank3 );
 
+
 FEHEncoder  leftEncoder( FEHIO::P0_0);
 FEHEncoder  rightEncoder( FEHIO::P0_1);
 
 AnalogInputPin CDS(FEHIO::P0_7);
 
+AnalogInputPin optoLeft(FEHIO::P2_0);
+AnalogInputPin optoMid(FEHIO::P2_2);
+AnalogInputPin optoRight(FEHIO::P2_4);
+
+
+FEHWONKA TheRPS;
+
 FEHServo lolServo(FEHServo::Servo0);
+
+FEHBattery lolBattery (FEHIO::BATTERY_VOLTAGE);
 
 
 

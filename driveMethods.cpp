@@ -7,11 +7,17 @@ void logDataStuffs()
 {
     if (milliCounter % 10 == 0)
     {
-        LCD.Write(TheRPS.Heading());
+        //LCD.Write(TheRPS.Heading());
+        //LCD.Write(" ");
+        //LCD.Write(TheRPS.X());
+        //LCD.Write(" ");
+        //LCD.WriteLine(TheRPS.Y());
+        LCD.Write(optoLeft.Value());
         LCD.Write(" ");
-        LCD.Write(TheRPS.X());
+        LCD.Write(optoMid.Value());
         LCD.Write(" ");
-        LCD.WriteLine(TheRPS.Y());
+        LCD.WriteLine(optoRight.Value());
+
     }
 
     milliCounter++;
@@ -205,17 +211,17 @@ void LineFromLeft(double goThisLong)
 
     while( dTime < goThisLong)
     {
-        if (optoMid.Value() > 0.5)
+        if (optoMid.Value() > optoThresh)
         {
             lMotor.SetPercent(-1 * leftPower);
             rMotor.SetPercent(rightPower);
         }
-        else if (optoRight.Value() > 0.5)
+        else if (optoRight.Value() > optoThresh)
         {
             lMotor.SetPercent(-1 * 15);
             rMotor.SetPercent(85);
         }
-        else if (optoLeft.Value() > 0.5)
+        else if (optoLeft.Value() > optoThresh)
         {
             lMotor.SetPercent(-1 * 85);
             rMotor.SetPercent(15);
@@ -240,17 +246,17 @@ void LineFromRight(double goThisLong)
 
     while( dTime < goThisLong)
     {
-        if (optoMid.Value() > 0.5)
+        if (optoMid.Value() > optoThresh)
         {
             lMotor.SetPercent(-1 * leftPower);
             rMotor.SetPercent(rightPower);
         }
-        else if (optoRight.Value() > 0.5)
+        else if (optoRight.Value() > optoThresh)
         {
             lMotor.SetPercent(-1 * 85);
             rMotor.SetPercent(15);
         }
-        else if (optoLeft.Value() > 0.5)
+        else if (optoLeft.Value() > optoThresh)
         {
             lMotor.SetPercent(-1 * 15);
             rMotor.SetPercent(85);

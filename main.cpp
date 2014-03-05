@@ -59,6 +59,8 @@ bool configRPS = true;
 
 int milliCounter = 0;
 
+double initialAngle = 0.0;
+
 
 //movement moves[12];
 
@@ -240,13 +242,38 @@ int main(void)
             }
             else if (typeChoice == 11)
             {
-                int tempIntValue = moreMoves[moveChoice].getIntValue();
+                int intIncrs[] = {5, 3, 1};
+                double doubleIncrs[] = {1.0, 0.1, 0.01};
 
-                int incrs[] = {5, 3, 1};
+                int tempIntValue = 0;
+                double tempDoubleValue = 0.0;
 
-                tempIntValue = SetInteger(tempIntValue, incrs, 3);
+                int expansion = SetInteger(tempIntValue, intIncrs, 3);
 
-                moreMoves[moveChoice].setMovement(typeChoice, tempIntValue);
+                //EXPANSION IS THE VALUE OF THE TYPE OF MOVE TO SET; NOW IT'S LIKE SETTING ANOTHER MOVE
+
+                //change threshold method
+                if (expansion == 12)
+                {
+                    tempDoubleValue = SetDouble(tempDoubleValue, doubleIncrs, 3);
+
+                    moreMoves[moveChoice].setMovement(expansion, tempDoubleValue);
+                }
+                else if (expansion == 13)
+                {
+                    moreMoves[moveChoice].setMovement(expansion, 0.0);
+                }
+                else
+                {
+                    LCD.WriteLine("HOLY SHIT, WHAT DID YOU DO?");
+                }
+
+
+
+                //tempIntValue stores that out of range move
+                //tempIntValue = SetInteger(tempIntValue, incrs, 3);
+
+                //moreMoves[moveChoice].setMovement(typeChoice, tempIntValue);
             }
             //double valued move
             else
@@ -485,8 +512,13 @@ int main(void)
                 }
                 while( !buttons.MiddlePressed() )
                 {
-                    LCD.WriteLine(optoMid.Value());
-                    Sleep(.10);
+                    LCD.Write(optoLeft.Value());
+                    LCD.Write(" ");
+                    LCD.Write(optoMid.Value());
+                    LCD.Write(" ");
+                    LCD.WriteLine(optoRight.Value());
+
+                    Sleep(0.10);
                 }
                 while( buttons.MiddlePressed() )
                 {
