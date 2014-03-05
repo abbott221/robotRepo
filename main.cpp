@@ -59,6 +59,8 @@ bool configRPS = true;
 
 int milliCounter = 0;
 
+int dataSpew = 20;
+
 double initialAngle = 0.0;
 
 
@@ -390,12 +392,17 @@ int main(void)
             configureSelect[7].setOption(9, "  Read CDS values");
 
             configureSelect[8].setOption(10, "  Read RPS values");
+            
+            configureSelect[9].setOption(11, "  Data Spew Modulus");
 
 
 
 
-            configureChoice = UserInterface(configureSelect, 9);
-
+            configureChoice = UserInterface(configureSelect, 10);
+            
+            
+            LCD.Clear( FEHLCD::Black );
+            LCD.SetFontColor( FEHLCD::White );
 
             //calibrate motor
             if (configureChoice == 0)
@@ -567,6 +574,16 @@ int main(void)
                 {
                     //nothing
                 }
+            }
+            else if (configureChoice == 9)
+            {
+                LCD.WriteLine("Setting Data Spew Modulus");
+
+                int tempSpew = dataSpew;
+                int incrs[] = {25, 5, 1};
+                tempSpew = SetInteger(tempSpew, incrs, 3);
+
+                dataSpew = tempSpew;
             }
 
 
