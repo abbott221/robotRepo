@@ -1,5 +1,3 @@
-
-
 #include "main.h"
 
 
@@ -115,14 +113,26 @@ void BackwardsForTime(double time)
 
 
 
-//METHOD 4
+//METHOD 4 TESTING
 void EncForward(double distance)
 {
     rMotor.SetPercent(rightPower);
     lMotor.SetPercent(-1 * leftPower);
 
-    while (leftEncoder.Counts() <= ((distance * 200) / (3 * 3.1415)))
+    while (leftEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
     {
+        if(leftEncoder.Counts() - rightEncoder.Counts() > 4){
+            rMotor.SetPercent(rightPower+3);
+            lMotor.SetPercent(-1 * leftPower);
+        }
+        if(leftEncoder.Counts() - rightEncoder.Counts() < -4){
+            rMotor.SetPercent(rightPower);
+            lMotor.SetPercent(-1 * leftPower+3);
+        }
+        if(leftEncoder.Counts() - rightEncoder.Counts() > -4 && leftEncoder.Counts() - rightEncoder.Counts() < 4 ){
+            rMotor.SetPercent(rightPower);
+            lMotor.SetPercent(-1 * leftPower);
+        }
         logDataStuffs();
     }
 
