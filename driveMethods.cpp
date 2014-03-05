@@ -1,9 +1,23 @@
 #include "main.h"
 
 
+void straightenUp()
+{
+    double tolerance = initialAngle - TheRPS.Heading();
+    if (tolerance < 0.0)
+    {
+        tolerance = tolerance * -1;
+    }
+
+    if (tolerance > 0.2 && tolerance < 179.8)
+    {
+        LCD.WriteLine("Straighten Up");
+    }
+}
+
 void logDataStuffs()
 {
-    if (milliCounter % 10 == 0)
+    if (milliCounter % dataSpew == 0)
     {
         //LCD.Write(TheRPS.Heading());
         //LCD.Write(" ");
