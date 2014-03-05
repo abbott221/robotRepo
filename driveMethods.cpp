@@ -1,4 +1,3 @@
-
 #include "main.h"
 
 
@@ -114,7 +113,7 @@ void BackwardsForTime(double time)
 
 
 
-//METHOD 4
+//METHOD 4 TESTING
 void EncForward(double distance)
 {
     rMotor.SetPercent(rightPower);
