@@ -59,6 +59,8 @@ extern bool configRPS;
 
 extern int milliCounter;
 
+extern int dataSpew;
+
 
 extern double initialAngle;
 
