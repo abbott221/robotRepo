@@ -395,7 +395,6 @@ int main(void)
             
             configureSelect[9].setOption(11, "  Data Spew Modulus");
 
-            configureSelect[9].setOption(11, "  Data Spew Modulus");
 
 
 
