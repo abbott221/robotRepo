@@ -174,6 +174,7 @@ void theLoop(movement loopMoves[], int numMoves)
             initialAngle = TheRPS.Heading();
             leftEncoder.ResetCounts();
             rightEncoder.ResetCounts();
+            Sleep(.25);
 
             if (loopMoves[i].getOperationType() == STRAIGHT)
             {
