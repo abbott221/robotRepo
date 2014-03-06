@@ -106,19 +106,21 @@ int main(void)
     //put the movement presets here???
 
     moreMoves[0].setMovement(8, 125);
-    moreMoves[1].setMovement(0, 3.2);
-    moreMoves[2].setMovement(8, 85);
-    moreMoves[3].setMovement(1, 0.08);
-    moreMoves[4].setMovement(0, 0.3);
-    moreMoves[5].setMovement(8, 100);
-    moreMoves[6].setMovement(3, 0.3);
-    moreMoves[7].setMovement(1, 0.35);
-    moreMoves[8].setMovement(8, 45);
-    moreMoves[9].setMovement(0, 1.1);
-    moreMoves[10].setMovement(8, 65);
-    moreMoves[11].setMovement(3, 0.35);
-    moreMoves[12].setMovement(8, 90);
-    moreMoves[13].setMovement(3, 1.0);
+    moreMoves[1].setMovement(4, 35.50);
+    moreMoves[2].setMovement(5, 4.60);
+    moreMoves[3].setMovement(8, 45);
+    moreMoves[4].setMovement(4, 7.0);
+    moreMoves[5].setMovement(8, 90);
+    moreMoves[6].setMovement(7, 7.00);
+    moreMoves[7].setMovement(6, 3.60);
+    moreMoves[8].setMovement(7, 8.00);
+    moreMoves[9].setMovement(5, 2.7);
+    moreMoves[10].setMovement(7, 25.00);
+    moreMoves[11].setMovement(5, 5.00);
+    moreMoves[12].setMovement(4, 7.00);
+    moreMoves[13].setMovement(6, 3.50);
+    moreMoves[14].setMovement(4, 45);
+    moreMoves[15].setMovement(6, 10.00);
 
 
 
