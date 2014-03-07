@@ -10,16 +10,17 @@ void logDataStuffs()
         //LCD.Write(TheRPS.X());
         //LCD.Write(" ");
         //LCD.WriteLine(TheRPS.Y());
-        LCD.Write(optoLeft.Value());
-        LCD.Write(" ");
-        LCD.Write(optoMid.Value());
-        LCD.Write(" ");
-        LCD.WriteLine(optoRight.Value());
+        //LCD.Write(optoLeft.Value());
+        //LCD.Write(" ");
+        //LCD.Write(optoMid.Value());
+        //LCD.Write(" ");
+        //LCD.WriteLine(optoRight.Value());
 
     }
 
     milliCounter++;
 }
+
 
 
 
@@ -213,8 +214,8 @@ void SetServoDegree(int degrees)
 //METHOD 9
 void LineFromLeft(double goThisLong)
 {
-    lMotor.SetPercent(-1 * leftPower);
-    rMotor.SetPercent(rightPower);
+    lMotor.SetPercent(-1 * 60);
+    rMotor.SetPercent(60);
 
     double startTime = TimeNow();
     double dTime = 0.0;
@@ -223,18 +224,18 @@ void LineFromLeft(double goThisLong)
     {
         if (optoMid.Value() > optoThresh)
         {
-            lMotor.SetPercent(-1 * leftPower);
-            rMotor.SetPercent(rightPower);
+            lMotor.SetPercent(-1 * 60);
+            rMotor.SetPercent(60);
         }
         else if (optoRight.Value() > optoThresh)
         {
-            lMotor.SetPercent(-1 * 15);
-            rMotor.SetPercent(85);
+            lMotor.SetPercent(-1 * 5);
+            rMotor.SetPercent(75);
         }
         else if (optoLeft.Value() > optoThresh)
         {
-            lMotor.SetPercent(-1 * 85);
-            rMotor.SetPercent(15);
+            lMotor.SetPercent(-1 * 75);
+            rMotor.SetPercent(5);
         }
 
         logDataStuffs();
@@ -248,8 +249,8 @@ void LineFromLeft(double goThisLong)
 //METHOD 10
 void LineFromRight(double goThisLong)
 {
-    lMotor.SetPercent(-1 * leftPower);
-    rMotor.SetPercent(rightPower);
+    lMotor.SetPercent(-1 * 60);
+    rMotor.SetPercent(60);
 
     double startTime = TimeNow();
     double dTime = 0.0;
@@ -258,18 +259,18 @@ void LineFromRight(double goThisLong)
     {
         if (optoMid.Value() > optoThresh)
         {
-            lMotor.SetPercent(-1 * leftPower);
-            rMotor.SetPercent(rightPower);
+            lMotor.SetPercent(-1 * 60);
+            rMotor.SetPercent(60);
         }
         else if (optoRight.Value() > optoThresh)
         {
-            lMotor.SetPercent(-1 * 85);
-            rMotor.SetPercent(15);
+            lMotor.SetPercent(-1 * 75);
+            rMotor.SetPercent(5);
         }
         else if (optoLeft.Value() > optoThresh)
         {
-            lMotor.SetPercent(-1 * 15);
-            rMotor.SetPercent(85);
+            lMotor.SetPercent(-1 * 5);
+            rMotor.SetPercent(75);
         }
 
         logDataStuffs();
