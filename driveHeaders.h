@@ -42,10 +42,17 @@ void EncBackward(double distance);
 void SetServoDegree(int degrees);
 
 //METHOD 9
+<<<<<<< HEAD
 void FollowBlackLine(double goThisLong);
 
 //METHOD 10
 void FollowLightLine(double goThisLong);
+=======
+void LineFromLeft(double goThisLong);
+
+//METHOD 10
+void LineFromRight(double goThisLong);
+>>>>>>> 65bead67040affe8e332474de5827da0c23553c7
 
 
 //METHOD 12
@@ -54,9 +61,12 @@ void ChangeOptoThreshold(double optoThresh);
 //METHOD 13
 void DisplayLightValue();
 
+<<<<<<< HEAD
 //METHOD 14
 void FlyOverLightValue();
 
+=======
+>>>>>>> 65bead67040affe8e332474de5827da0c23553c7
 
 
 

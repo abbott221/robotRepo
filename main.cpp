@@ -42,9 +42,12 @@ FEHBattery lolBattery (FEHIO::BATTERY_VOLTAGE);
 int leftPower = 77;
 int rightPower = 80;
 
+<<<<<<< HEAD
 int tempLeftPower = 77;
 int tempRightPower = 80;
 
+=======
+>>>>>>> 65bead67040affe8e332474de5827da0c23553c7
 int servoMin = 556;
 int servoMax = 2500;
 
@@ -135,7 +138,11 @@ int main(void)
     moreMoves[0].setMovement(0, 1.0);
     moreMoves[1].setMovement(1, 1.0);
     moreMoves[2].setMovement(2, 1.0);
+<<<<<<< HEAD
     moreMoves[3].setMovement(3, 3.0);
+=======
+    moreMoves[2].setMovement(3, 3.0);
+>>>>>>> 65bead67040affe8e332474de5827da0c23553c7
 
 
 
@@ -202,6 +209,7 @@ int main(void)
         mainSelect[1].setOption(3, "  Run");
         mainSelect[2].setOption(4, "  Adjust Movement");
         mainSelect[3].setOption(5, "  Display Movements");
+<<<<<<< HEAD
         mainSelect[4].setOption(6, "  Insert Movement");
         mainSelect[5].setOption(7, "  Turn On Movement");
         mainSelect[6].setOption(8, "  Turn Off Movement");
@@ -211,6 +219,15 @@ int main(void)
         mainSelect[9].setState(false);
 
         mainChoice = UserInterface(mainSelect, 10);
+=======
+        mainSelect[4].setOption(6, "  Turn On Movement");
+        mainSelect[5].setOption(7, "  Turn Off Movement");
+        mainSelect[6].setOption(8, "  Turn On Page");
+        mainSelect[7].setOption(9, "  Turn Off Page");
+        mainSelect[8].setOption(10, "  Calibrate/Configure");
+
+        mainChoice = UserInterface(mainSelect, 9);
+>>>>>>> 65bead67040affe8e332474de5827da0c23553c7
 
         //END USER INTERFACE: MAIN MENU
 
@@ -321,6 +338,7 @@ int main(void)
             pageAndMoveInterface(moreMoves);
 
         }
+<<<<<<< HEAD
         //INSERT MOVEMENT
         else if (mainChoice == 4)
         {
@@ -350,6 +368,10 @@ int main(void)
         }
         else if (mainChoice == 5)
         {
+=======
+        else if (mainChoice == 4)
+        {
+>>>>>>> 65bead67040affe8e332474de5827da0c23553c7
             //Option 4: Turn on (Old Add) movement
 
             moveChoice = pageAndMoveInterface(moreMoves);
@@ -357,7 +379,11 @@ int main(void)
             moreMoves[moveChoice].setState(true);
 
         }
+<<<<<<< HEAD
         else if (mainChoice == 6)
+=======
+        else if (mainChoice == 5)
+>>>>>>> 65bead67040affe8e332474de5827da0c23553c7
         {
             //Option 5: Turn off (Old Delete) Movement
 
@@ -368,7 +394,11 @@ int main(void)
             //moreMoves[moveChoice].setMovement(STRAIGHT, 0.0);
 
         }
+<<<<<<< HEAD
         else if (mainChoice == 7)
+=======
+        else if (mainChoice == 6)
+>>>>>>> 65bead67040affe8e332474de5827da0c23553c7
         {
             //Option 6: Add page
             LCD.Clear( FEHLCD::Black );
@@ -388,7 +418,11 @@ int main(void)
             pageSelect[pageChoice].setState(true);
 
         }
+<<<<<<< HEAD
         else if (mainChoice == 8)
+=======
+        else if (mainChoice == 7)
+>>>>>>> 65bead67040affe8e332474de5827da0c23553c7
         {
             //Option 7: Delete Page
             LCD.Clear( FEHLCD::Black );
@@ -408,7 +442,11 @@ int main(void)
 
         }
 
+<<<<<<< HEAD
         else if (mainChoice == 9)
+=======
+        else if (mainChoice == 8)
+>>>>>>> 65bead67040affe8e332474de5827da0c23553c7
         {
             //Option 8: Calibrate/Configure
 
