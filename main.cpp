@@ -62,7 +62,7 @@ bool configRPS = true;
 
 //int milliCounter = 0;
 
-double initialAngle = 0.0;
+double initialMoveAngle = 0.0;
 
 
 //int dataSpew = 20;
@@ -72,7 +72,12 @@ double courseStartTime = 0.0;
 int numOfDisplays = 0;
 
 
+double RPStolerance = 2.0;
+
+
 //movement moves[12];
+
+int currentPhase = 0;
 
 movement moreMoves[144];
 

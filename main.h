@@ -16,6 +16,9 @@
 
 
 
+//#include <stdlib.h>
+
+
 #include <FEHLCD.h>
 #include <FEHIO.h>
 
@@ -35,6 +38,10 @@
 #include "classes.h"
 
 #include "setStuff.h"
+
+
+#include "random.h"
+#include "corrective.h"
 
 //#include "userInterface.h"
 
@@ -66,11 +73,22 @@ extern bool configRPS;
 extern double displayRate;
 
 
-extern double initialAngle;
+//extern double initialAngle;
 
 extern double courseStartTime;
 
 extern int numOfDisplays;
+
+
+
+extern double RPStolerance;
+
+
+
+extern int currentPhase;
+
+
+//extern moreMoves;
 
 
 /**/
@@ -105,27 +123,8 @@ extern FEHServo lolServo;
 
 extern FEHBattery lolBattery;
 
-/**/
 
 
-
-
-
-/*
-
-FEHMotor rMotor(FEHMotor::Motor0);
-
-//-power is forward
-FEHMotor lMotor(FEHMotor::Motor1);
-
-ButtonBoard buttons( FEHIO::Bank3 );
-
-FEHEncoder  rightEncoder( FEHIO::P0_0);
-FEHEncoder  leftEncoder( FEHIO::P0_1);
-
-AnalogInputPin CDS(FEHIO::P0_7);
-
-/**/
 
 
 

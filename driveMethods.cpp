@@ -1,5 +1,6 @@
-#include "main.h"
+//#include "main.h"
 
+#include "driveHeaders.h"
 
 /*
 void straightenUp()
@@ -23,6 +24,9 @@ void logDataStuffs()
 
     if (dTime > displayRate * numOfDisplays)
     {
+        LCD.Clear( FEHLCD::Black );
+        LCD.SetFontColor( FEHLCD::White );
+
         LCD.Write(TheRPS.Heading());
         LCD.Write(" ");
         LCD.Write(TheRPS.X());
@@ -452,6 +456,84 @@ void FlyOverLightValue()
 }
 
 
+//METHOD 15
+void ChangePhase()
+{
+    currentPhase++;
+}
+
+
+//METHOD 16
+void unFollowBlackLine(double goThisLong)
+{
+    lMotor.SetPercent(60);
+    rMotor.SetPercent(-1 * 60);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+
+    while( dTime < goThisLong)
+    {
+        if (optoMid.Value() > optoThresh)
+        {
+            lMotor.SetPercent(60);
+            rMotor.SetPercent(-1 * 60);
+        }
+        else if (optoRight.Value() > optoThresh)
+        {
+            lMotor.SetPercent(5);
+            rMotor.SetPercent(-1 * 75);
+        }
+        else if (optoLeft.Value() > optoThresh)
+        {
+            lMotor.SetPercent(75);
+            rMotor.SetPercent(-1 * 5);
+        }
+
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+
+    rMotor.Stop();
+    lMotor.Stop();
+}
+
+//METHOD 17
+void unFollowLightLine(double goThisLong)
+{
+    lMotor.SetPercent(60);
+    rMotor.SetPercent(-1 * 60);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+
+    while( dTime < goThisLong)
+    {
+        if (optoMid.Value() > optoThresh)
+        {
+            lMotor.SetPercent(60);
+            rMotor.SetPercent(-1 * 60);
+        }
+        else if (optoRight.Value() > optoThresh)
+        {
+            lMotor.SetPercent(75);
+            rMotor.SetPercent(-1 * 5);
+        }
+        else if (optoLeft.Value() > optoThresh)
+        {
+            lMotor.SetPercent(5);
+            rMotor.SetPercent(-1 * 75);
+        }
+
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+
+    rMotor.Stop();
+    lMotor.Stop();
+}
+
+
 //************************************************
 //*                                              *
 //*                RPS-APALOOZA                  *
@@ -459,7 +541,14 @@ void FlyOverLightValue()
 //************************************************
 
 
-//METHOD 15
+//METHOD 30
+void ChangeTolerance(double value)
+{
+    RPStolerance = value;
+}
+
+
+//METHOD 31
 void MoveToRealX(double givenX)
 {
     rMotor.SetPercent(rightPower);
@@ -493,7 +582,7 @@ void MoveToRealX(double givenX)
     lMotor.Stop();
 }
 
-//METHOD 16
+//METHOD 32
 void MoveToRealY(double givenY)
 {
     rMotor.SetPercent(rightPower);
@@ -528,6 +617,41 @@ void MoveToRealY(double givenY)
 }
 
 
+
+
+//METHOD 33
+void CheckRealX(double givenX)
+{
+
+    float targetX = (float) givenX;
+
+    float currentX = TheRPS.X();
+
+    if ( myAbsolute(targetX - currentX) > RPStolerance )
+    {
+        //corrective behaviour
+        beginCorrection();
+    }
+
+
+}
+
+//METHOD 34
+void CheckRealY(double givenY)
+{
+
+    float targetY = (float) givenY;
+
+    float currentY = TheRPS.Y();
+
+    if ( myAbsolute(targetY - currentY) > RPStolerance )
+    {
+        //corrective behaviour
+        beginCorrection();
+    }
+
+
+}
 
 
 

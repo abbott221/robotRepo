@@ -1,4 +1,3 @@
-#include "main.h"
 
 
 #include "main.h"
@@ -151,7 +150,7 @@ void theLoop(movement loopMoves[], int numMoves)
         if (loopMoves[i].getIsSet() == true)
         {
             //milliCounter = 0;
-            initialAngle = TheRPS.Heading();
+            initialMoveAngle = TheRPS.Heading();
             leftEncoder.ResetCounts();
             rightEncoder.ResetCounts();
 
