@@ -1,6 +1,7 @@
 #include "main.h"
 
 
+/*
 void straightenUp()
 {
     double tolerance = initialAngle - TheRPS.Heading();
@@ -14,6 +15,7 @@ void straightenUp()
         LCD.WriteLine("Straighten Up");
     }
 }
+*/
 
 void logDataStuffs()
 {
@@ -448,6 +450,99 @@ void FlyOverLightValue()
     lMotor.Stop();
     rMotor.Stop();
 }
+
+
+//************************************************
+//*                                              *
+//*                RPS-APALOOZA                  *
+//*                                              *
+//************************************************
+
+
+//METHOD 15
+void MoveToRealX(double givenX)
+{
+    rMotor.SetPercent(rightPower);
+    lMotor.SetPercent(-1 * leftPower);
+
+
+    float targetX = (float) givenX;
+
+    float currentX = TheRPS.X();
+
+    if ( targetX < currentX )
+    {
+        while( targetX < currentX )
+        {
+            logDataStuffs();
+
+            currentX = TheRPS.X();
+        }
+    }
+    else
+    {
+        while( targetX > currentX )
+        {
+            logDataStuffs();
+
+            currentX = TheRPS.X();
+        }
+    }
+
+    rMotor.Stop();
+    lMotor.Stop();
+}
+
+//METHOD 16
+void MoveToRealY(double givenY)
+{
+    rMotor.SetPercent(rightPower);
+    lMotor.SetPercent(-1 * leftPower);
+
+
+    float targetY = (float) givenY;
+
+    float currentY = TheRPS.X();
+
+    if ( targetY < currentY )
+    {
+        while( targetY < currentY )
+        {
+            logDataStuffs();
+
+            currentY = TheRPS.Y();
+        }
+    }
+    else
+    {
+        while( targetY > currentY )
+        {
+            logDataStuffs();
+
+            currentY = TheRPS.Y();
+        }
+    }
+
+    rMotor.Stop();
+    lMotor.Stop();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -289,7 +289,22 @@ int main(void)
                 }
                 else
                 {
-                    LCD.WriteLine("HOLY SHIT, WHAT DID YOU DO?");
+                    int theDataType = setTheDataType();
+
+                    if (theDataType == 0)
+                    {
+                        tempDoubleValue = SetDouble(tempDoubleValue, doubleIncrs, 3);
+                        moreMoves[moveChoice].setMovement(expansion, tempDoubleValue);
+                        moreMoves[moveChoice].setDataType(IM_A_DOUBLE);
+                    }
+
+                    else
+                    {
+                        tempIntValue = SetInteger(tempIntValue, intIncrs, 3);
+                        moreMoves[moveChoice].setMovement(expansion, tempIntValue);
+                        moreMoves[moveChoice].setDataType(IM_A_INTEGER);
+                    }
+
                 }
 
 

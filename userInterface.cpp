@@ -325,7 +325,7 @@ int moveInterface (movement moves[])
 
     for (int i = 0; i < 12; i++)
     {
-        if (moves[i].getOperationType() == 8)
+        if (moves[i].getDataType() == IM_A_INTEGER)
         {
             tempMove.setMovement(moves[i].getOperationType(), moves[i].getIntValue());
             moveSelect[i].setOption( (i+2), tempMove);

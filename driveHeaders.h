@@ -60,4 +60,14 @@ void FlyOverLightValue();
 
 
 
+
+//METHOD 15
+void MoveToRealX(double givenX);
+
+//METHOD 16
+void MoveToRealY(double givenY);
+
+
+
+
 #endif // DRIVEHEADERS_H

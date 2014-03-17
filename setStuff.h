@@ -14,7 +14,7 @@ int SetInteger(int value, int increments[], int size);
 
 int IncrementInteger(int value, int increment);
 
-
+int setTheDataType ();
 
 
 

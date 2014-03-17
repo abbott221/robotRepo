@@ -141,7 +141,7 @@ void option::setOption(int dLine, char *dName)
 
 void option::setOption(int dLine, movement dOptionMove)
 {
-    if (dOptionMove.getOperationType() == 8)
+    if (dOptionMove.getDataType() == IM_A_INTEGER)
     {
         optionType = OPTION_INT;
     }

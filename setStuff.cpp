@@ -126,6 +126,48 @@ int IncrementInteger (int value, int increment)
 
 
 
+int setTheDataType ()
+{
+    LCD.WriteLine( "L = double" );
+    LCD.WriteLine( "R = int" );
+    LCD.WriteLine( "M = continue" );
+
+    int value = 0;
+
+    while( !buttons.MiddlePressed() )
+    {
+        if( buttons.LeftPressed() )
+        {
+            value = 0;
+            LCD.Write( "double" );
+            while( buttons.LeftPressed() )
+            {
+                //nothing
+            }
+        }
+        else if( buttons.RightPressed() )
+        {
+            value = 1;
+            LCD.Write( "int" );
+            while( buttons.RightPressed() )
+            {
+                //nothing
+            }
+        }
+
+        Sleep(.10);
+    }
+
+    while( buttons.MiddlePressed() )
+    {
+        //nothing
+    }
+
+    return value;
+}
+
+
+
 
 
 
