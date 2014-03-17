@@ -295,11 +295,7 @@ void SetServoDegree(int degrees)
 
 
 //METHOD 9
-<<<<<<< HEAD
 void FollowBlackLine(double goThisLong)
-=======
-void LineFromLeft(double goThisLong)
->>>>>>> 65bead67040affe8e332474de5827da0c23553c7
 {
     lMotor.SetPercent(-1 * 60);
     rMotor.SetPercent(60);
@@ -334,11 +330,7 @@ void LineFromLeft(double goThisLong)
 }
 
 //METHOD 10
-<<<<<<< HEAD
 void FollowLightLine(double goThisLong)
-=======
-void LineFromRight(double goThisLong)
->>>>>>> 65bead67040affe8e332474de5827da0c23553c7
 {
     lMotor.SetPercent(-1 * 60);
     rMotor.SetPercent(60);
@@ -418,7 +410,6 @@ void DisplayLightValue()
     }
 }
 
-<<<<<<< HEAD
 //METHOD 14
 void FlyOverLightValue()
 {
@@ -458,8 +449,6 @@ void FlyOverLightValue()
     rMotor.Stop();
 }
 
-=======
->>>>>>> 65bead67040affe8e332474de5827da0c23553c7
 
 
 

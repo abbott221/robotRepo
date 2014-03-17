@@ -42,13 +42,10 @@
 extern int leftPower;
 extern int rightPower;
 
-<<<<<<< HEAD
 extern int tempLeftPower;
 extern int tempRightPower;
 
 
-=======
->>>>>>> 65bead67040affe8e332474de5827da0c23553c7
 extern int servoMin;
 extern int servoMax;
 

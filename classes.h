@@ -73,8 +73,4 @@ class option
 };
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 65bead67040affe8e332474de5827da0c23553c7
 #endif // CLASSES_H

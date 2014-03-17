@@ -158,14 +158,11 @@ void theLoop(movement loopMoves[], int numMoves)
             //this sleep timer was for diagnosis of the first move not being a proper distance?
             //Sleep(.25);
 
-<<<<<<< HEAD
 
             tempLeftPower = leftPower;
             tempRightPower = rightPower;
 
 
-=======
->>>>>>> 65bead67040affe8e332474de5827da0c23553c7
             if (loopMoves[i].getOperationType() == STRAIGHT)
             {
                 DriveForTime(goForTime);
@@ -208,19 +205,11 @@ void theLoop(movement loopMoves[], int numMoves)
 
             else if (loopMoves[i].getOperationType() == 9)
             {
-<<<<<<< HEAD
                 FollowBlackLine(goForTime);
             }
             else if (loopMoves[i].getOperationType() == 10)
             {
                 FollowLightLine(goForTime);
-=======
-                LineFromLeft(goForTime);
-            }
-            else if (loopMoves[i].getOperationType() == 10)
-            {
-                LineFromRight(goForTime);
->>>>>>> 65bead67040affe8e332474de5827da0c23553c7
             }
 
 
@@ -234,7 +223,6 @@ void theLoop(movement loopMoves[], int numMoves)
             {
                 DisplayLightValue();
             }
-<<<<<<< HEAD
 
             else if (loopMoves[i].getOperationType() == 14)
             {
@@ -247,8 +235,6 @@ void theLoop(movement loopMoves[], int numMoves)
             rightPower = tempRightPower;
 
 
-=======
->>>>>>> 65bead67040affe8e332474de5827da0c23553c7
         }
 
 
