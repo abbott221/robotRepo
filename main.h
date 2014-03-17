@@ -57,12 +57,16 @@ extern bool configDelay;
 extern bool configRPS;
 
 
-extern int milliCounter;
+//extern int milliCounter;
 
-extern int dataSpew;
+extern double displayRate;
 
 
 extern double initialAngle;
+
+extern double courseStartTime;
+
+extern int numOfDisplays;
 
 
 /**/
