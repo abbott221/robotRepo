@@ -12,29 +12,6 @@ void tempBefore ()
     int tempSize = 20;
     movement useThese[tempSize];
 
-    /*
-     *PERFORMANCE TEST FROM 1/21/14
-     *
-    useThese[0].setMovement(8, 125);
-    useThese[1].setMovement(0, 3.2);
-    useThese[2].setMovement(8, 85);
-    useThese[3].setMovement(0, 0.3);
-    useThese[4].setMovement(8, 105);
-    useThese[5].setMovement(3, 0.3);
-    useThese[6].setMovement(1, 0.4);
-    useThese[7].setMovement(8, 125);
-    useThese[8].setMovement(0, 1.2);
-    useThese[9].setMovement(3, 1.0);
-    useThese[10].setMovement(1, 0.50);
-    useThese[11].setMovement(0, 0.40);
-    useThese[12].setMovement(2, 0.50);
-    useThese[13].setMovement(0, 0.50);
-    useThese[14].setMovement(8, 85);
-    useThese[15].setMovement(1, .30);
-    */
-
-
-
 
     theLoop(useThese, tempSize);
 
@@ -83,8 +60,9 @@ void driveProcess(movement moves[])
     if (configLightStart)
     {
         float value = 0.60;
-        while (value > 0.30) {
-            value=CDS.Value();
+        while (value > 0.30 )
+        {
+            value = CDS.Value();
             Sleep(.10);
 
             LCD.WriteLine(value);
@@ -95,6 +73,8 @@ void driveProcess(movement moves[])
     {
         time = TimeNow();
     }
+    courseStartTime = TimeNow();
+    numOfDisplays = 0;
 
 
     tempBefore();
@@ -170,11 +150,13 @@ void theLoop(movement loopMoves[], int numMoves)
 
         if (loopMoves[i].getIsSet() == true)
         {
-            milliCounter = 0;
+            //milliCounter = 0;
             initialAngle = TheRPS.Heading();
             leftEncoder.ResetCounts();
             rightEncoder.ResetCounts();
-            Sleep(.25);
+
+            //this sleep timer was for diagnosis of the first move not being a proper distance?
+            //Sleep(.25);
 
             if (loopMoves[i].getOperationType() == STRAIGHT)
             {
