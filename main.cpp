@@ -57,11 +57,16 @@ bool configDelay = true;
 bool configRPS = true;
 
 
-int milliCounter = 0;
-
-int dataSpew = 20;
+//int milliCounter = 0;
 
 double initialAngle = 0.0;
+
+
+//int dataSpew = 20;
+double displayRate = 0.2;
+
+double courseStartTime = 0.0;
+int numOfDisplays = 0;
 
 
 //movement moves[12];
@@ -105,6 +110,7 @@ int main(void)
 
     //put the movement presets here???
 
+    /*
     moreMoves[0].setMovement(8, 125);
     moreMoves[1].setMovement(4, 35.50);
     moreMoves[2].setMovement(5, 4.60);
@@ -121,6 +127,15 @@ int main(void)
     moreMoves[13].setMovement(6, 3.50);
     moreMoves[14].setMovement(4, 45);
     moreMoves[15].setMovement(6, 10.00);
+    */
+
+    moreMoves[0].setMovement(0, 1.0);
+    moreMoves[1].setMovement(1, 1.0);
+    moreMoves[2].setMovement(2, 1.0);
+    moreMoves[2].setMovement(3, 3.0);
+
+
+
 
 
 
@@ -395,7 +410,8 @@ int main(void)
 
             configureSelect[8].setOption(10, "  Read RPS values");
             
-            configureSelect[9].setOption(11, "  Data Spew Modulus");
+            //configureSelect[9].setOption(11, "  Data Spew Modulus");
+            configureSelect[9].setOption(11, "  Time between displays");
 
 
 
@@ -581,13 +597,14 @@ int main(void)
             }
             else if (configureChoice == 9)
             {
-                LCD.WriteLine("Setting Data Spew Modulus");
+                LCD.WriteLine("Setting display rate");
 
-                int tempSpew = dataSpew;
-                int incrs[] = {25, 5, 1};
-                tempSpew = SetInteger(tempSpew, incrs, 3);
+                double tempRate = displayRate;
+                double incrs[] = {1.0, 0.1, 0.01};
+                tempRate = SetDouble(tempRate, incrs, 3);
 
-                dataSpew = tempSpew;
+                //dataSpew = tempSpew;
+                displayRate = tempRate;
             }
 
 
