@@ -17,22 +17,26 @@ void straightenUp()
 
 void logDataStuffs()
 {
-    if (milliCounter % dataSpew == 0)
-    {
-        //LCD.Write(TheRPS.Heading());
-        //LCD.Write(" ");
-        //LCD.Write(TheRPS.X());
-        //LCD.Write(" ");
-        //LCD.WriteLine(TheRPS.Y());
-        //LCD.Write(optoLeft.Value());
-        //LCD.Write(" ");
-        //LCD.Write(optoMid.Value());
-        //LCD.Write(" ");
-        //LCD.WriteLine(optoRight.Value());
+    double dTime = TimeNow() - courseStartTime;
 
+    if (dTime > displayRate * numOfDisplays)
+    {
+        LCD.Write(TheRPS.Heading());
+        LCD.Write(" ");
+        LCD.Write(TheRPS.X());
+        LCD.Write(" ");
+        LCD.WriteLine(TheRPS.Y());
+
+        LCD.Write(optoLeft.Value());
+        LCD.Write(" ");
+        LCD.Write(optoMid.Value());
+        LCD.Write(" ");
+        LCD.WriteLine(optoRight.Value());
+
+        numOfDisplays++;
     }
 
-    milliCounter++;
+    //milliCounter++;
 }
 
 
@@ -49,9 +53,8 @@ void DriveForTime(double time)
 
     double startTime = TimeNow();
     double dTime = 0.0;
-    while( dTime < time)
+    while( dTime < time )
     {
-
         logDataStuffs();
         dTime = TimeNow() - startTime;
     }
@@ -118,6 +121,8 @@ void BackwardsForTime(double time)
     double dTime = 0.0;
     while( dTime < time)
     {
+        Sleep(1);
+
         logDataStuffs();
         dTime = TimeNow() - startTime;
     }
