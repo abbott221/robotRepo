@@ -22,9 +22,6 @@ typeSelect[8].setOption(10, "  Set Servo Position");
 
 
 
-
-
-
 //PINS FOR THE WIRES
 
 FEHMotor rMotor(FEHMotor::Motor1);
@@ -33,6 +30,7 @@ FEHMotor rMotor(FEHMotor::Motor1);
 FEHMotor lMotor(FEHMotor::Motor0);
 
 ButtonBoard buttons( FEHIO::Bank3 );
+
 
 
 FEHEncoder  leftEncoder( FEHIO::P0_0);
@@ -45,18 +43,12 @@ AnalogInputPin optoMid(FEHIO::P2_2);
 AnalogInputPin optoRight(FEHIO::P2_4);
 
 
+
 FEHWONKA TheRPS;
 
 FEHServo lolServo(FEHServo::Servo0);
 
 FEHBattery lolBattery (FEHIO::BATTERY_VOLTAGE);
-
-
-
-
-
-
-
 
 
 
@@ -77,37 +69,66 @@ void TurnRightForTime(double time);
 //METHOD 3
 //goes "straight" for specified time
 void BackwardsForTime(double time);
-
-
-
+================================================================================
 //METHOD 4
 //goes "straight" for specified time
 void EncForward(double distance);
 
 //METHOD 5
-//goes "straight" for specified time
 void EncLeft(double distance);
 
 //METHOD 6
-//definitely turns left for specified time
 void EncRight(double distance);
 
 //METHOD 7
-//definitely turns right for specified time
 void EncBackward(double distance);
-
-//METHOD 8
-void SetServoDegree(int degrees);
-
-//METHOD 9
-void LineFromLeft(double goThisLong);
-
-//METHOD 10
-void LineFromRight(double goThisLong);
-
-
+================================================================================
 //METHOD 12
 void ChangeOptoThreshold(double optoThresh);
 
+//METHOD 9
+void FollowBlackLine(double goThisLong);
+
+//METHOD 10
+void FollowLightLine(double goThisLong);
+
+//METHOD 16
+void unFollowBlackLine(double goThisLong);
+
+//METHOD 17
+void unFollowLightLine(double goThisLong);
+================================================================================
+//METHOD 8
+void SetServoDegree(int degrees);
+
+
+Pause
+
 //METHOD 13
 void DisplayLightValue();
+
+//METHOD 14
+void FlyOverLightValue();
+================================================================================
+//METHOD 15
+void ChangePhase();
+
+//METHOD 30
+void ChangeTolerance(double value);
+================================================================================
+//METHOD 31
+void MoveToRealX(double givenX);
+
+//METHOD 32
+void MoveToRealY(double givenY);
+
+//METHOD 33
+void CheckRealX(double givenX);
+
+//METHOD 34
+void CheckRealY(double givenY);
+
+
+
+
+

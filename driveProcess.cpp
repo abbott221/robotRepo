@@ -179,6 +179,14 @@ void theLoop(movement loopMoves[], int numMoves)
                 BackwardsForTime(goForTime);
             }
 
+            else if (loopMoves[i].getOperationType() == 18)
+            {
+                Pause(goForTime);
+            }
+
+
+
+
             else if (loopMoves[i].getOperationType() == 4)
             {
                 EncForward(goForTime);
@@ -195,6 +203,10 @@ void theLoop(movement loopMoves[], int numMoves)
             {
                 EncBackward(goForTime);
             }
+
+
+
+
 
             else if (loopMoves[i].getOperationType() == 8)
             {
@@ -225,8 +237,53 @@ void theLoop(movement loopMoves[], int numMoves)
 
             else if (loopMoves[i].getOperationType() == 14)
             {
-                FlyOverLightValue();
+                FlyOverLightValue(goForTime);
             }
+
+
+
+            else if (loopMoves[i].getOperationType() == 15)
+            {
+                SetCustomAction(useIntValue);
+            }
+            else if (loopMoves[i].getOperationType() == 16)
+            {
+                unFollowBlackLine(goForTime);
+            }
+            else if (loopMoves[i].getOperationType() == 17)
+            {
+                unFollowLightLine(goForTime);
+            }
+
+            else if (loopMoves[i].getOperationType() == 18)
+            {
+                Pause(goForTime);
+            }
+
+
+
+            else if (loopMoves[i].getOperationType() == 30)
+            {
+                ChangeTolerance(goForTime);
+            }
+            else if (loopMoves[i].getOperationType() == 31)
+            {
+                MoveToRealX(goForTime);
+            }
+            else if (loopMoves[i].getOperationType() == 32)
+            {
+                MoveToRealY(goForTime);
+            }
+            else if (loopMoves[i].getOperationType() == 33)
+            {
+                CheckRealX(goForTime);
+            }
+            else if (loopMoves[i].getOperationType() == 34)
+            {
+                CheckRealY(goForTime);
+            }
+
+
 
 
 

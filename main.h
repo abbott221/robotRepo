@@ -85,7 +85,7 @@ extern double RPStolerance;
 
 
 
-extern int currentPhase;
+extern int RPScustomAction;
 
 
 //extern moreMoves;

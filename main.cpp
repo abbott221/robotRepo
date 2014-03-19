@@ -16,7 +16,6 @@ ButtonBoard buttons( FEHIO::Bank3 );
 
 
 
-
 FEHEncoder  leftEncoder( FEHIO::P0_0);
 FEHEncoder  rightEncoder( FEHIO::P0_1);
 
@@ -25,8 +24,6 @@ AnalogInputPin CDS(FEHIO::P0_7);
 AnalogInputPin optoLeft(FEHIO::P2_0);
 AnalogInputPin optoMid(FEHIO::P2_2);
 AnalogInputPin optoRight(FEHIO::P2_4);
-
-
 
 
 
@@ -77,7 +74,7 @@ double RPStolerance = 2.0;
 
 //movement moves[12];
 
-int currentPhase = 0;
+int RPScustomAction = 0;
 
 movement moreMoves[144];
 
@@ -118,7 +115,7 @@ int main(void)
 
     //put the movement presets here???
 
-    /*
+
     moreMoves[0].setMovement(8, 125);
     moreMoves[1].setMovement(4, 35.50);
     moreMoves[2].setMovement(5, 4.60);
@@ -135,12 +132,14 @@ int main(void)
     moreMoves[13].setMovement(6, 3.50);
     moreMoves[14].setMovement(4, 45);
     moreMoves[15].setMovement(6, 10.00);
-    */
+    /**/
 
+    /*
     moreMoves[0].setMovement(0, 1.0);
     moreMoves[1].setMovement(1, 1.0);
     moreMoves[2].setMovement(2, 1.0);
     moreMoves[3].setMovement(3, 3.0);
+    /**/
 
 
 

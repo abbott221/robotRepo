@@ -417,31 +417,65 @@ void DisplayLightValue()
 }
 
 //METHOD 14
-void FlyOverLightValue()
+void FlyOverLightValue(double time)
 {
     rMotor.SetPercent(10);
     lMotor.SetPercent(-1 * 10);
 
-    double average = 0.0;
+    double highest = 0.0;
+    double newVal = 0.0;
+
+
+
+
+
+    /*
     for (int i = 0; i<100;i++)
     {
-        average += CDS.Value();
+        newVal = CDS.Value();
+        if (newVal > highest)
+        {
+            highest = newVal;
+        }
 
         logDataStuffs();
         Sleep(1);
     }
-    average = average / 100.0;
+    /**/
+
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+    while( dTime < time )
+    {
+        newVal = CDS.Value();
+        if (newVal > highest)
+        {
+            highest = newVal;
+        }
+
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+
+
+
+
+
+
+
+    //average = average / 100.0;
 
     LCD.Write("Value of Light = ");
 
     //COMMENT OUT THIS LINE IF YOU DON'T WANT IT
-    LCD.WriteLine(average);
+    LCD.WriteLine(highest);
 
     //Blue = 0.367
     //Red = 0.164
     //Threshold = 0.265
 
-    if (average < 0.265)
+    if (highest < 0.265)
     {
         LCD.WriteLine("Red");
     }
@@ -455,12 +489,6 @@ void FlyOverLightValue()
     rMotor.Stop();
 }
 
-
-//METHOD 15
-void ChangePhase()
-{
-    currentPhase++;
-}
 
 
 //METHOD 16
@@ -534,12 +562,43 @@ void unFollowLightLine(double goThisLong)
 }
 
 
+//METHOD 18
+void Pause(double time)
+{
+    rMotor.Stop();
+    lMotor.Stop();
+
+    //Sleep(time);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+    while( dTime < time )
+    {
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+
+    rMotor.Stop();
+    lMotor.Stop();
+}
+
 //************************************************
 //*                                              *
 //*                RPS-APALOOZA                  *
 //*                                              *
 //************************************************
 
+//METHOD 30
+void SetCustomAction(int action)
+{
+    RPScustomAction = action;
+}
+/*
+void DoCustomAction(int action)
+{
+    RPScustomAction = action;
+}
+*/
 
 //METHOD 30
 void ChangeTolerance(double value)
