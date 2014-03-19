@@ -76,6 +76,10 @@ double RPStolerance = 2.0;
 
 int RPScustomAction = 0;
 
+int currentPowerMode = STOP;
+int leftPowerMode = leftPower;
+int rightPowerMode = rightPower;
+
 movement moreMoves[144];
 
 

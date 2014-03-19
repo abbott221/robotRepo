@@ -114,7 +114,7 @@ void driveProcess(movement moves[])
 
 void theLoop(movement loopMoves[], int numMoves)
 {
-    double goForTime = 0.0;
+    double useDoubleValue = 0.0;
     int useIntValue = 0;
 
     /*
@@ -130,7 +130,7 @@ void theLoop(movement loopMoves[], int numMoves)
     for (int i = 0; i < numMoves; i++)
     {
 
-        goForTime = loopMoves[i].getDoubleValue();
+        useDoubleValue = loopMoves[i].getDoubleValue();
         useIntValue = loopMoves[i].getIntValue();
 
         /*
@@ -164,24 +164,24 @@ void theLoop(movement loopMoves[], int numMoves)
 
             if (loopMoves[i].getOperationType() == STRAIGHT)
             {
-                DriveForTime(goForTime);
+                DriveForTime(useDoubleValue);
             }
             else if (loopMoves[i].getOperationType() == LEFT)
             {
-                TurnLeftForTime(goForTime);
+                TurnLeftForTime(useDoubleValue);
             }
             else if (loopMoves[i].getOperationType() == RIGHT)
             {
-                TurnRightForTime(goForTime);
+                TurnRightForTime(useDoubleValue);
             }
             else if (loopMoves[i].getOperationType() == BACKWARDS)
             {
-                BackwardsForTime(goForTime);
+                BackwardsForTime(useDoubleValue);
             }
 
             else if (loopMoves[i].getOperationType() == 18)
             {
-                Pause(goForTime);
+                Pause(useDoubleValue);
             }
 
 
@@ -189,19 +189,19 @@ void theLoop(movement loopMoves[], int numMoves)
 
             else if (loopMoves[i].getOperationType() == 4)
             {
-                EncForward(goForTime);
+                EncForward(useDoubleValue);
             }
             else if (loopMoves[i].getOperationType() == 5)
             {
-                EncLeft(goForTime);
+                EncLeft(useDoubleValue);
             }
             else if (loopMoves[i].getOperationType() == 6)
             {
-                EncRight(goForTime);
+                EncRight(useDoubleValue);
             }
             else if (loopMoves[i].getOperationType() == 7)
             {
-                EncBackward(goForTime);
+                EncBackward(useDoubleValue);
             }
 
 
@@ -216,11 +216,11 @@ void theLoop(movement loopMoves[], int numMoves)
 
             else if (loopMoves[i].getOperationType() == 9)
             {
-                FollowBlackLine(goForTime);
+                FollowBlackLine(useDoubleValue);
             }
             else if (loopMoves[i].getOperationType() == 10)
             {
-                FollowLightLine(goForTime);
+                FollowLightLine(useDoubleValue);
             }
 
 
@@ -228,7 +228,7 @@ void theLoop(movement loopMoves[], int numMoves)
             //METHOD 12
             else if (loopMoves[i].getOperationType() == 12)
             {
-                ChangeOptoThreshold(goForTime);
+                ChangeOptoThreshold(useDoubleValue);
             }
             else if (loopMoves[i].getOperationType() == 13)
             {
@@ -237,50 +237,80 @@ void theLoop(movement loopMoves[], int numMoves)
 
             else if (loopMoves[i].getOperationType() == 14)
             {
-                FlyOverLightValue(goForTime);
+                FlyOverLightValue(useDoubleValue);
             }
 
 
 
-            else if (loopMoves[i].getOperationType() == 15)
-            {
-                SetCustomAction(useIntValue);
-            }
+
             else if (loopMoves[i].getOperationType() == 16)
             {
-                unFollowBlackLine(goForTime);
+                unFollowBlackLine(useDoubleValue);
             }
             else if (loopMoves[i].getOperationType() == 17)
             {
-                unFollowLightLine(goForTime);
+                unFollowLightLine(useDoubleValue);
             }
 
             else if (loopMoves[i].getOperationType() == 18)
             {
-                Pause(goForTime);
+                Pause(useDoubleValue);
             }
+
+
+
 
 
 
             else if (loopMoves[i].getOperationType() == 30)
             {
-                ChangeTolerance(goForTime);
+                SetCustomAction(useIntValue);
             }
             else if (loopMoves[i].getOperationType() == 31)
             {
-                MoveToRealX(goForTime);
+                ChangeTolerance(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 32)
+
+
+
+
+            else if (loopMoves[i].getOperationType() == 40)
             {
-                MoveToRealY(goForTime);
+                TurnLeftToZero();
             }
-            else if (loopMoves[i].getOperationType() == 33)
+            else if (loopMoves[i].getOperationType() == 41)
             {
-                CheckRealX(goForTime);
+                TurnRightToZero();
             }
-            else if (loopMoves[i].getOperationType() == 34)
+            else if (loopMoves[i].getOperationType() == 42)
             {
-                CheckRealY(goForTime);
+                TurnLeftFromZero(useDoubleValue);
+            }
+            else if (loopMoves[i].getOperationType() == 43)
+            {
+                TurnRightFromZero(useDoubleValue);
+            }
+
+
+
+
+
+
+            else if (loopMoves[i].getOperationType() == 50)
+            {
+                MoveToRealX(useDoubleValue);
+            }
+            else if (loopMoves[i].getOperationType() == 51)
+            {
+                MoveToRealY(useDoubleValue);
+            }
+            else if (loopMoves[i].getOperationType() == 52)
+            {
+                CheckRealX(useDoubleValue);
+            }
+            else if (loopMoves[i].getOperationType() == 53)
+            {
+                CheckRealY(useDoubleValue);
             }
 
 

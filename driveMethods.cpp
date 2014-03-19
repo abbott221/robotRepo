@@ -39,6 +39,39 @@ void logDataStuffs()
         LCD.Write(" ");
         LCD.WriteLine(optoRight.Value());
 
+
+
+        LCD.Write("Left Power: ");
+        LCD.WriteLine(leftPowerMode);
+
+        LCD.Write("Right Power: ");
+        LCD.WriteLine(rightPowerMode);
+
+
+
+        LCD.Write("Power Mode: ");
+        if (currentPowerMode == STRAIGHT)
+        {
+            LCD.WriteLine("Straight");
+        }
+        else if (currentPowerMode == LEFT)
+        {
+            LCD.WriteLine("Left");
+        }
+        else if (currentPowerMode == RIGHT)
+        {
+            LCD.WriteLine("Right");
+        }
+        else if (currentPowerMode == BACKWARDS)
+        {
+            LCD.WriteLine("Backwards");
+        }
+        else if (currentPowerMode == STOP)
+        {
+            LCD.WriteLine("Stop");
+        }
+
+
         numOfDisplays++;
     }
 
@@ -48,12 +81,89 @@ void logDataStuffs()
 
 
 
+void SetPowerStraight() {
+    currentPowerMode = STRAIGHT;
+    leftPowerMode = leftPower;
+    rightPowerMode = rightPower;
+
+    rMotor.SetPercent(rightPower);
+    lMotor.SetPercent(-1 * leftPower);
+}
+void SetPowerLeft() {
+    currentPowerMode = LEFT;
+    leftPowerMode = leftPower;
+    rightPowerMode = rightPower;
+
+    rMotor.SetPercent(rightPower);
+    lMotor.SetPercent(leftPower);
+}
+void SetPowerRight() {
+    currentPowerMode = RIGHT;
+    leftPowerMode = leftPower;
+    rightPowerMode = rightPower;
+
+    rMotor.SetPercent(-1 * rightPower);
+    lMotor.SetPercent(-1 * leftPower);
+}
+void SetPowerBackwards() {
+    currentPowerMode = BACKWARDS;
+    leftPowerMode = leftPower;
+    rightPowerMode = rightPower;
+
+    rMotor.SetPercent(-1 * rightPower);
+    lMotor.SetPercent(leftPower);
+}
+void SetPowerStop() {
+    currentPowerMode = STOP;
+    leftPowerMode = 0;
+    rightPowerMode = 0;
+
+    rMotor.Stop();
+    lMotor.Stop();
+}
+
+
+
+void SetPowerStraight(int left, int right) {
+    currentPowerMode = STRAIGHT;
+    leftPowerMode = left;
+    rightPowerMode = right;
+
+    rMotor.SetPercent(rightPowerMode);
+    lMotor.SetPercent(-1 * leftPowerMode);
+}
+void SetPowerLeft(int left, int right) {
+    currentPowerMode = LEFT;
+    leftPowerMode = left;
+    rightPowerMode = right;
+
+    rMotor.SetPercent(rightPowerMode);
+    lMotor.SetPercent(leftPowerMode);
+}
+void SetPowerRight(int left, int right) {
+    currentPowerMode = RIGHT;
+    leftPowerMode = left;
+    rightPowerMode = right;
+
+    rMotor.SetPercent(-1 * rightPowerMode);
+    lMotor.SetPercent(-1 * leftPowerMode);
+}
+void SetPowerBackwards(int left, int right) {
+    currentPowerMode = BACKWARDS;
+    leftPowerMode = left;
+    rightPowerMode = right;
+
+    rMotor.SetPercent(-1 * rightPowerMode);
+    lMotor.SetPercent(leftPowerMode);
+}
+
+
+
 //METHOD 0
 //goes "straight" for specified time
 void DriveForTime(double time)
 {
-    rMotor.SetPercent(rightPower);
-    lMotor.SetPercent(-1 * leftPower);
+    SetPowerStraight();
 
     //Sleep(time);
 
@@ -65,8 +175,7 @@ void DriveForTime(double time)
         dTime = TimeNow() - startTime;
     }
 
-    rMotor.Stop();
-    lMotor.Stop();
+    SetPowerStop();
 }
 
 
@@ -74,8 +183,10 @@ void DriveForTime(double time)
 //definitely turns left for specified time
 void TurnLeftForTime(double time)
 {
-    rMotor.SetPercent(rightPower);
-    lMotor.SetPercent(leftPower);
+    SetPowerLeft();
+
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(leftPower);
 
     //Sleep(time);
 
@@ -87,16 +198,20 @@ void TurnLeftForTime(double time)
         dTime = TimeNow() - startTime;
     }
 
-    rMotor.Stop();
-    lMotor.Stop();
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
 }
 
 //METHOD 2
 //definitely turns right for specified time
 void TurnRightForTime(double time)
 {
-    rMotor.SetPercent(-1 * rightPower);
-    lMotor.SetPercent(-1 * leftPower);
+    SetPowerRight();
+
+    //rMotor.SetPercent(-1 * rightPower);
+    //lMotor.SetPercent(-1 * leftPower);
 
     //Sleep(time);
 
@@ -108,8 +223,10 @@ void TurnRightForTime(double time)
         dTime = TimeNow() - startTime;
     }
 
-    rMotor.Stop();
-    lMotor.Stop();
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
 }
 
 
@@ -118,8 +235,10 @@ void TurnRightForTime(double time)
 //goes "straight" for specified time
 void BackwardsForTime(double time)
 {
-    rMotor.SetPercent(-1 * rightPower);
-    lMotor.SetPercent(leftPower);
+    SetPowerBackwards();
+
+    //rMotor.SetPercent(-1 * rightPower);
+    //lMotor.SetPercent(leftPower);
 
     //Sleep(time);
 
@@ -133,8 +252,10 @@ void BackwardsForTime(double time)
         dTime = TimeNow() - startTime;
     }
 
-    rMotor.Stop();
-    lMotor.Stop();
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
 }
 
 
@@ -143,8 +264,10 @@ void BackwardsForTime(double time)
 //METHOD 4
 void EncForward(double distance)
 {
-    rMotor.SetPercent(rightPower);
-    lMotor.SetPercent(-1 * leftPower);
+    SetPowerStraight();
+
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(-1 * leftPower);
 
     while (rightEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
     {
@@ -169,16 +292,20 @@ void EncForward(double distance)
         logDataStuffs();
     }
 
-    rMotor.Stop();
-    lMotor.Stop();
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
 }
 
 
 //METHOD 5
 void EncLeft(double distance)
 {
-    rMotor.SetPercent(rightPower);
-    lMotor.SetPercent(leftPower);
+    SetPowerLeft();
+
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(leftPower);
 
 
     while (rightEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
@@ -205,16 +332,20 @@ void EncLeft(double distance)
         logDataStuffs();
     }
 
-    rMotor.Stop();
-    lMotor.Stop();
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
 }
 
 
 //METHOD 6
 void EncRight(double distance)
 {
-    rMotor.SetPercent(-1 * rightPower);
-    lMotor.SetPercent(-1* leftPower);
+    SetPowerRight();
+
+    //rMotor.SetPercent(-1 * rightPower);
+    //lMotor.SetPercent(-1* leftPower);
 
     while (rightEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
     {
@@ -240,8 +371,10 @@ void EncRight(double distance)
         logDataStuffs();
     }
 
-    rMotor.Stop();
-    lMotor.Stop();
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
 }
 
 
@@ -249,8 +382,10 @@ void EncRight(double distance)
 //METHOD 7
 void EncBackward(double distance)
 {
-    rMotor.SetPercent(-1 * rightPower);
-    lMotor.SetPercent(leftPower);
+    SetPowerBackwards();
+
+    //rMotor.SetPercent(-1 * rightPower);
+    //lMotor.SetPercent(leftPower);
 
     while (rightEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
     {
@@ -276,8 +411,10 @@ void EncBackward(double distance)
         logDataStuffs();
     }
 
-    rMotor.Stop();
-    lMotor.Stop();
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
 }
 
 
@@ -305,6 +442,7 @@ void FollowBlackLine(double goThisLong)
 {
     lMotor.SetPercent(-1 * 60);
     rMotor.SetPercent(60);
+
 
     double startTime = TimeNow();
     double dTime = 0.0;
@@ -565,8 +703,10 @@ void unFollowLightLine(double goThisLong)
 //METHOD 18
 void Pause(double time)
 {
-    rMotor.Stop();
-    lMotor.Stop();
+    SetPowerStop();
+
+    //rMotor.Stop();
+    //lMotor.Stop();
 
     //Sleep(time);
 
@@ -578,9 +718,22 @@ void Pause(double time)
         dTime = TimeNow() - startTime;
     }
 
-    rMotor.Stop();
-    lMotor.Stop();
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
 }
+
+
+
+
+
+
+
+
+
+
+
 
 //************************************************
 //*                                              *
@@ -600,18 +753,143 @@ void DoCustomAction(int action)
 }
 */
 
-//METHOD 30
+//METHOD 31
 void ChangeTolerance(double value)
 {
     RPStolerance = value;
 }
 
 
-//METHOD 31
+
+
+
+//METHOD 40
+void TurnLeftToZero()
+{
+    SetPowerLeft();
+
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(leftPower);
+
+
+    //float targetAngle = (float) angle;
+
+    float currentAngle = TheRPS.Heading();
+
+
+
+    //turn until current is less than 5.0
+    while( 5.0 < currentAngle )
+    {
+        logDataStuffs();
+
+        currentAngle = TheRPS.Heading();
+    }
+
+
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
+}
+
+
+//METHOD 41
+void TurnRightToZero()
+{
+    SetPowerRight();
+
+    //rMotor.SetPercent(-1 * rightPower);
+    //lMotor.SetPercent(-1 * leftPower);
+
+
+    //float targetAngle = (float) angle;
+
+    float currentAngle = TheRPS.Heading();
+
+
+
+    //turn until current is less than 5.0
+    while( 5.0 < currentAngle )
+    {
+        logDataStuffs();
+
+        currentAngle = TheRPS.Heading();
+    }
+
+
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
+}
+
+//METHOD 42
+void TurnLeftFromZero(double angle)
+{
+    SetPowerLeft();
+
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(leftPower);
+
+
+    float targetAngle = (float) angle;
+
+    float currentAngle = TheRPS.Heading();
+
+
+
+    //turn until current is greater than target
+    while( targetAngle > currentAngle )
+    {
+        logDataStuffs();
+
+        currentAngle = TheRPS.Heading();
+    }
+
+
+    rMotor.Stop();
+    lMotor.Stop();
+}
+//METHOD 43
+void TurnRightFromZero(double angle)
+{
+    SetPowerRight();
+
+    //rMotor.SetPercent(-1 * rightPower);
+    //lMotor.SetPercent(-1 * leftPower);
+
+
+    float targetAngle = (float) angle;
+
+    float currentAngle = TheRPS.Heading();
+
+
+
+    //turn until current is greater than target
+    while( targetAngle > currentAngle )
+    {
+        logDataStuffs();
+
+        currentAngle = TheRPS.Heading();
+    }
+
+
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
+}
+
+
+
+//METHOD 50
 void MoveToRealX(double givenX)
 {
-    rMotor.SetPercent(rightPower);
-    lMotor.SetPercent(-1 * leftPower);
+    SetPowerStraight();
+
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(-1 * leftPower);
 
 
     float targetX = (float) givenX;
@@ -637,15 +915,19 @@ void MoveToRealX(double givenX)
         }
     }
 
-    rMotor.Stop();
-    lMotor.Stop();
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
 }
 
-//METHOD 32
+//METHOD 51
 void MoveToRealY(double givenY)
 {
-    rMotor.SetPercent(rightPower);
-    lMotor.SetPercent(-1 * leftPower);
+    SetPowerStraight();
+
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(-1 * leftPower);
 
 
     float targetY = (float) givenY;
@@ -671,14 +953,16 @@ void MoveToRealY(double givenY)
         }
     }
 
-    rMotor.Stop();
-    lMotor.Stop();
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
 }
 
 
 
 
-//METHOD 33
+//METHOD 52
 void CheckRealX(double givenX)
 {
 
@@ -695,7 +979,7 @@ void CheckRealX(double givenX)
 
 }
 
-//METHOD 34
+//METHOD 53
 void CheckRealY(double givenY)
 {
 

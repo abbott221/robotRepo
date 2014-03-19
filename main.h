@@ -9,6 +9,7 @@
 #define LEFT 1
 #define RIGHT 2
 #define BACKWARDS 3
+#define STOP 3
 
 #define OPTIONSTRING 0
 #define OPTIONMOVE 1
@@ -86,6 +87,11 @@ extern double RPStolerance;
 
 
 extern int RPScustomAction;
+
+
+extern int currentPowerMode;
+extern int leftPowerMode;
+extern int rightPowerMode;
 
 
 //extern moreMoves;

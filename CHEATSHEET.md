@@ -69,6 +69,9 @@ void TurnRightForTime(double time);
 //METHOD 3
 //goes "straight" for specified time
 void BackwardsForTime(double time);
+
+//METHOD 18
+void Pause(double time);
 ================================================================================
 //METHOD 4
 //goes "straight" for specified time
@@ -101,31 +104,40 @@ void unFollowLightLine(double goThisLong);
 //METHOD 8
 void SetServoDegree(int degrees);
 
-
-Pause
-
 //METHOD 13
 void DisplayLightValue();
 
 //METHOD 14
-void FlyOverLightValue();
+void FlyOverLightValue(double time);
 ================================================================================
-//METHOD 15
-void ChangePhase();
-
 //METHOD 30
-void ChangeTolerance(double value);
-================================================================================
+void SetCustomAction(int action);
+
 //METHOD 31
+void ChangeTolerance(double value);
+
+//METHOD 40
+void TurnLeftToZero();
+
+//METHOD 41
+void TurnRightToZero();
+
+//METHOD 42
+void TurnLeftFromZero(double angle);
+
+//METHOD 43
+void TurnRightFromZero(double angle);
+================================================================================
+//METHOD 50
 void MoveToRealX(double givenX);
 
-//METHOD 32
+//METHOD 51
 void MoveToRealY(double givenY);
 
-//METHOD 33
+//METHOD 52
 void CheckRealX(double givenX);
 
-//METHOD 34
+//METHOD 53
 void CheckRealY(double givenY);
 
 

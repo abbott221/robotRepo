@@ -4,6 +4,19 @@
 
 #include "main.h"
 
+
+void SetPowerStraight();
+void SetPowerLeft();
+void SetPowerRight();
+void SetPowerBackwards();
+void SetPowerStop();
+
+void SetPowerStraight(int left, int right);
+void SetPowerLeft(int left, int right);
+void SetPowerRight(int left, int right);
+void SetPowerBackwards(int left, int right);
+
+
 //METHOD 0
 //goes "straight" for specified time
 void DriveForTime(double time);
@@ -74,23 +87,46 @@ void FlyOverLightValue(double time);
 
 
 
-//METHOD 15
+//METHOD 30
 void SetCustomAction(int action);
 
-//METHOD 30
+//METHOD 31
 void ChangeTolerance(double value);
 
-//METHOD 31
+
+
+
+
+//METHOD 40
+void TurnLeftToZero();
+
+//METHOD 41
+void TurnRightToZero();
+
+//METHOD 42
+void TurnLeftFromZero(double angle);
+
+//METHOD 43
+void TurnRightFromZero(double angle);
+
+
+
+
+
+
+
+
+//METHOD 50
 void MoveToRealX(double givenX);
 
-//METHOD 32
+//METHOD 51
 void MoveToRealY(double givenY);
 
 
-//METHOD 33
+//METHOD 52
 void CheckRealX(double givenX);
 
-//METHOD 34
+//METHOD 53
 void CheckRealY(double givenY);
 
 
