@@ -18,6 +18,19 @@ void straightenUp()
 }
 */
 
+//30s RPS Settings/General
+//40s turning
+//50s Real RPS
+//70s Displaced RPS
+//90s Relative RPS
+
+
+
+
+
+
+
+
 void logDataStuffs()
 {
     double dTime = TimeNow() - courseStartTime;
@@ -69,6 +82,28 @@ void logDataStuffs()
         else if (currentPowerMode == STOP)
         {
             LCD.WriteLine("Stop");
+        }
+
+
+
+
+
+        LCD.Write("Value of Light = ");
+
+        //COMMENT OUT THIS LINE IF YOU DON'T WANT IT
+        LCD.WriteLine(decisionLight);
+
+        //Blue = 0.367
+        //Red = 0.164
+        //Threshold = 0.265
+
+        if (decisionLight < 0.265)
+        {
+            LCD.WriteLine("Red");
+        }
+        else
+        {
+            LCD.WriteLine("Blue");
         }
 
 
@@ -566,22 +601,6 @@ void FlyOverLightValue(double time)
 
 
 
-
-    /*
-    for (int i = 0; i<100;i++)
-    {
-        newVal = CDS.Value();
-        if (newVal > highest)
-        {
-            highest = newVal;
-        }
-
-        logDataStuffs();
-        Sleep(1);
-    }
-    /**/
-
-
     double startTime = TimeNow();
     double dTime = 0.0;
     while( dTime < time )
@@ -608,6 +627,8 @@ void FlyOverLightValue(double time)
 
     //COMMENT OUT THIS LINE IF YOU DON'T WANT IT
     LCD.WriteLine(highest);
+
+    decisionLight = highest;
 
     //Blue = 0.367
     //Red = 0.164
@@ -763,6 +784,9 @@ void ChangeTolerance(double value)
 
 
 
+
+
+
 //METHOD 40
 void TurnLeftToZero()
 {
@@ -848,8 +872,10 @@ void TurnLeftFromZero(double angle)
     }
 
 
-    rMotor.Stop();
-    lMotor.Stop();
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
 }
 //METHOD 43
 void TurnRightFromZero(double angle)
@@ -886,7 +912,7 @@ void TurnRightFromZero(double angle)
 //METHOD 50
 void MoveToRealX(double givenX)
 {
-    SetPowerStraight();
+    //SetPowerStraight();
 
     //rMotor.SetPercent(rightPower);
     //lMotor.SetPercent(-1 * leftPower);
@@ -896,35 +922,46 @@ void MoveToRealX(double givenX)
 
     float currentX = TheRPS.X();
 
+    double travel = 0.0;
+
     if ( targetX < currentX )
     {
+        travel = currentX - targetX;
+        /*
         while( targetX < currentX )
         {
             logDataStuffs();
 
             currentX = TheRPS.X();
         }
+        /**/
     }
     else
     {
+        travel = targetX - currentX;
+        /*
         while( targetX > currentX )
         {
             logDataStuffs();
 
             currentX = TheRPS.X();
         }
+        /**/
     }
+
+    EncForward(travel);
 
     //rMotor.Stop();
     //lMotor.Stop();
 
-    SetPowerStop();
+    //SetPowerStop();
 }
 
 //METHOD 51
 void MoveToRealY(double givenY)
 {
-    SetPowerStraight();
+    //NOT YET
+    //SetPowerStraight();
 
     //rMotor.SetPercent(rightPower);
     //lMotor.SetPercent(-1 * leftPower);
@@ -932,31 +969,42 @@ void MoveToRealY(double givenY)
 
     float targetY = (float) givenY;
 
-    float currentY = TheRPS.X();
+    //IT WAS PREVIOUSLY RPS.X
+    float currentY = TheRPS.Y();
+
+    double travel = 0.0;
 
     if ( targetY < currentY )
     {
+        travel = currentY - targetY;
+        /*
         while( targetY < currentY )
         {
             logDataStuffs();
 
             currentY = TheRPS.Y();
         }
+        /**/
     }
     else
     {
+        travel = targetY - currentY;
+        /*
         while( targetY > currentY )
         {
             logDataStuffs();
 
             currentY = TheRPS.Y();
         }
+        /**/
     }
+
+    EncForward(travel);
 
     //rMotor.Stop();
     //lMotor.Stop();
 
-    SetPowerStop();
+    //SetPowerStop();
 }
 
 
@@ -998,13 +1046,142 @@ void CheckRealY(double givenY)
 
 
 
+//METHOD 60
+void TurnLeftPast180()
+{
+    SetPowerLeft();
+
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(leftPower);
 
 
+    //float targetAngle = (float) angle;
+
+    float currentAngle = TheRPS.Heading();
 
 
+    if (currentAngle < 90)
+    {
+        while (currentAngle < 90)
+        {
+            logDataStuffs();
+
+            currentAngle = TheRPS.Heading();
+        }
+    }
+
+    //turn until it hits about 0 degrees
+    while (currentAngle > 30)
+    {
+        logDataStuffs();
+
+        currentAngle = TheRPS.Heading();
+    }
 
 
+    //rMotor.Stop();
+    //lMotor.Stop();
 
+    SetPowerStop();
+}
+
+//METHOD 61
+void TurnRightPast0()
+{
+    SetPowerRight();
+
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(leftPower);
+
+
+    //float targetAngle = (float) angle;
+
+    float currentAngle = TheRPS.Heading();
+
+
+    if (currentAngle > 90)
+    {
+        while (currentAngle > 90)
+        {
+            logDataStuffs();
+
+            currentAngle = TheRPS.Heading();
+        }
+    }
+
+    //turn until it hits about 180 degrees
+    while (currentAngle < 150)
+    {
+        logDataStuffs();
+
+        currentAngle = TheRPS.Heading();
+    }
+
+
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
+}
+
+
+//METHOD 62
+void TurnLeftToAngle(double angle)
+{
+    SetPowerLeft();
+
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(leftPower);
+
+
+    float targetAngle = (float) angle;
+
+    float currentAngle = TheRPS.Heading();
+
+
+    //turn until current is greater than target
+    while ( targetAngle > currentAngle )
+    {
+        logDataStuffs();
+
+        currentAngle = TheRPS.Heading();
+    }
+
+
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
+}
+
+//METHOD 63
+void TurnRightToAngle(double angle)
+{
+    SetPowerRight();
+
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(leftPower);
+
+
+    float targetAngle = (float) angle;
+
+    float currentAngle = TheRPS.Heading();
+
+
+    //turn until current is less than target
+    while ( targetAngle < currentAngle )
+    {
+        logDataStuffs();
+
+        currentAngle = TheRPS.Heading();
+    }
+
+
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
+}
 
 
 

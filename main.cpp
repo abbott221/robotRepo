@@ -80,6 +80,8 @@ int currentPowerMode = STOP;
 int leftPowerMode = leftPower;
 int rightPowerMode = rightPower;
 
+float decisionLight = 0.0;
+
 movement moreMoves[144];
 
 
@@ -120,22 +122,12 @@ int main(void)
     //put the movement presets here???
 
 
-    moreMoves[0].setMovement(8, 125);
-    moreMoves[1].setMovement(4, 35.50);
-    moreMoves[2].setMovement(5, 4.60);
-    moreMoves[3].setMovement(8, 45);
-    moreMoves[4].setMovement(4, 7.0);
-    moreMoves[5].setMovement(8, 90);
-    moreMoves[6].setMovement(7, 7.00);
-    moreMoves[7].setMovement(6, 3.60);
-    moreMoves[8].setMovement(7, 8.00);
-    moreMoves[9].setMovement(5, 2.7);
-    moreMoves[10].setMovement(7, 25.00);
-    moreMoves[11].setMovement(5, 5.00);
-    moreMoves[12].setMovement(4, 7.00);
-    moreMoves[13].setMovement(6, 3.50);
-    moreMoves[14].setMovement(4, 45);
-    moreMoves[15].setMovement(6, 10.00);
+    moreMoves[0].setMovement(8, 75);
+    moreMoves[1].setMovement(5, 1.00);
+    moreMoves[2].setMovement(8, 120);
+    moreMoves[3].setMovement(4, 4.00);
+    moreMoves[4].setMovement(7, 9.00);
+    moreMoves[5].setMovement(6, 10.00);
     /**/
 
     /*
@@ -274,13 +266,15 @@ int main(void)
             }
             else if (typeChoice == 11)
             {
+                int moveIncrs[] = {20, 5, 1};
+
                 int intIncrs[] = {5, 3, 1};
                 double doubleIncrs[] = {1.0, 0.1, 0.01};
 
                 int tempIntValue = 0;
                 double tempDoubleValue = 0.0;
 
-                int expansion = SetInteger(tempIntValue, intIncrs, 3);
+                int expansion = SetInteger(tempIntValue, moveIncrs, 3);
 
                 //EXPANSION IS THE VALUE OF THE TYPE OF MOVE TO SET; NOW IT'S LIKE SETTING ANOTHER MOVE
 

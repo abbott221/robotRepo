@@ -94,6 +94,9 @@ extern int leftPowerMode;
 extern int rightPowerMode;
 
 
+extern float decisionLight;
+
+
 //extern moreMoves;
 
 

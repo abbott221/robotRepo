@@ -132,4 +132,15 @@ void CheckRealY(double givenY);
 
 
 
+
+
+//METHOD 60
+void TurnLeftPast180();
+
+//METHOD 61
+void TurnRightPast0();
+
+
+
+
 #endif // DRIVEHEADERS_H
