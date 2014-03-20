@@ -87,6 +87,11 @@ void FlyOverLightValue(double time);
 
 
 
+//METHOD 19
+void LightDecisionTurn(double distance);
+
+
+
 
 
 //METHOD 30

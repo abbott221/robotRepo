@@ -109,6 +109,9 @@ void DisplayLightValue();
 
 //METHOD 14
 void FlyOverLightValue(double time);
+
+//METHOD 19
+void LightDecisionTurn(double distance);
 ================================================================================
 //METHOD 30
 void SetCustomAction(int action);

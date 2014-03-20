@@ -59,7 +59,7 @@ void driveProcess(movement moves[])
     if (configLightStart)
     {
         float value = 0.60;
-        while (value > 0.30 )
+        while (value > 0.30 && !buttons.MiddlePressed() )
         {
             value = CDS.Value();
             Sleep(.10);
@@ -257,6 +257,14 @@ void theLoop(movement loopMoves[], int numMoves)
             else if (loopMoves[currentMove].getOperationType() == 18)
             {
                 Pause(useDoubleValue);
+            }
+
+
+
+
+            else if (loopMoves[currentMove].getOperationType() == 19)
+            {
+                LightDecisionTurn(useDoubleValue);
             }
 
 

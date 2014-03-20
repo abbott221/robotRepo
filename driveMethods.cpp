@@ -592,8 +592,8 @@ void DisplayLightValue()
 //METHOD 14
 void FlyOverLightValue(double time)
 {
-    rMotor.SetPercent(10);
-    lMotor.SetPercent(-1 * 10);
+    rMotor.SetPercent(50);
+    lMotor.SetPercent(-1 * 50);
 
     double highest = 0.0;
     double newVal = 0.0;
@@ -744,4 +744,31 @@ void Pause(double time)
 
     SetPowerStop();
 }
+
+
+//METHOD 19
+void LightDecisionTurn(double distance)
+{
+
+
+    if (decisionLight < 0.265)
+    {
+        //LCD.WriteLine("Red");
+        EncLeft(distance);
+    }
+    else
+    {
+        //LCD.WriteLine("Blue");
+        EncRight(distance);
+    }
+
+
+}
+
+
+
+
+
+
+
 
