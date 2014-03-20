@@ -266,7 +266,7 @@ int main(void)
             }
             else if (typeChoice == 11)
             {
-                int moveIncrs[] = {20, 5, 1};
+                int moveIncrs[] = {100, 25, 5, 1};
 
                 int intIncrs[] = {5, 3, 1};
                 double doubleIncrs[] = {1.0, 0.1, 0.01};
@@ -274,7 +274,7 @@ int main(void)
                 int tempIntValue = 0;
                 double tempDoubleValue = 0.0;
 
-                int expansion = SetInteger(tempIntValue, moveIncrs, 3);
+                int expansion = SetInteger(tempIntValue, moveIncrs, 4);
 
                 //EXPANSION IS THE VALUE OF THE TYPE OF MOVE TO SET; NOW IT'S LIKE SETTING ANOTHER MOVE
 

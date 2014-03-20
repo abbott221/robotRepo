@@ -316,6 +316,38 @@ void theLoop(movement loopMoves[], int numMoves)
 
 
 
+            else if (loopMoves[i].getOperationType() == 60)
+            {
+                TurnLeftPast180();
+            }
+            else if (loopMoves[i].getOperationType() == 61)
+            {
+                TurnRightPast0();
+            }
+            else if (loopMoves[i].getOperationType() == 62)
+            {
+                TurnLeftToAngle(useDoubleValue);
+            }
+            else if (loopMoves[i].getOperationType() == 63)
+            {
+                TurnRightToAngle(useDoubleValue);
+            }
+
+
+
+
+            else if (loopMoves[i].getOperationType() == 80)
+            {
+                RelativeTurnLeft(useDoubleValue);
+            }
+            else if (loopMoves[i].getOperationType() == 81)
+            {
+                RelativeTurnRight(useDoubleValue);
+            }
+
+
+
+
 
             leftPower = tempLeftPower;
             rightPower = tempRightPower;

@@ -5,6 +5,8 @@
 #include "main.h"
 
 
+void logDataStuffs();
+
 void SetPowerStraight();
 void SetPowerLeft();
 void SetPowerRight();
@@ -139,6 +141,20 @@ void TurnLeftPast180();
 
 //METHOD 61
 void TurnRightPast0();
+
+//METHOD 62
+void TurnLeftToAngle(double angle);
+
+//METHOD 63
+void TurnRightToAngle(double angle);
+
+
+
+//METHOD 80
+void RelativeTurnLeft(double angle);
+
+//METHOD 81
+void RelativeTurnRight(double angle);
 
 
 
