@@ -26,12 +26,14 @@ void DoCustomAction(int action)
 }
 */
 
+
+/*
 //METHOD 31
 void ChangeTolerance(double value)
 {
     RPStolerance = value;
 }
-
+/**/
 
 
 
@@ -43,12 +45,6 @@ void ChangeTolerance(double value)
 //METHOD 50
 void MoveToRealX(double givenX)
 {
-    //SetPowerStraight();
-
-    //rMotor.SetPercent(rightPower);
-    //lMotor.SetPercent(-1 * leftPower);
-
-
     float targetX = (float) givenX;
 
     float currentX = TheRPS.X();
@@ -58,49 +54,28 @@ void MoveToRealX(double givenX)
     if ( targetX < currentX )
     {
         travel = currentX - targetX;
-        /*
-        while( targetX < currentX )
-        {
-            logDataStuffs();
-
-            currentX = TheRPS.X();
-        }
-        /**/
     }
     else
     {
         travel = targetX - currentX;
-        /*
-        while( targetX > currentX )
-        {
-            logDataStuffs();
-
-            currentX = TheRPS.X();
-        }
-        /**/
     }
+
+
+
+    /*********CORRECTIVE BEHAVIOUR************/
+    travel = PerformComparison(travel);
+
+
 
     EncForward(travel);
 
-    //rMotor.Stop();
-    //lMotor.Stop();
-
-    //SetPowerStop();
 }
 
 //METHOD 51
 void MoveToRealY(double givenY)
 {
-    //NOT YET
-    //SetPowerStraight();
-
-    //rMotor.SetPercent(rightPower);
-    //lMotor.SetPercent(-1 * leftPower);
-
-
     float targetY = (float) givenY;
 
-    //IT WAS PREVIOUSLY RPS.X
     float currentY = TheRPS.Y();
 
     double travel = 0.0;
@@ -108,34 +83,24 @@ void MoveToRealY(double givenY)
     if ( targetY < currentY )
     {
         travel = currentY - targetY;
-        /*
-        while( targetY < currentY )
-        {
-            logDataStuffs();
-
-            currentY = TheRPS.Y();
-        }
-        /**/
     }
     else
     {
         travel = targetY - currentY;
-        /*
-        while( targetY > currentY )
-        {
-            logDataStuffs();
-
-            currentY = TheRPS.Y();
-        }
-        /**/
     }
 
+
+
+
+
+    /*********CORRECTIVE BEHAVIOUR************/
+    travel = PerformComparison(travel);
+
+
+
+
+
     EncForward(travel);
-
-    //rMotor.Stop();
-    //lMotor.Stop();
-
-    //SetPowerStop();
 }
 
 
@@ -220,6 +185,38 @@ void TurnLeftToAngle(double angle)
 void TurnRightToAngle(double angle)
 {
     RelativeTurnRight(angle);
+}
+
+//METHOD 64
+void UnsafeTurnToAngle(double angle)
+{
+    float currentAngle = TheRPS.Heading();
+
+    float targetAngle = (float) angle;
+
+    float dAngle = myAbsolute(currentAngle - targetAngle);
+
+    double travel = 0.0;
+    travel = (dAngle / 180.0) * 10.0;
+
+
+
+
+    //need to turn right to the angle
+    if ( targetAngle > currentAngle )
+    {
+        EncRight(travel);
+    }
+    else
+    {
+        EncLeft(travel);
+    }
+
+
+
+
+
+    //RelativeTurnRight(angle);
 }
 
 

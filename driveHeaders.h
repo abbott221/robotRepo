@@ -92,9 +92,11 @@ void FlyOverLightValue(double time);
 //METHOD 30
 void SetCustomAction(int action);
 
+
+/*
 //METHOD 31
 void ChangeTolerance(double value);
-
+/**/
 
 
 
@@ -131,6 +133,11 @@ void TurnLeftToAngle(double angle);
 
 //METHOD 63
 void TurnRightToAngle(double angle);
+
+//METHOD 64
+void UnsafeTurnToAngle(double angle);
+
+
 
 
 

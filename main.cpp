@@ -82,6 +82,10 @@ int rightPowerMode = rightPower;
 
 float decisionLight = 0.0;
 
+int currentMove = 0;
+
+double tempDefaultStorage= 0.0;
+
 movement moreMoves[144];
 
 

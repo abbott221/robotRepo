@@ -127,11 +127,13 @@ void theLoop(movement loopMoves[], int numMoves)
     }
     */
 
-    for (int i = 0; i < numMoves; i++)
+    //currentMove
+
+    for (currentMove = 0; currentMove < numMoves; currentMove++)
     {
 
-        useDoubleValue = loopMoves[i].getDoubleValue();
-        useIntValue = loopMoves[i].getIntValue();
+        useDoubleValue = loopMoves[currentMove].getDoubleValue();
+        useIntValue = loopMoves[currentMove].getIntValue();
 
         /*
          * USE "logDataStuffs()" INSTEAD
@@ -147,7 +149,7 @@ void theLoop(movement loopMoves[], int numMoves)
         }
         */
 
-        if (loopMoves[i].getIsSet() == true)
+        if (loopMoves[currentMove].getIsSet() == true)
         {
             //milliCounter = 0;
             initialMoveAngle = TheRPS.Heading();
@@ -162,24 +164,24 @@ void theLoop(movement loopMoves[], int numMoves)
             tempRightPower = rightPower;
 
 
-            if (loopMoves[i].getOperationType() == STRAIGHT)
+            if (loopMoves[currentMove].getOperationType() == STRAIGHT)
             {
                 DriveForTime(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == LEFT)
+            else if (loopMoves[currentMove].getOperationType() == LEFT)
             {
                 TurnLeftForTime(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == RIGHT)
+            else if (loopMoves[currentMove].getOperationType() == RIGHT)
             {
                 TurnRightForTime(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == BACKWARDS)
+            else if (loopMoves[currentMove].getOperationType() == BACKWARDS)
             {
                 BackwardsForTime(useDoubleValue);
             }
 
-            else if (loopMoves[i].getOperationType() == 18)
+            else if (loopMoves[currentMove].getOperationType() == 18)
             {
                 Pause(useDoubleValue);
             }
@@ -187,19 +189,19 @@ void theLoop(movement loopMoves[], int numMoves)
 
 
 
-            else if (loopMoves[i].getOperationType() == 4)
+            else if (loopMoves[currentMove].getOperationType() == 4)
             {
                 EncForward(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 5)
+            else if (loopMoves[currentMove].getOperationType() == 5)
             {
                 EncLeft(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 6)
+            else if (loopMoves[currentMove].getOperationType() == 6)
             {
                 EncRight(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 7)
+            else if (loopMoves[currentMove].getOperationType() == 7)
             {
                 EncBackward(useDoubleValue);
             }
@@ -208,17 +210,17 @@ void theLoop(movement loopMoves[], int numMoves)
 
 
 
-            else if (loopMoves[i].getOperationType() == 8)
+            else if (loopMoves[currentMove].getOperationType() == 8)
             {
                 SetServoDegree(useIntValue);
             }
 
 
-            else if (loopMoves[i].getOperationType() == 9)
+            else if (loopMoves[currentMove].getOperationType() == 9)
             {
                 FollowBlackLine(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 10)
+            else if (loopMoves[currentMove].getOperationType() == 10)
             {
                 FollowLightLine(useDoubleValue);
             }
@@ -226,16 +228,16 @@ void theLoop(movement loopMoves[], int numMoves)
 
 
             //METHOD 12
-            else if (loopMoves[i].getOperationType() == 12)
+            else if (loopMoves[currentMove].getOperationType() == 12)
             {
                 ChangeOptoThreshold(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 13)
+            else if (loopMoves[currentMove].getOperationType() == 13)
             {
                 DisplayLightValue();
             }
 
-            else if (loopMoves[i].getOperationType() == 14)
+            else if (loopMoves[currentMove].getOperationType() == 14)
             {
                 FlyOverLightValue(useDoubleValue);
             }
@@ -243,16 +245,16 @@ void theLoop(movement loopMoves[], int numMoves)
 
 
 
-            else if (loopMoves[i].getOperationType() == 16)
+            else if (loopMoves[currentMove].getOperationType() == 16)
             {
                 unFollowBlackLine(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 17)
+            else if (loopMoves[currentMove].getOperationType() == 17)
             {
                 unFollowLightLine(useDoubleValue);
             }
 
-            else if (loopMoves[i].getOperationType() == 18)
+            else if (loopMoves[currentMove].getOperationType() == 18)
             {
                 Pause(useDoubleValue);
             }
@@ -262,31 +264,28 @@ void theLoop(movement loopMoves[], int numMoves)
 
 
 
-            else if (loopMoves[i].getOperationType() == 30)
+            else if (loopMoves[currentMove].getOperationType() == 30)
             {
                 SetCustomAction(useIntValue);
             }
-            else if (loopMoves[i].getOperationType() == 31)
-            {
-                ChangeTolerance(useDoubleValue);
-            }
 
 
 
 
-            else if (loopMoves[i].getOperationType() == 50)
+
+            else if (loopMoves[currentMove].getOperationType() == 50)
             {
                 MoveToRealX(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 51)
+            else if (loopMoves[currentMove].getOperationType() == 51)
             {
                 MoveToRealY(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 52)
+            else if (loopMoves[currentMove].getOperationType() == 52)
             {
                 CheckRealX(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 53)
+            else if (loopMoves[currentMove].getOperationType() == 53)
             {
                 CheckRealY(useDoubleValue);
             }
@@ -294,33 +293,50 @@ void theLoop(movement loopMoves[], int numMoves)
 
 
 
-            else if (loopMoves[i].getOperationType() == 60)
+            else if (loopMoves[currentMove].getOperationType() == 60)
             {
                 TurnLeftPast180();
             }
-            else if (loopMoves[i].getOperationType() == 61)
+            else if (loopMoves[currentMove].getOperationType() == 61)
             {
                 TurnRightPast0();
             }
-            else if (loopMoves[i].getOperationType() == 62)
+            else if (loopMoves[currentMove].getOperationType() == 62)
             {
                 TurnLeftToAngle(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 63)
+            else if (loopMoves[currentMove].getOperationType() == 63)
             {
                 TurnRightToAngle(useDoubleValue);
             }
+            else if (loopMoves[currentMove].getOperationType() == 64)
+            {
+                UnsafeTurnToAngle(useDoubleValue);
+            }
 
 
 
 
-            else if (loopMoves[i].getOperationType() == 80)
+            else if (loopMoves[currentMove].getOperationType() == 80)
             {
                 RelativeTurnLeft(useDoubleValue);
             }
-            else if (loopMoves[i].getOperationType() == 81)
+            else if (loopMoves[currentMove].getOperationType() == 81)
             {
                 RelativeTurnRight(useDoubleValue);
+            }
+
+
+
+
+
+            else if (loopMoves[currentMove].getOperationType() == 200)
+            {
+                ChangeTolerance(useDoubleValue);
+            }
+            else if (loopMoves[currentMove].getOperationType() == 201)
+            {
+                SetUpComparison(useDoubleValue);
             }
 
 

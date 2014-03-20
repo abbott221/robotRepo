@@ -112,21 +112,6 @@ void FlyOverLightValue(double time);
 ================================================================================
 //METHOD 30
 void SetCustomAction(int action);
-
-//METHOD 31
-void ChangeTolerance(double value);
-
-//METHOD 40
-void TurnLeftToZero();
-
-//METHOD 41
-void TurnRightToZero();
-
-//METHOD 42
-void TurnLeftFromZero(double angle);
-
-//METHOD 43
-void TurnRightFromZero(double angle);
 ================================================================================
 //METHOD 50
 void MoveToRealX(double givenX);
@@ -139,8 +124,33 @@ void CheckRealX(double givenX);
 
 //METHOD 53
 void CheckRealY(double givenY);
+================================================================================
+//METHOD 60
+void TurnLeftPast180();
+
+//METHOD 61
+void TurnRightPast0();
+
+//METHOD 62
+void TurnLeftToAngle(double angle);
+
+//METHOD 63
+void TurnRightToAngle(double angle);
+
+//METHOD 64
+void UnsafeTurnToAngle(double angle);
+==================================================================================
+//METHOD 80
+void RelativeTurnLeft(double angle);
+
+//METHOD 81
+void RelativeTurnRight(double angle);
 
 
 
+//METHOD 200 (changes RPS tolerance)
+void ChangeTolerance(double value);
 
+//Method 201
+void SetUpComparison(double distance);
 
