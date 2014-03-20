@@ -99,22 +99,6 @@ void ChangeTolerance(double value);
 
 
 
-//METHOD 40
-void TurnLeftToZero();
-
-//METHOD 41
-void TurnRightToZero();
-
-//METHOD 42
-void TurnLeftFromZero(double angle);
-
-//METHOD 43
-void TurnRightFromZero(double angle);
-
-
-
-
-
 
 
 

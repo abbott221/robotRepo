@@ -274,28 +274,6 @@ void theLoop(movement loopMoves[], int numMoves)
 
 
 
-            else if (loopMoves[i].getOperationType() == 40)
-            {
-                TurnLeftToZero();
-            }
-            else if (loopMoves[i].getOperationType() == 41)
-            {
-                TurnRightToZero();
-            }
-            else if (loopMoves[i].getOperationType() == 42)
-            {
-                TurnLeftFromZero(useDoubleValue);
-            }
-            else if (loopMoves[i].getOperationType() == 43)
-            {
-                TurnRightFromZero(useDoubleValue);
-            }
-
-
-
-
-
-
             else if (loopMoves[i].getOperationType() == 50)
             {
                 MoveToRealX(useDoubleValue);
