@@ -7,21 +7,21 @@
 
 
 
-void beginCorrection()
-{
-    //testingInteger = 2;
+double RPStolerance = 2.0;
+int RPScustomAction = 0;
+double tempDefaultStorage= 0.0;
+
+//initial
+float initialMoveAngle = 0.0;
+
+//current
+//put variables here
+
+bool RPSisWorking = false;
+bool initMoveDataValid = false;
+bool correctionOn = false;
 
 
-    //if going for the pin
-    //back up a few inches and re-line up with wall
-
-
-}
-
-void wontGoStraight()
-{
-    //
-}
 
 //================================================================
 
@@ -78,6 +78,126 @@ double PerformComparison(double RPSdistance)
 
     return returnMe;
 }
+
+//========================================================
+
+void CBinitiateMoveData()
+{
+    initialMoveAngle = TheRPS.Heading();
+
+    //likely to change this statement or add conditions
+    updateRPSisWorking();
+    //RPSisWorking = true;
+
+    if (RPSisWorking)
+    {
+        initMoveDataValid = true;
+    }
+    else
+    {
+        initMoveDataValid = false;
+    }
+
+}
+
+
+
+void CBmidmovePassiveCheck()
+{
+    updateRPSisWorking();
+
+    if (!initMoveDataValid && RPSisWorking)
+    {
+
+    }
+
+
+    if (RPSisWorking)
+    {
+        float dAngle = initialMoveAngle - TheRPS.Heading();
+        dAngle = myAbsolute( dAngle );
+        //dAngle is the change in the angle since start of move
+
+
+
+
+    }
+
+
+}
+
+
+
+void fillerForActionTaken()
+{
+    //
+}
+
+
+
+void updateRPSisWorking()
+{
+    float updateX = TheRPS.X();
+    float updateY = TheRPS.Y();
+    float updateHeading = TheRPS.Heading();
+
+    if (updateX > 0.0 || updateX < 0.0)
+    {
+        RPSisWorking = true;
+    }
+    else if (updateY > 0.0 || updateY < 0.0)
+    {
+        RPSisWorking = true;
+    }
+    else if (updateHeading > 0.0)
+    {
+        RPSisWorking = true;
+    }
+    else
+    {
+        RPSisWorking = false;
+    }
+}
+
+
+
+
+bool checkFlags()
+{
+    bool flagsAreGood = false;
+
+    if (correctionOn)
+    {
+        if (initMoveDataValid)
+        {
+            if (RPSisWorking)
+            {
+                flagsAreGood = true;
+            }
+            else
+            {
+                flagsAreGood = false;
+            }
+        }
+        else
+        {
+            flagsAreGood = false;
+        }
+    }
+    else
+    {
+        flagsAreGood = false;
+    }
+
+    return flagsAreGood;
+}
+
+
+
+
+
+
+
 
 
 

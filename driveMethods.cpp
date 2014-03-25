@@ -2,21 +2,10 @@
 
 #include "driveHeaders.h"
 
-/*
-void straightenUp()
-{
-    double tolerance = initialAngle - TheRPS.Heading();
-    if (tolerance < 0.0)
-    {
-        tolerance = tolerance * -1;
-    }
 
-    if (tolerance > 0.2 && tolerance < 179.8)
-    {
-        LCD.WriteLine("Straighten Up");
-    }
-}
-*/
+
+
+
 
 //30s RPS Settings/General
 //40s turning
@@ -35,11 +24,21 @@ void logDataStuffs()
 {
     double dTime = TimeNow() - courseStartTime;
 
+    //DO UPDATE CORRECTIVE STUFF HERE
+
+
+
+    CBmidmovePassiveCheck();
+
+
+
     if (dTime > displayRate * numOfDisplays)
     {
         LCD.Clear( FEHLCD::Black );
         LCD.SetFontColor( FEHLCD::White );
 
+
+        //DO NOT UPDATE CORRECTIVE STUFF HERE
 
 
 

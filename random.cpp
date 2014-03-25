@@ -12,7 +12,15 @@ float myAbsolute(float number)
     return number;
 }
 
+double myAbsolute(double number)
+{
+    if (number < 0)
+    {
+        number = number * -1;
+    }
 
+    return number;
+}
 
 
 

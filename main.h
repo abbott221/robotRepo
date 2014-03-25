@@ -107,7 +107,6 @@ extern float decisionLight;
 
 extern int currentMove;
 
-extern double tempDefaultStorage;
 
 
 //extern moreMoves;

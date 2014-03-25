@@ -63,9 +63,7 @@ bool configDelay = true;
 bool configRPS = true;
 
 
-//int milliCounter = 0;
 
-double initialMoveAngle = 0.0;
 
 
 //int dataSpew = 20;
@@ -75,12 +73,10 @@ double courseStartTime = 0.0;
 int numOfDisplays = 0;
 
 
-double RPStolerance = 2.0;
 
 
 //movement moves[12];
 
-int RPScustomAction = 0;
 
 int currentPowerMode = STOP;
 int leftPowerMode = leftPower;
@@ -90,7 +86,6 @@ float decisionLight = 0.0;
 
 int currentMove = 0;
 
-double tempDefaultStorage= 0.0;
 
 movement moreMoves[144];
 
@@ -137,13 +132,15 @@ int main(void)
     //put the movement presets here???
 
 
-    moreMoves[0].setMovement(8, 120);
+        moreMoves[0].setMovement(8, 120);
         moreMoves[1].setMovement(50, 1.50);
-        moreMoves[2].setMovement(6, 4.698);
-        moreMoves[3].setMovement(4, 16.2);
-        moreMoves[4].setMovement(5, 5.00);
-        moreMoves[5].setMovement(12, 2.00);
-        moreMoves[6].setMovement(10, 7.0);
+        moreMoves[2].setMovement(6, 4.697);
+        moreMoves[3].setMovement(4, 21.2);
+        moreMoves[4].setMovement(5, 4.00);
+        //moreMoves[5].setMovement(12, 2.00);
+        moreMoves[6].setMovement(21, 5.0);
+        moreMoves[7].setMovement(8, 45);
+        moreMoves[8].setMovement(8, 120);
 
 
         moreMoves[12].setMovement(6, 4.0);

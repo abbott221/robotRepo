@@ -16,16 +16,14 @@
 
 extern int RPScustomAction;
 extern double RPStolerance;
+extern double tempDefaultStorage;
 
+extern float initialMoveAngle;
 
+extern bool RPSisWorking;
+extern bool initMoveDataValid;
+extern bool correctionOn;
 
-
-extern double initialMoveAngle;
-
-
-void beginCorrection();
-
-void wontGoStraight();
 
 //==================================================
 
@@ -41,7 +39,18 @@ void SetUpComparison(double distance);
 //THIS IS NOT A MOVEMENT
 double PerformComparison(double RPSdistance);
 
+//collect data from the start of the move to be checked throughout
+void CBinitiateMoveData();
+//check data, doesn't interfere unless it determines to do so
+void CBmidmovePassiveCheck();
 
+
+
+void fillerForActionTaken();
+
+void updateRPSisWorking();
+
+bool checkFlags();
 
 
 

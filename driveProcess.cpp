@@ -151,7 +151,10 @@ void theLoop(movement loopMoves[], int numMoves)
         if (loopMoves[currentMove].getIsSet() == true)
         {
             //milliCounter = 0;
-            initialMoveAngle = TheRPS.Heading();
+            //initialMoveAngle = TheRPS.Heading();
+            CBinitiateMoveData();
+
+
             leftEncoder.ResetCounts();
             rightEncoder.ResetCounts();
 

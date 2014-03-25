@@ -117,7 +117,7 @@ void CheckRealX(double givenX)
     if ( myAbsolute(targetX - currentX) > RPStolerance )
     {
         //corrective behaviour
-        beginCorrection();
+        fillerForActionTaken();
     }
 
 
@@ -134,7 +134,7 @@ void CheckRealY(double givenY)
     if ( myAbsolute(targetY - currentY) > RPStolerance )
     {
         //corrective behaviour
-        beginCorrection();
+        fillerForActionTaken();
     }
 
 
