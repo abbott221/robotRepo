@@ -1,5 +1,4 @@
 
-
 #include "main.h"
 
 
@@ -266,7 +265,18 @@ void theLoop(movement loopMoves[], int numMoves)
             {
                 LightDecisionTurn(useDoubleValue);
             }
-
+            else if (loopMoves[currentMove].getOperationType() == 20)
+            {
+                GetOptoThresh();
+            }
+            else if (loopMoves[currentMove].getOperationType() == 21)
+            {
+                BlackLineFollow(useDoubleValue);
+            }
+            else if (loopMoves[currentMove].getOperationType() == 22)
+            {
+                YellowLineFollow(useDoubleValue);
+            }
 
 
 
