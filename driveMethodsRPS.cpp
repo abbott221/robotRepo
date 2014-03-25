@@ -205,11 +205,11 @@ void UnsafeTurnToAngle(double angle)
     //need to turn right to the angle
     if ( targetAngle > currentAngle )
     {
-        EncRight(travel);
+        SlowEncLeft(travel, 40);
     }
     else
     {
-        EncLeft(travel);
+        SlowEncRight(travel, 40);
     }
 
 
@@ -251,7 +251,83 @@ void RelativeTurnRight(double angle)
 
 
 
+//METHOD not used
+void SlowEncLeft(double distance, int lowPower)
+{
+    SetPowerLeft(lowPower, lowPower);
 
+    //rMotor.SetPercent(rightPower);
+    //lMotor.SetPercent(leftPower);
+
+
+    while (rightEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
+    {
+        if(leftEncoder.Counts() - rightEncoder.Counts() > 2){
+
+              rMotor.SetPercent(lowPower+6);
+
+              lMotor.SetPercent(lowPower);
+        }
+        else if(leftEncoder.Counts() - rightEncoder.Counts() < -2){
+
+              rMotor.SetPercent(lowPower);
+
+              lMotor.SetPercent(lowPower+4);
+
+        }
+        else if(leftEncoder.Counts() - rightEncoder.Counts() > -2 && leftEncoder.Counts() - rightEncoder.Counts() < 2 ){
+
+              rMotor.SetPercent(lowPower);
+
+              lMotor.SetPercent(lowPower);
+        }
+        logDataStuffs();
+    }
+
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
+}
+
+
+//METHOD not used
+void SlowEncRight(double distance, int lowPower)
+{
+    SetPowerRight(lowPower, lowPower);
+
+    //rMotor.SetPercent(-1 * rightPower);
+    //lMotor.SetPercent(-1* leftPower);
+
+    while (rightEncoder.Counts() <= ((distance * 36) / (2.75 * 3.1415)))
+    {
+        if(leftEncoder.Counts() - rightEncoder.Counts() > 2){
+
+             rMotor.SetPercent(-1 * (lowPower+6));
+
+             lMotor.SetPercent(-1 *lowPower);
+        }
+        else if(leftEncoder.Counts() - rightEncoder.Counts() < -2){
+
+             rMotor.SetPercent(-1 * lowPower);
+
+             lMotor.SetPercent(-1 *(lowPower+4));
+
+        }
+        else if(leftEncoder.Counts() - rightEncoder.Counts() > -2 && leftEncoder.Counts() - rightEncoder.Counts() < 2 ){
+
+             rMotor.SetPercent(-1 * lowPower);
+
+             lMotor.SetPercent(-1 *lowPower);
+        }
+        logDataStuffs();
+    }
+
+    //rMotor.Stop();
+    //lMotor.Stop();
+
+    SetPowerStop();
+}
 
 
 

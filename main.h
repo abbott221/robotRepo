@@ -143,6 +143,11 @@ extern FEHBattery lolBattery;
 
 
 
+void MainMenuCall();
+
+
+
+
 
 
 #endif // MAIN_H

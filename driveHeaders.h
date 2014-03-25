@@ -155,4 +155,10 @@ void RelativeTurnRight(double angle);
 
 
 
+void SlowEncLeft(double distance, int lowPower);
+void SlowEncRight(double distance, int lowPower);
+
+
+
+
 #endif // DRIVEHEADERS_H

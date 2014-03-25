@@ -113,6 +113,11 @@ int moveInterface(movement moves[]);
 
 
 
+int pageChoice = -1;
+option pageSelect[12];
+
+
+
 int main(void)
 {
     /*
@@ -126,12 +131,39 @@ int main(void)
     //put the movement presets here???
 
 
-    moreMoves[0].setMovement(8, 75);
-    moreMoves[1].setMovement(5, 1.00);
-    moreMoves[2].setMovement(8, 120);
-    moreMoves[3].setMovement(4, 4.00);
-    moreMoves[4].setMovement(7, 9.00);
-    moreMoves[5].setMovement(6, 10.00);
+    moreMoves[0].setMovement(8, 120);
+    moreMoves[1].setMovement(50, 1.50);
+    moreMoves[2].setMovement(6, 4.699);
+    moreMoves[3].setMovement(4, 16.2);
+    moreMoves[4].setMovement(5, 5.00);
+    moreMoves[5].setMovement(10, 8);
+
+
+
+
+
+
+    moreMoves[12].setMovement(6, 4.0);
+    moreMoves[13].setMovement(50, -2.55);
+    moreMoves[14].setMovement(6, 4.0);
+    moreMoves[15].setMovement(51, 20.559);
+    moreMoves[16].setMovement(6, 2.0);
+    moreMoves[17].setMovement(64, 88.8);
+    moreMoves[18].setMovement(64, 88.8);
+    moreMoves[19].setMovement(51, 52.5);
+    moreMoves[20].setMovement(6, 4.0);
+    moreMoves[21].setMovement(50, 1.0);
+    moreMoves[22].setMovement(64, 89.8);
+
+    moreMoves[23].setMovement(64, 89.8);
+    moreMoves[24].setMovement(51, 53.8);
+
+
+    moreMoves[25].setMovement(8, 115);
+    moreMoves[26].setMovement(5, 3.0);
+    moreMoves[27].setMovement(7, 2.0);
+    moreMoves[28].setMovement(6, 7.0);
+
     /**/
 
     /*
@@ -143,11 +175,6 @@ int main(void)
 
 
 
-
-
-
-    int pageChoice = -1;
-    option pageSelect[12];
 
     pageSelect[0].setOption(2, "  Page 1");
     pageSelect[1].setOption(3, "  Page 2");
@@ -171,498 +198,7 @@ int main(void)
 
     while (true)
     {
-        int mainChoice = -1;
-        option mainSelect[5];
-        //option mainSelect[ THIS DOESN'T NEED SET; WHY??????? ];
-
-
-        int moveChoice = -1;
-        //option moveSelect[12];
-
-        int typeChoice = -1;
-
-        int configureChoice = -1;
-        option configureSelect[4];
-        //option configureSelect[ THIS DOESN'T NEED SET; WHY??????? ];
-
-
-
-
-
-
-
-
-
-
-        //BEGIN USER INTERFACE: MAIN MENU
-
-        LCD.Clear( FEHLCD::Black );
-        LCD.SetFontColor( FEHLCD::White );
-
-        LCD.WriteLine("Robot UI 4.02 has loaded");
-
-        //The array position of each option is the option's value returned from userInterface
-        mainSelect[0].setOption(2, "  PLACE HOLDER :)");
-        mainSelect[1].setOption(3, "  Run");
-        mainSelect[2].setOption(4, "  Adjust Movement");
-        mainSelect[3].setOption(5, "  Display Movements");
-        mainSelect[4].setOption(6, "  Insert Movement");
-        mainSelect[5].setOption(7, "  Turn On Movement");
-        mainSelect[6].setOption(8, "  Turn Off Movement");
-        mainSelect[7].setOption(9, "  Turn On Page");
-        mainSelect[8].setOption(10, "  Turn Off Page");
-        mainSelect[9].setOption(11, "  Calibrate/Configure");
-        mainSelect[9].setState(false);
-
-        mainChoice = UserInterface(mainSelect, 10);
-
-        //END USER INTERFACE: MAIN MENU
-
-
-
-
-        //movement tempMove;
-
-
-        if (mainChoice == 0)
-        {
-            //in case your finger slips, 2 or 3 fewer button presses
-        }
-
-        else if (mainChoice == 1)
-        {
-            //Option 1: Run
-
-            driveProcess(moreMoves);
-
-        }
-
-        else if (mainChoice == 2)
-        {
-            //Option 2: Adjust (Set) Movement
-
-
-
-            //USER INTERFACE: MOVEMENT SELECTION
-            moveChoice = pageAndMoveInterface(moreMoves);
-
-
-
-            //USER INTERFACE: MOVEMENT TYPE SELECTION
-            typeChoice = moveTypeInterface();
-
-
-
-            //Set the time of the adjusted move
-            LCD.Clear( FEHLCD::Black );
-            LCD.SetFontColor( FEHLCD::White );
-
-            //integer valued move
-            if (typeChoice == 8)
-            {
-                int tempIntValue = moreMoves[moveChoice].getIntValue();
-
-                int incrs[] = {5, 3, 1};
-
-                tempIntValue = SetInteger(tempIntValue, incrs, 3);
-
-                moreMoves[moveChoice].setMovement(typeChoice, tempIntValue);
-            }
-            else if (typeChoice == 11)
-            {
-                int moveIncrs[] = {100, 25, 5, 1};
-
-                int intIncrs[] = {5, 3, 1};
-                double doubleIncrs[] = {1.0, 0.1, 0.01};
-
-                int tempIntValue = 0;
-                double tempDoubleValue = 0.0;
-
-                int expansion = SetInteger(tempIntValue, moveIncrs, 4);
-
-                //EXPANSION IS THE VALUE OF THE TYPE OF MOVE TO SET; NOW IT'S LIKE SETTING ANOTHER MOVE
-
-                //change threshold method
-                if (expansion == 12)
-                {
-                    tempDoubleValue = SetDouble(tempDoubleValue, doubleIncrs, 3);
-
-                    moreMoves[moveChoice].setMovement(expansion, tempDoubleValue);
-                }
-                else if (expansion == 13)
-                {
-                    moreMoves[moveChoice].setMovement(expansion, 0.0);
-                }
-                else
-                {
-                    int theDataType = setTheDataType();
-
-                    if (theDataType == 0)
-                    {
-                        tempDoubleValue = SetDouble(tempDoubleValue, doubleIncrs, 3);
-                        moreMoves[moveChoice].setMovement(expansion, tempDoubleValue);
-                        moreMoves[moveChoice].setDataType(IM_A_DOUBLE);
-                    }
-
-                    else
-                    {
-                        tempIntValue = SetInteger(tempIntValue, intIncrs, 3);
-                        moreMoves[moveChoice].setMovement(expansion, tempIntValue);
-                        moreMoves[moveChoice].setDataType(IM_A_INTEGER);
-                    }
-
-                }
-
-
-
-                //tempIntValue stores that out of range move
-                //tempIntValue = SetInteger(tempIntValue, incrs, 3);
-
-                //moreMoves[moveChoice].setMovement(typeChoice, tempIntValue);
-            }
-            //double valued move
-            else
-            {
-                double tempDoubleValue = moreMoves[moveChoice].getDoubleValue();
-
-                double incrs[] = {1.0, 0.1, 0.01};
-
-                tempDoubleValue = SetDouble(tempDoubleValue, incrs, 3);
-
-                moreMoves[moveChoice].setMovement(typeChoice, tempDoubleValue);
-            }
-
-        }
-
-        else if (mainChoice == 3)
-        {
-            //Option 3: Display movements
-
-            //moveChoice = pageAndMoveInterface();
-            pageAndMoveInterface(moreMoves);
-
-        }
-        //INSERT MOVEMENT
-        else if (mainChoice == 4)
-        {
-            //Option 4: Insert movement
-
-            LCD.WriteLine("Enter num of move (0-142)");
-
-            int incrs[] = {25, 10, 1};
-            int tempNum = SetInteger(0, incrs, 3);
-
-            bool tempState;
-            for (int i = 142; i >= tempNum; i--)
-            {
-                tempState = moreMoves[i].getIsSet();
-                if (moreMoves[i].getDataType() == IM_A_DOUBLE)
-                {
-                    moreMoves[i+1].setMovement(moreMoves[i].getOperationType(), moreMoves[i].getDoubleValue());
-                }
-                else
-                {
-                    moreMoves[i+1].setMovement(moreMoves[i].getOperationType(), moreMoves[i].getIntValue());
-                }
-                moreMoves[i+1].setState(tempState);
-            }
-            moreMoves[tempNum].setMovement(0, 0.0);
-            moreMoves[tempNum].setState(false);
-        }
-        else if (mainChoice == 5)
-        {
-            //Option 4: Turn on (Old Add) movement
-
-            moveChoice = pageAndMoveInterface(moreMoves);
-
-            moreMoves[moveChoice].setState(true);
-
-        }
-        else if (mainChoice == 6)
-        {
-            //Option 5: Turn off (Old Delete) Movement
-
-            moveChoice = pageAndMoveInterface(moreMoves);
-
-            moreMoves[moveChoice].setState(false);
-
-            //moreMoves[moveChoice].setMovement(STRAIGHT, 0.0);
-
-        }
-        else if (mainChoice == 7)
-        {
-            //Option 6: Add page
-            LCD.Clear( FEHLCD::Black );
-            LCD.SetFontColor( FEHLCD::White );
-
-            LCD.WriteLine("Select Page");
-
-            //pageChoice = pageInterface();
-            pageChoice = UserInterface(pageSelect, 12);
-
-
-            for (int i = 0; i < 12; i++)
-            {
-                moreMoves[i + (12 * pageChoice)].setState(true);
-            }
-
-            pageSelect[pageChoice].setState(true);
-
-        }
-        else if (mainChoice == 8)
-        {
-            //Option 7: Delete Page
-            LCD.Clear( FEHLCD::Black );
-            LCD.SetFontColor( FEHLCD::White );
-
-            LCD.WriteLine("Select Page");
-
-            //pageChoice = pageInterface();
-            pageChoice = UserInterface(pageSelect, 12);
-
-            for (int i = 0; i < 12; i++)
-            {
-                moreMoves[i + (12 * pageChoice)].setState(false);
-            }
-
-            pageSelect[pageChoice].setState(false);
-
-        }
-
-        else if (mainChoice == 9)
-        {
-            //Option 8: Calibrate/Configure
-
-            LCD.Clear( FEHLCD::Black );
-            LCD.SetFontColor( FEHLCD::White );
-
-            //LCD.WriteLine("Cunfiguer Yor Stuf Heer");
-
-            LCD.Write("Voltage: ");
-            LCD.WriteLine(lolBattery.Voltage());
-
-            configureSelect[0].setOption(2, "  Calibrate Power");
-
-            configureSelect[1].setOption(3, "  Calibrate Servo");
-
-            configureSelect[2].setOption(4, "  Start with Light");
-            configureSelect[2].setState(configLightStart);
-
-            configureSelect[3].setOption(5, "  Course Timer");
-            configureSelect[3].setState(configCourseTimer);
-
-            configureSelect[4].setOption(6, "  2 sec delay");
-            configureSelect[4].setState(configDelay);
-
-            configureSelect[5].setOption(7, "  Use RPS");
-            configureSelect[5].setState(configRPS);
-
-            configureSelect[6].setOption(8, "  Read mid-opto value");
-
-            configureSelect[7].setOption(9, "  Read CDS values");
-
-            configureSelect[8].setOption(10, "  Read RPS values");
-            
-            //configureSelect[9].setOption(11, "  Data Spew Modulus");
-            configureSelect[9].setOption(11, "  Time between displays");
-
-
-
-
-
-            configureChoice = UserInterface(configureSelect, 10);
-            
-          
-
-            LCD.Clear( FEHLCD::Black );
-            LCD.SetFontColor( FEHLCD::White );
-
-            //calibrate motor
-            if (configureChoice == 0)
-            {
-                LCD.Clear( FEHLCD::Black );
-                LCD.SetFontColor( FEHLCD::White );
-
-                LCD.WriteLine("Setting Left Motor");
-
-                int tempPower = leftPower;
-                int incrs[] = {5, 3, 1};
-                tempPower = SetInteger(tempPower, incrs, 3);
-
-                leftPower = tempPower;
-
-                LCD.Clear( FEHLCD::Black );
-                LCD.SetFontColor( FEHLCD::White );
-                LCD.WriteLine("Setting Right Motor");
-
-
-                tempPower = rightPower;
-                //int incrs[] = {5, 3, 1};
-                tempPower = SetInteger(tempPower, incrs, 3);
-
-                rightPower = tempPower;
-            }
-            //calibrate servo
-            else if (configureChoice == 1)
-            {
-                LCD.Clear( FEHLCD::Black );
-                LCD.SetFontColor( FEHLCD::White );
-
-                LCD.WriteLine("Commence the calibration?");
-
-                lolServo.Calibrate();
-
-                //INPUT THE NUMBERS
-
-
-                LCD.WriteLine("Setting Min");
-
-                int tempTicks = 0;
-                int incrs[] = {500, 100, 10, 1};
-                tempTicks = SetInteger(tempTicks, incrs, 4);
-
-                servoMin = tempTicks;
-
-                LCD.Clear( FEHLCD::Black );
-                LCD.SetFontColor( FEHLCD::White );
-                LCD.WriteLine("Setting Max");
-
-
-                tempTicks = 0;
-                //int incrs[] = {5, 3, 1};
-                tempTicks = SetInteger(tempTicks, incrs, 4);
-
-                servoMax = tempTicks;
-
-
-
-            }
-
-            else if (configureChoice == 2)
-            {
-                if (configLightStart == true)
-                {
-                    configLightStart = false;
-                }
-                else
-                {
-                    configLightStart = true;
-                }
-            }
-            else if (configureChoice == 3)
-            {
-                if (configCourseTimer == true)
-                {
-                    configCourseTimer = false;
-                }
-                else
-                {
-                    configCourseTimer = true;
-                }
-            }
-            else if (configureChoice == 4)
-            {
-                if (configDelay == true)
-                {
-                    configDelay = false;
-                }
-                else
-                {
-                    configDelay = true;
-                }
-            }
-            else if (configureChoice == 5)
-            {
-                if (configRPS == true)
-                {
-                    configRPS = false;
-                }
-                else
-                {
-                    configRPS = true;
-                }
-            }
-
-            //mid-opto values
-            else if (configureChoice == 6)
-            {
-                while( buttons.MiddlePressed() )
-                {
-                    //this menu is entered by pressing the middle button
-                }
-                while( !buttons.MiddlePressed() )
-                {
-                    LCD.Write(optoLeft.Value());
-                    LCD.Write(" ");
-                    LCD.Write(optoMid.Value());
-                    LCD.Write(" ");
-                    LCD.WriteLine(optoRight.Value());
-
-                    Sleep(0.10);
-                }
-                while( buttons.MiddlePressed() )
-                {
-                    //nothing
-                }
-            }
-
-            //CDS values
-            else if (configureChoice == 7)
-            {
-                while( buttons.MiddlePressed() )
-                {
-                    //this menu is entered by pressing the middle button
-                }
-                while( !buttons.MiddlePressed() )
-                {
-                    LCD.WriteLine(CDS.Value());
-                    Sleep(.10);
-                }
-                while( buttons.MiddlePressed() )
-                {
-                    //nothing
-                }
-            }
-
-            //RPS values
-            else if (configureChoice == 8)
-            {
-                while( buttons.MiddlePressed() )
-                {
-                    //this menu is entered by pressing the middle button
-                }
-                TheRPS.InitializeMenu();
-                TheRPS.Enable();
-                while( !buttons.MiddlePressed() )
-                {
-                    LCD.Write(TheRPS.Heading());
-                    LCD.Write(" ");
-                    LCD.Write(TheRPS.X());
-                    LCD.Write(" ");
-                    LCD.WriteLine(TheRPS.Y());
-                    Sleep(.10);
-                }
-                TheRPS.Disable();
-                while( buttons.MiddlePressed() )
-                {
-                    //nothing
-                }
-            }
-            else if (configureChoice == 9)
-            {
-                LCD.WriteLine("Setting display rate");
-
-                double tempRate = displayRate;
-                double incrs[] = {1.0, 0.1, 0.01};
-                tempRate = SetDouble(tempRate, incrs, 3);
-
-                //dataSpew = tempSpew;
-                displayRate = tempRate;
-            }
-
-
-        }
-
+        MainMenuCall();
     }
     //THAT WAS A WHILE TRUE, MAIN CODE ENDS HERE
 
@@ -671,7 +207,501 @@ int main(void)
 
 
 
+void MainMenuCall()
+{
+    int mainChoice = -1;
+    option mainSelect[5];
+    //option mainSelect[ THIS DOESN'T NEED SET; WHY??????? ];
 
+
+    int moveChoice = -1;
+    //option moveSelect[12];
+
+    int typeChoice = -1;
+
+    int configureChoice = -1;
+    option configureSelect[4];
+    //option configureSelect[ THIS DOESN'T NEED SET; WHY??????? ];
+
+
+
+
+
+
+
+
+
+
+    //BEGIN USER INTERFACE: MAIN MENU
+
+    LCD.Clear( FEHLCD::Black );
+    LCD.SetFontColor( FEHLCD::White );
+
+    LCD.WriteLine("Robot UI 4.02 has loaded");
+
+    //The array position of each option is the option's value returned from userInterface
+    mainSelect[0].setOption(2, "  PLACE HOLDER :)");
+    mainSelect[1].setOption(3, "  Run");
+    mainSelect[2].setOption(4, "  Adjust Movement");
+    mainSelect[3].setOption(5, "  Display Movements");
+    mainSelect[4].setOption(6, "  Insert Movement");
+    mainSelect[5].setOption(7, "  Turn On Movement");
+    mainSelect[6].setOption(8, "  Turn Off Movement");
+    mainSelect[7].setOption(9, "  Turn On Page");
+    mainSelect[8].setOption(10, "  Turn Off Page");
+    mainSelect[9].setOption(11, "  Calibrate/Configure");
+    mainSelect[9].setState(false);
+
+    mainChoice = UserInterface(mainSelect, 10);
+
+    //END USER INTERFACE: MAIN MENU
+
+
+
+
+    //movement tempMove;
+
+
+    if (mainChoice == 0)
+    {
+        //in case your finger slips, 2 or 3 fewer button presses
+    }
+
+    else if (mainChoice == 1)
+    {
+        //Option 1: Run
+
+        driveProcess(moreMoves);
+
+    }
+
+    else if (mainChoice == 2)
+    {
+        //Option 2: Adjust (Set) Movement
+
+
+
+        //USER INTERFACE: MOVEMENT SELECTION
+        moveChoice = pageAndMoveInterface(moreMoves);
+
+
+
+        //USER INTERFACE: MOVEMENT TYPE SELECTION
+        typeChoice = moveTypeInterface();
+
+
+
+        //Set the time of the adjusted move
+        LCD.Clear( FEHLCD::Black );
+        LCD.SetFontColor( FEHLCD::White );
+
+        //integer valued move
+        if (typeChoice == 8)
+        {
+            int tempIntValue = moreMoves[moveChoice].getIntValue();
+
+            int incrs[] = {5, 3, 1};
+
+            tempIntValue = SetInteger(tempIntValue, incrs, 3);
+
+            moreMoves[moveChoice].setMovement(typeChoice, tempIntValue);
+        }
+        else if (typeChoice == 11)
+        {
+            int moveIncrs[] = {100, 25, 5, 1};
+
+            int intIncrs[] = {5, 3, 1};
+            double doubleIncrs[] = {1.0, 0.1, 0.01};
+
+            int tempIntValue = 0;
+            double tempDoubleValue = 0.0;
+
+            int expansion = SetInteger(tempIntValue, moveIncrs, 4);
+
+            //EXPANSION IS THE VALUE OF THE TYPE OF MOVE TO SET; NOW IT'S LIKE SETTING ANOTHER MOVE
+
+            //change threshold method
+            if (expansion == 12)
+            {
+                tempDoubleValue = SetDouble(tempDoubleValue, doubleIncrs, 3);
+
+                moreMoves[moveChoice].setMovement(expansion, tempDoubleValue);
+            }
+            else if (expansion == 13)
+            {
+                moreMoves[moveChoice].setMovement(expansion, 0.0);
+            }
+            else
+            {
+                int theDataType = setTheDataType();
+
+                if (theDataType == 0)
+                {
+                    tempDoubleValue = SetDouble(tempDoubleValue, doubleIncrs, 3);
+                    moreMoves[moveChoice].setMovement(expansion, tempDoubleValue);
+                    moreMoves[moveChoice].setDataType(IM_A_DOUBLE);
+                }
+
+                else
+                {
+                    tempIntValue = SetInteger(tempIntValue, intIncrs, 3);
+                    moreMoves[moveChoice].setMovement(expansion, tempIntValue);
+                    moreMoves[moveChoice].setDataType(IM_A_INTEGER);
+                }
+
+            }
+
+
+
+            //tempIntValue stores that out of range move
+            //tempIntValue = SetInteger(tempIntValue, incrs, 3);
+
+            //moreMoves[moveChoice].setMovement(typeChoice, tempIntValue);
+        }
+        //double valued move
+        else
+        {
+            double tempDoubleValue = moreMoves[moveChoice].getDoubleValue();
+
+            double incrs[] = {1.0, 0.1, 0.01};
+
+            tempDoubleValue = SetDouble(tempDoubleValue, incrs, 3);
+
+            moreMoves[moveChoice].setMovement(typeChoice, tempDoubleValue);
+        }
+
+    }
+
+    else if (mainChoice == 3)
+    {
+        //Option 3: Display movements
+
+        //moveChoice = pageAndMoveInterface();
+        pageAndMoveInterface(moreMoves);
+
+    }
+    //INSERT MOVEMENT
+    else if (mainChoice == 4)
+    {
+        //Option 4: Insert movement
+
+        LCD.WriteLine("Enter num of move (0-142)");
+
+        int incrs[] = {25, 10, 1};
+        int tempNum = SetInteger(0, incrs, 3);
+
+        bool tempState;
+        for (int i = 142; i >= tempNum; i--)
+        {
+            tempState = moreMoves[i].getIsSet();
+            if (moreMoves[i].getDataType() == IM_A_DOUBLE)
+            {
+                moreMoves[i+1].setMovement(moreMoves[i].getOperationType(), moreMoves[i].getDoubleValue());
+            }
+            else
+            {
+                moreMoves[i+1].setMovement(moreMoves[i].getOperationType(), moreMoves[i].getIntValue());
+            }
+            moreMoves[i+1].setState(tempState);
+        }
+        moreMoves[tempNum].setMovement(0, 0.0);
+        moreMoves[tempNum].setState(false);
+    }
+    else if (mainChoice == 5)
+    {
+        //Option 4: Turn on (Old Add) movement
+
+        moveChoice = pageAndMoveInterface(moreMoves);
+
+        moreMoves[moveChoice].setState(true);
+
+    }
+    else if (mainChoice == 6)
+    {
+        //Option 5: Turn off (Old Delete) Movement
+
+        moveChoice = pageAndMoveInterface(moreMoves);
+
+        moreMoves[moveChoice].setState(false);
+
+        //moreMoves[moveChoice].setMovement(STRAIGHT, 0.0);
+
+    }
+    else if (mainChoice == 7)
+    {
+        //Option 6: Add page
+        LCD.Clear( FEHLCD::Black );
+        LCD.SetFontColor( FEHLCD::White );
+
+        LCD.WriteLine("Select Page");
+
+        //pageChoice = pageInterface();
+        pageChoice = UserInterface(pageSelect, 12);
+
+
+        for (int i = 0; i < 12; i++)
+        {
+            moreMoves[i + (12 * pageChoice)].setState(true);
+        }
+
+        pageSelect[pageChoice].setState(true);
+
+    }
+    else if (mainChoice == 8)
+    {
+        //Option 7: Delete Page
+        LCD.Clear( FEHLCD::Black );
+        LCD.SetFontColor( FEHLCD::White );
+
+        LCD.WriteLine("Select Page");
+
+        //pageChoice = pageInterface();
+        pageChoice = UserInterface(pageSelect, 12);
+
+        for (int i = 0; i < 12; i++)
+        {
+            moreMoves[i + (12 * pageChoice)].setState(false);
+        }
+
+        pageSelect[pageChoice].setState(false);
+
+    }
+
+    else if (mainChoice == 9)
+    {
+        //Option 8: Calibrate/Configure
+
+        LCD.Clear( FEHLCD::Black );
+        LCD.SetFontColor( FEHLCD::White );
+
+        //LCD.WriteLine("Cunfiguer Yor Stuf Heer");
+
+        LCD.Write("Voltage: ");
+        LCD.WriteLine(lolBattery.Voltage());
+
+        configureSelect[0].setOption(2, "  Calibrate Power");
+
+        configureSelect[1].setOption(3, "  Calibrate Servo");
+
+        configureSelect[2].setOption(4, "  Start with Light");
+        configureSelect[2].setState(configLightStart);
+
+        configureSelect[3].setOption(5, "  Course Timer");
+        configureSelect[3].setState(configCourseTimer);
+
+        configureSelect[4].setOption(6, "  2 sec delay");
+        configureSelect[4].setState(configDelay);
+
+        configureSelect[5].setOption(7, "  Use RPS");
+        configureSelect[5].setState(configRPS);
+
+        configureSelect[6].setOption(8, "  Read mid-opto value");
+
+        configureSelect[7].setOption(9, "  Read CDS values");
+
+        configureSelect[8].setOption(10, "  Read RPS values");
+
+        //configureSelect[9].setOption(11, "  Data Spew Modulus");
+        configureSelect[9].setOption(11, "  Time between displays");
+
+
+
+
+
+        configureChoice = UserInterface(configureSelect, 10);
+
+
+
+        LCD.Clear( FEHLCD::Black );
+        LCD.SetFontColor( FEHLCD::White );
+
+        //calibrate motor
+        if (configureChoice == 0)
+        {
+            LCD.Clear( FEHLCD::Black );
+            LCD.SetFontColor( FEHLCD::White );
+
+            LCD.WriteLine("Setting Left Motor");
+
+            int tempPower = leftPower;
+            int incrs[] = {5, 3, 1};
+            tempPower = SetInteger(tempPower, incrs, 3);
+
+            leftPower = tempPower;
+
+            LCD.Clear( FEHLCD::Black );
+            LCD.SetFontColor( FEHLCD::White );
+            LCD.WriteLine("Setting Right Motor");
+
+
+            tempPower = rightPower;
+            //int incrs[] = {5, 3, 1};
+            tempPower = SetInteger(tempPower, incrs, 3);
+
+            rightPower = tempPower;
+        }
+        //calibrate servo
+        else if (configureChoice == 1)
+        {
+            LCD.Clear( FEHLCD::Black );
+            LCD.SetFontColor( FEHLCD::White );
+
+            LCD.WriteLine("Commence the calibration?");
+
+            lolServo.Calibrate();
+
+            //INPUT THE NUMBERS
+
+
+            LCD.WriteLine("Setting Min");
+
+            int tempTicks = 0;
+            int incrs[] = {500, 100, 10, 1};
+            tempTicks = SetInteger(tempTicks, incrs, 4);
+
+            servoMin = tempTicks;
+
+            LCD.Clear( FEHLCD::Black );
+            LCD.SetFontColor( FEHLCD::White );
+            LCD.WriteLine("Setting Max");
+
+
+            tempTicks = 0;
+            //int incrs[] = {5, 3, 1};
+            tempTicks = SetInteger(tempTicks, incrs, 4);
+
+            servoMax = tempTicks;
+
+
+
+        }
+
+        else if (configureChoice == 2)
+        {
+            if (configLightStart == true)
+            {
+                configLightStart = false;
+            }
+            else
+            {
+                configLightStart = true;
+            }
+        }
+        else if (configureChoice == 3)
+        {
+            if (configCourseTimer == true)
+            {
+                configCourseTimer = false;
+            }
+            else
+            {
+                configCourseTimer = true;
+            }
+        }
+        else if (configureChoice == 4)
+        {
+            if (configDelay == true)
+            {
+                configDelay = false;
+            }
+            else
+            {
+                configDelay = true;
+            }
+        }
+        else if (configureChoice == 5)
+        {
+            if (configRPS == true)
+            {
+                configRPS = false;
+            }
+            else
+            {
+                configRPS = true;
+            }
+        }
+
+        //mid-opto values
+        else if (configureChoice == 6)
+        {
+            while( buttons.MiddlePressed() )
+            {
+                //this menu is entered by pressing the middle button
+            }
+            while( !buttons.MiddlePressed() )
+            {
+                LCD.Write(optoLeft.Value());
+                LCD.Write(" ");
+                LCD.Write(optoMid.Value());
+                LCD.Write(" ");
+                LCD.WriteLine(optoRight.Value());
+
+                Sleep(0.10);
+            }
+            while( buttons.MiddlePressed() )
+            {
+                //nothing
+            }
+        }
+
+        //CDS values
+        else if (configureChoice == 7)
+        {
+            while( buttons.MiddlePressed() )
+            {
+                //this menu is entered by pressing the middle button
+            }
+            while( !buttons.MiddlePressed() )
+            {
+                LCD.WriteLine(CDS.Value());
+                Sleep(.10);
+            }
+            while( buttons.MiddlePressed() )
+            {
+                //nothing
+            }
+        }
+
+        //RPS values
+        else if (configureChoice == 8)
+        {
+            while( buttons.MiddlePressed() )
+            {
+                //this menu is entered by pressing the middle button
+            }
+            TheRPS.InitializeMenu();
+            TheRPS.Enable();
+            while( !buttons.MiddlePressed() )
+            {
+                LCD.Write(TheRPS.Heading());
+                LCD.Write(" ");
+                LCD.Write(TheRPS.X());
+                LCD.Write(" ");
+                LCD.WriteLine(TheRPS.Y());
+                Sleep(.10);
+            }
+            TheRPS.Disable();
+            while( buttons.MiddlePressed() )
+            {
+                //nothing
+            }
+        }
+        else if (configureChoice == 9)
+        {
+            LCD.WriteLine("Setting display rate");
+
+            double tempRate = displayRate;
+            double incrs[] = {1.0, 0.1, 0.01};
+            tempRate = SetDouble(tempRate, incrs, 3);
+
+            //dataSpew = tempSpew;
+            displayRate = tempRate;
+        }
+
+
+    }
+
+}
 
 
 

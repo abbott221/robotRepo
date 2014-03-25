@@ -40,6 +40,22 @@ void logDataStuffs()
         LCD.Clear( FEHLCD::Black );
         LCD.SetFontColor( FEHLCD::White );
 
+
+
+
+        if (buttons.MiddlePressed())
+        {
+            SetPowerStop();
+            while (buttons.MiddlePressed())
+            {
+                //nothing
+            }
+            MainMenuCall();
+        }
+
+
+
+
         LCD.Write(TheRPS.Heading());
         LCD.Write(" ");
         LCD.Write(TheRPS.X());
