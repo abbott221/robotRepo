@@ -781,6 +781,89 @@ void LightDecisionTurn(double distance)
 
 }
 
+//METHOD 20
+void GetOptoThresh(){
+    double leftAverage = 0.0;
+    double rightAverage = 0.0;
+    double midAverage = 0.0;
+
+    for(int i = 0; i < 100 ; i++){
+        leftAverage += optoLeft.Value();
+        rightAverage += optoRight.Value();
+        midAverage += optoMid.Value();
+    }
+    leftOptoThresh = leftAverage/100;
+    rightOptoThresh = rightAverage/100;
+    midOptoThresh = midAverage/100;
+
+}
+
+
+//METHOD  21
+void BlackLineFollow(double time){
+    lMotor.SetPercent(60);
+    rMotor.SetPercent(-1 * 60);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+
+    while(dTime < time){
+        if(myAbsolute(midOptoThresh-optoMid.Value())>= bLineDifThresh){
+            lMotor.SetPercent(60);
+            rMotor.SetPercent(-1 * 60);
+
+        }
+        else if (myAbsolute(rightOptoThresh-optoRight.Value())>= bLineDifThresh){
+            lMotor.SetPercent(75);
+            rMotor.SetPercent(-1 * 5);
+
+
+    }
+        else if(myAbsolute(leftOptoThresh-optoLeft.Value())>= bLineDifThresh){
+            lMotor.SetPercent(5);
+            rMotor.SetPercent(-1 * 75);
+
+        }
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+    rMotor.Stop();
+    lMotor.Stop();
+
+}
+
+//METHOD 22
+void YellowLineFollow(double time){
+    lMotor.SetPercent(60);
+    rMotor.SetPercent(-1 * 60);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+
+    while(dTime < time){
+        if(myAbsolute(midOptoThresh-optoMid.Value())>= yLineDifThresh){
+            lMotor.SetPercent(60);
+            rMotor.SetPercent(-1 * 60);
+
+        }
+        else if (myAbsolute(rightOptoThresh-optoRight.Value())>= yLineDifThresh){
+            lMotor.SetPercent(75);
+            rMotor.SetPercent(-1 * 5);
+
+
+    }
+        else if(myAbsolute(leftOptoThresh-optoLeft.Value())>= yLineDifThresh){
+            lMotor.SetPercent(5);
+            rMotor.SetPercent(-1 * 75);
+
+        }
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+    rMotor.Stop();
+    lMotor.Stop();
+
+}
 
 
 
