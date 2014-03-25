@@ -49,7 +49,13 @@ int servoMax = 2500;
 float lowThresh = 0.388;
 float highThresh = 1.547;
 
-float optoThresh = 0.5;
+//for line following
+float optoThresh = 2.0;
+float bLineDifThresh = 1.0;
+float yLineDifThresh = .4;
+float leftOptoThresh = 0.0;
+float rightOptoThresh = 0.0;
+float midOptoThresh = 0.0;
 
 bool configLightStart = true;
 bool configCourseTimer = true;
@@ -132,37 +138,42 @@ int main(void)
 
 
     moreMoves[0].setMovement(8, 120);
-    moreMoves[1].setMovement(50, 1.50);
-    moreMoves[2].setMovement(6, 4.699);
-    moreMoves[3].setMovement(4, 16.2);
-    moreMoves[4].setMovement(5, 5.00);
-    moreMoves[5].setMovement(10, 8);
+        moreMoves[1].setMovement(50, 1.50);
+        moreMoves[2].setMovement(6, 4.698);
+        moreMoves[3].setMovement(4, 16.2);
+        moreMoves[4].setMovement(5, 5.00);
+        moreMoves[5].setMovement(12, 2.00);
+        moreMoves[6].setMovement(10, 7.0);
 
 
+        moreMoves[12].setMovement(6, 4.0);
+        moreMoves[13].setMovement(50, -2.549);
+        moreMoves[14].setMovement(6, 4.00);
+        moreMoves[15].setMovement(51, 20.559);
+        moreMoves[16].setMovement(64, 88.80);
+        moreMoves[17].setMovement(64, 88.80);
+        moreMoves[18].setMovement(51, 46.0);
+        moreMoves[19].setMovement(64, 84.00);
+        moreMoves[20].setMovement(64, 84.00);
+        moreMoves[21].setMovement(4, 8.00);
+        moreMoves[22].setMovement(5, 5.00);
 
 
+        moreMoves[24].setMovement(6, 6.0);
+        moreMoves[25].setMovement(64, 133.0);
+        moreMoves[26].setMovement(64, 133.0);
 
 
-    moreMoves[12].setMovement(6, 4.0);
-    moreMoves[13].setMovement(50, -2.55);
-    moreMoves[14].setMovement(6, 4.0);
-    moreMoves[15].setMovement(51, 20.559);
-    moreMoves[16].setMovement(6, 2.0);
-    moreMoves[17].setMovement(64, 88.8);
-    moreMoves[18].setMovement(64, 88.8);
-    moreMoves[19].setMovement(51, 52.5);
-    moreMoves[20].setMovement(6, 4.0);
-    moreMoves[21].setMovement(50, 1.0);
-    moreMoves[22].setMovement(64, 89.8);
-
-    moreMoves[23].setMovement(64, 89.8);
-    moreMoves[24].setMovement(51, 53.8);
-
-
-    moreMoves[25].setMovement(8, 115);
-    moreMoves[26].setMovement(5, 3.0);
-    moreMoves[27].setMovement(7, 2.0);
-    moreMoves[28].setMovement(6, 7.0);
+        moreMoves[36].setMovement(8, 45);
+        moreMoves[37].setMovement(8, 120);
+        moreMoves[38].setMovement(7, 3.50);
+        moreMoves[39].setMovement(5, 4.0);
+        moreMoves[40].setMovement(50, -1.299);
+        moreMoves[41].setMovement(5, 11.0);
+        moreMoves[42].setMovement(64, 103.0);
+        moreMoves[43].setMovement(64, 103.00);
+        moreMoves[44].setMovement(4, 21.50);
+        moreMoves[45].setMovement(6, 4.00);
 
     /**/
 

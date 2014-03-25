@@ -10,6 +10,16 @@
 
 //extern int testingInteger;
 
+
+
+
+
+extern int RPScustomAction;
+extern double RPStolerance;
+
+
+
+
 extern double initialMoveAngle;
 
 

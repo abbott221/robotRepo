@@ -62,6 +62,12 @@ extern float highThresh;
 
 extern float optoThresh;
 
+extern float bLineDifThresh;
+extern float yLineDifThresh;
+extern float leftOptoThresh;
+extern float rightOptoThresh;
+extern float midOptoThresh;
+
 
 extern bool configLightStart;
 extern bool configCourseTimer;
@@ -69,7 +75,9 @@ extern bool configDelay;
 extern bool configRPS;
 
 
-//extern int milliCounter;
+
+
+
 
 extern double displayRate;
 
@@ -82,11 +90,8 @@ extern int numOfDisplays;
 
 
 
-extern double RPStolerance;
 
 
-
-extern int RPScustomAction;
 
 
 extern int currentPowerMode;

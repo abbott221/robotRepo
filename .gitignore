@@ -1,11 +1,11 @@
 *.o
 *.d
 *.config
-*.includes
+# *.includes
 *.s19
 *.map
-*.creator
+# *.creator
 *.creator.user
 *.elf
-*.files
+# *.files
 Makefile
