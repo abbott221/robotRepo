@@ -868,6 +868,87 @@ void YellowLineFollow(double time){
 
 
 
+//METHOD 23
+void JeffBlackLine(double goThisLong)
+{
+    lMotor.SetPercent(-1 * 60);
+    rMotor.SetPercent(60);
 
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+
+    while( dTime < goThisLong)
+    {
+        if ((optoMid.Value () -.6) > optoThresh)
+        {
+            lMotor.SetPercent(-1 * 60);
+            rMotor.SetPercent(60);
+        }
+        else if ((optoRight.Value() + 1.6) > optoThresh)
+        {
+            lMotor.SetPercent(-1 * 75);
+            rMotor.SetPercent(5);
+        }
+        else if (optoLeft.Value() > optoThresh)
+        {
+            lMotor.SetPercent(-1 * 75);
+            rMotor.SetPercent(5);
+        }
+        //go straight if nothing?
+        else
+        {
+            lMotor.SetPercent(-1 * 60);
+            rMotor.SetPercent(60);
+        }
+
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+
+    rMotor.Stop();
+    lMotor.Stop();
+}
+
+//METHOD 24
+void JeffLightLine(double goThisLong)
+{
+    lMotor.SetPercent(-1 * 60);
+    rMotor.SetPercent(60);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+
+    while( dTime < goThisLong)
+    {
+        if ((optoMid.Value() -1.1)< optoThresh)
+        {
+            lMotor.SetPercent(-1 * 60);
+            rMotor.SetPercent(60);
+        }
+        else if ((optoRight.Value()- .06) < optoThresh)
+        {
+            lMotor.SetPercent(-1 * 75);
+            rMotor.SetPercent(5);
+        }
+        else if (optoLeft.Value() < optoThresh)
+        {
+            lMotor.SetPercent(-1 * 5);
+            rMotor.SetPercent(75);
+        }
+        //go straight if nothing?
+        else
+        {
+            lMotor.SetPercent(-1 * 60);
+            rMotor.SetPercent(60);
+        }
+
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+
+    rMotor.Stop();
+    lMotor.Stop();
+}
 
 
