@@ -50,7 +50,7 @@ float lowThresh = 0.388;
 float highThresh = 1.547;
 
 //for line following
-float optoThresh = 1.5;
+float optoThresh = 2.0;
 float bLineDifThresh = 1.0;
 float yLineDifThresh = .4;
 float leftOptoThresh = 0.0;
