@@ -90,7 +90,14 @@ void FlyOverLightValue(double time);
 //METHOD 19
 void LightDecisionTurn(double distance);
 
+//METHOD 20
+void GetOptoThresh();
 
+//METHOD 21
+void BlackLineFollow(double time);
+
+//METHOD 22
+void YellowLineFollow(double time);
 
 
 
