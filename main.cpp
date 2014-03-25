@@ -49,7 +49,13 @@ int servoMax = 2500;
 float lowThresh = 0.388;
 float highThresh = 1.547;
 
-float optoThresh = 0.5;
+//for line following
+float optoThresh = 1.5;
+float bLineDifThresh = 1.0;
+float yLineDifThresh = .4;
+float leftOptoThresh = 0.0;
+float rightOptoThresh = 0.0;
+float midOptoThresh = 0.0;
 
 bool configLightStart = true;
 bool configCourseTimer = true;
