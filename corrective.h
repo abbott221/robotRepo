@@ -20,9 +20,15 @@ extern double tempDefaultStorage;
 
 extern float initialMoveAngle;
 
+extern float updateX;
+extern float updateY;
+extern float updateHeading;
+
 extern bool RPSisWorking;
 extern bool initMoveDataValid;
 extern bool correctionOn;
+
+extern bool correctionAction;
 
 
 //==================================================
@@ -35,6 +41,12 @@ void ChangeTolerance(double value);
 
 //Method 201
 void SetUpComparison(double distance);
+
+//Method 202
+void TurnCorrectionOn();
+//Method 203
+void TurnCorrectionOff();
+
 
 //THIS IS NOT A MOVEMENT
 double PerformComparison(double RPSdistance);

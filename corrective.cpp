@@ -16,10 +16,15 @@ float initialMoveAngle = 0.0;
 
 //current
 //put variables here
+float updateX = 0.0;
+float updateY = 0.0;
+float updateHeading = 0.0;
 
 bool RPSisWorking = false;
 bool initMoveDataValid = false;
 bool correctionOn = false;
+
+bool correctionAction = false;
 
 
 
@@ -40,6 +45,18 @@ void ChangeTolerance(double value)
 void SetUpComparison(double distance)
 {
     tempDefaultStorage = distance;
+}
+
+//Method 202
+void TurnCorrectionOn()
+{
+    correctionOn = true;
+}
+
+//Method 203
+void TurnCorrectionOff()
+{
+    correctionOn = false;
 }
 
 
@@ -108,16 +125,23 @@ void CBmidmovePassiveCheck()
 
     if (!initMoveDataValid && RPSisWorking)
     {
-
+        initMoveDataValid = true;
+        initialMoveAngle = TheRPS.Heading();
     }
 
 
-    if (RPSisWorking)
+    if (RPSisWorking && initMoveDataValid && !correctionAction)
     {
         float dAngle = initialMoveAngle - TheRPS.Heading();
         dAngle = myAbsolute( dAngle );
         //dAngle is the change in the angle since start of move
 
+
+        if (dAngle > 20.0)
+        {
+
+            fillerForActionTaken();
+        }
 
 
 
@@ -130,7 +154,74 @@ void CBmidmovePassiveCheck()
 
 void fillerForActionTaken()
 {
-    //
+    //31.7
+    correctionAction = true;
+
+    updateRPSisWorking();
+
+    float tempX = updateX;
+
+    bool go = checkFlags();
+
+    if (go)
+    {
+        //top part of course
+        if (updateY > 31.7)
+        {
+            EncBackward(2.0);
+            UnsafeTurnToAngle(90.0);
+            UnsafeTurnToAngle(90.0);
+            EncBackward(2.0);
+
+            RelativeTurnLeft(90.0);
+
+            if (tempX < -1.0)
+            {
+                double distance = -1.0 - tempX;
+                EncForward(distance);
+            }
+            else
+            {
+                double distance = tempX - (-1.0);
+                EncBackward(distance);
+            }
+
+            RelativeTurnRight(90.0);
+
+            UnsafeTurnToAngle(90.0);
+            UnsafeTurnToAngle(90.0);
+
+        }
+        //bottom part of course
+        else
+        {
+            EncBackward(2.0);
+            UnsafeTurnToAngle(90.0);
+            UnsafeTurnToAngle(90.0);
+            EncBackward(2.0);
+
+            RelativeTurnRight(90.0);
+
+            if (tempX < 1.7)
+            {
+                double distance = 1.7 - tempX;
+                EncForward(distance);
+            }
+            else
+            {
+                double distance = tempX - 1.7;
+                EncBackward(distance);
+            }
+
+            RelativeTurnLeft(90.0);
+
+            UnsafeTurnToAngle(90.0);
+            UnsafeTurnToAngle(90.0);
+        }
+    }
+
+    correctionAction = false;
+
 }
 
 
