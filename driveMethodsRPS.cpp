@@ -190,7 +190,8 @@ void TurnRightToAngle(double angle)
 //METHOD 64
 void UnsafeTurnToAngle(double angle)
 {
-    float currentAngle = TheRPS.Heading();
+    //float currentAngle = TheRPS.Heading();
+    float currentAngle = cleaner.getCurrentAngle();
 
     float targetAngle = (float) angle;
 

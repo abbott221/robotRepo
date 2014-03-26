@@ -2,6 +2,7 @@
 #include "random.h"
 
 
+
 float myAbsolute(float number)
 {
     if (number < 0)

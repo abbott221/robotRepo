@@ -32,6 +32,8 @@ void logDataStuffs()
 
 
 
+
+
     if (dTime > displayRate * numOfDisplays)
     {
         LCD.Clear( FEHLCD::Black );
@@ -124,6 +126,15 @@ void logDataStuffs()
 
         numOfDisplays++;
     }
+
+
+
+    //potential for freezing in CBcorrective area
+    //down here, middleButton escape still works?
+    cleaner.update();
+    //cleaner.update() and the methods in RPScleaner shouldn't call logDataStuffs()
+    //because that would result in an infinite loop
+
 
     //milliCounter++;
 }

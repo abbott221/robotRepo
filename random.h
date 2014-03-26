@@ -4,9 +4,12 @@
 #include "main.h"
 
 
+
+
 float myAbsolute(float number);
 
 double myAbsolute(double number);
+
 
 
 

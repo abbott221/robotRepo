@@ -7,26 +7,17 @@ void theLoop(movement loopMoves[], int numMoves);
 
 void tempBefore ()
 {
-    int tempSize = 20;
-    movement useThese[tempSize];
-
-
-    theLoop(useThese, tempSize);
-
-
+    //int tempSize = 20;
+    //movement useThese[tempSize];
+    //theLoop(useThese, tempSize);
 }
 
 
 void tempAfter ()
 {
-    int tempSize = 14;
-    movement useThese[tempSize];
-
-
-
-
-    theLoop(useThese, tempSize);
-
+    //int tempSize = 14;
+    //movement useThese[tempSize];
+    //theLoop(useThese, tempSize);
 }
 
 
@@ -153,6 +144,7 @@ void theLoop(movement loopMoves[], int numMoves)
             //milliCounter = 0;
             //initialMoveAngle = TheRPS.Heading();
             CBinitiateMoveData();
+            cleaner.initiateMoveData();
 
 
             leftEncoder.ResetCounts();
