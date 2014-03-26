@@ -18,6 +18,7 @@ extern int RPScustomAction;
 extern double RPStolerance;
 extern double tempDefaultStorage;
 
+extern float initialMoveY;
 extern float initialMoveAngle;
 
 extern float updateX;
@@ -29,6 +30,8 @@ extern bool initMoveDataValid;
 extern bool correctionOn;
 
 extern bool correctionAction;
+
+extern bool insufficientY;
 
 
 //==================================================

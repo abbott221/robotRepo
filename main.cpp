@@ -135,12 +135,16 @@ int main(void)
         moreMoves[0].setMovement(8, 120);
         moreMoves[1].setMovement(50, 1.50);
         moreMoves[2].setMovement(6, 4.697);
-        moreMoves[3].setMovement(4, 21.2);
-        moreMoves[4].setMovement(5, 4.00);
+
+        moreMoves[3].setMovement(202, 0.0);
+        moreMoves[4].setMovement(4, 21.2);
+        moreMoves[5].setMovement(203, 0.0);
+
+        moreMoves[6].setMovement(5, 4.00);
         //moreMoves[5].setMovement(12, 2.00);
-        moreMoves[6].setMovement(21, 5.0);
-        moreMoves[7].setMovement(8, 45);
-        moreMoves[8].setMovement(8, 120);
+        moreMoves[7].setMovement(21, 5.0);
+        moreMoves[8].setMovement(8, 45);
+        moreMoves[9].setMovement(8, 120);
 
 
         moreMoves[12].setMovement(6, 4.0);

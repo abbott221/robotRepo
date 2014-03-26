@@ -12,6 +12,7 @@ int RPScustomAction = 0;
 double tempDefaultStorage= 0.0;
 
 //initial
+float initialMoveY = 0.0;
 float initialMoveAngle = 0.0;
 
 //current
@@ -25,6 +26,8 @@ bool initMoveDataValid = false;
 bool correctionOn = false;
 
 bool correctionAction = false;
+
+bool insufficientY = false;
 
 
 
@@ -100,6 +103,7 @@ double PerformComparison(double RPSdistance)
 
 void CBinitiateMoveData()
 {
+    initialMoveY = TheRPS.Y();
     initialMoveAngle = TheRPS.Heading();
 
     //likely to change this statement or add conditions
@@ -126,6 +130,7 @@ void CBmidmovePassiveCheck()
     if (!initMoveDataValid && RPSisWorking)
     {
         initMoveDataValid = true;
+        initialMoveY = TheRPS.Y();
         initialMoveAngle = TheRPS.Heading();
     }
 
@@ -168,10 +173,10 @@ void fillerForActionTaken()
         //top part of course
         if (updateY > 31.7)
         {
-            EncBackward(2.0);
+            EncBackward(1.0);
             UnsafeTurnToAngle(90.0);
             UnsafeTurnToAngle(90.0);
-            EncBackward(2.0);
+            EncBackward(1.0);
 
             RelativeTurnLeft(90.0);
 
@@ -195,10 +200,10 @@ void fillerForActionTaken()
         //bottom part of course
         else
         {
-            EncBackward(2.0);
+            EncBackward(1.0);
             UnsafeTurnToAngle(90.0);
             UnsafeTurnToAngle(90.0);
-            EncBackward(2.0);
+            EncBackward(1.0);
 
             RelativeTurnRight(90.0);
 
@@ -263,7 +268,22 @@ bool checkFlags()
         {
             if (RPSisWorking)
             {
-                flagsAreGood = true;
+                //sufficientY
+                float dY = updateY - TheRPS.Heading();
+                dY = myAbsolute( dY );
+
+                if (dY < 2.0)
+                {
+                    insufficientY = true;
+
+                    flagsAreGood = true;
+                }
+                else
+                {
+                    insufficientY = false;
+
+                    flagsAreGood = false;
+                }
             }
             else
             {
