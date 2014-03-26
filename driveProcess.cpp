@@ -360,6 +360,15 @@ void theLoop(movement loopMoves[], int numMoves)
                 SetUpComparison(useDoubleValue);
             }
 
+            else if (loopMoves[currentMove].getOperationType() == 202)
+            {
+                TurnCorrectionOn();
+            }
+            else if (loopMoves[currentMove].getOperationType() == 203)
+            {
+                TurnCorrectionOff();
+            }
+
 
 
 
