@@ -47,7 +47,8 @@ void MoveToRealX(double givenX)
 {
     float targetX = (float) givenX;
 
-    float currentX = TheRPS.X();
+    //float currentX = TheRPS.X();
+    float currentX = cleaner.getCurrentX();
 
     double travel = 0.0;
 
@@ -76,7 +77,8 @@ void MoveToRealY(double givenY)
 {
     float targetY = (float) givenY;
 
-    float currentY = TheRPS.Y();
+    //float currentY = TheRPS.Y();
+    float currentY = cleaner.getCurrentY();
 
     double travel = 0.0;
 
