@@ -76,6 +76,17 @@ void logDataStuffs()
 
         LCD.Write("Right Power: ");
         LCD.WriteLine(rightPowerMode);
+        
+        LCD.Write("Left Encoder: ");
+        LCD.WriteLine(leftEncoder.Counts());
+        LCD.Write("Right Encoder: ");
+        LCD.WriteLine(rightEncoder.Counts());
+
+
+        LCD.Write("Mirco1: ");
+        LCD.WriteLine(Micro1.Value());
+        LCD.Write("Mirco2: ");
+        LCD.WriteLine(Micro2.Value());
 
 
 
@@ -791,7 +802,7 @@ void LightDecisionTurn(double distance)
 
 }
 
-//METHOD 20
+//METHOD 20 DONT NEED RIGHT NOW MIGHT DELETE AT SOME POINT
 void GetOptoThresh(){
     double leftAverage = 0.0;
     double rightAverage = 0.0;
@@ -802,37 +813,34 @@ void GetOptoThresh(){
         rightAverage += optoRight.Value();
         midAverage += optoMid.Value();
     }
-    leftOptoThresh = leftAverage/100;
-    rightOptoThresh = rightAverage/100;
-    midOptoThresh = midAverage/100;
+    yleftOptoThresh = leftAverage/100;
+    yrightOptoThresh = rightAverage/100;
+    ymidOptoThresh = midAverage/100;
 
 }
 
-
 //METHOD  21
 void BlackLineFollow(double time){
-    lMotor.SetPercent(60);
-    rMotor.SetPercent(-1 * 60);
+    lMotor.SetPercent(-1*60);
+    rMotor.SetPercent(60);
 
     double startTime = TimeNow();
     double dTime = 0.0;
 
     while(dTime < time){
-        if(myAbsolute(midOptoThresh-optoMid.Value())>= bLineDifThresh){
-            lMotor.SetPercent(60);
-            rMotor.SetPercent(-1 * 60);
 
-        }
-        else if (myAbsolute(rightOptoThresh-optoRight.Value())>= bLineDifThresh){
-            lMotor.SetPercent(75);
-            rMotor.SetPercent(-1 * 5);
-
+        if (optoMid.Value()> bmidOptoThresh){
+            lMotor.SetPercent(-1*60);
+            rMotor.SetPercent(60);
 
     }
-        else if(myAbsolute(leftOptoThresh-optoLeft.Value())>= bLineDifThresh){
-            lMotor.SetPercent(5);
-            rMotor.SetPercent(-1 * 75);
-
+        else if(optoRight.Value() > brightOptoThresh){
+            lMotor.SetPercent(-1*65);
+            rMotor.SetPercent(25);
+        }
+        else if(optoLeft.Value() > bleftOptoThresh) {
+            lMotor.SetPercent(-1*25);
+            rMotor.SetPercent(65);
         }
         logDataStuffs();
         dTime = TimeNow() - startTime;
@@ -844,28 +852,26 @@ void BlackLineFollow(double time){
 
 //METHOD 22
 void YellowLineFollow(double time){
-    lMotor.SetPercent(60);
-    rMotor.SetPercent(-1 * 60);
+    lMotor.SetPercent(-1*60);
+    rMotor.SetPercent(60);
 
     double startTime = TimeNow();
     double dTime = 0.0;
 
     while(dTime < time){
-        if(myAbsolute(midOptoThresh-optoMid.Value())>= yLineDifThresh){
-            lMotor.SetPercent(60);
-            rMotor.SetPercent(-1 * 60);
 
-        }
-        else if (myAbsolute(rightOptoThresh-optoRight.Value())>= yLineDifThresh){
-            lMotor.SetPercent(75);
-            rMotor.SetPercent(-1 * 5);
-
+        if (optoMid.Value()< ymidOptoThresh){
+            lMotor.SetPercent(-1*60);
+            rMotor.SetPercent(60);
 
     }
-        else if(myAbsolute(leftOptoThresh-optoLeft.Value())>= yLineDifThresh){
-            lMotor.SetPercent(5);
-            rMotor.SetPercent(-1 * 75);
-
+        else if(optoRight.Value() < yrightOptoThresh){
+            lMotor.SetPercent(-1*65);
+            rMotor.SetPercent(40);
+        }
+        else if(optoLeft.Value() < yleftOptoThresh) {
+            lMotor.SetPercent(-1*40);
+            rMotor.SetPercent(65);
         }
         logDataStuffs();
         dTime = TimeNow() - startTime;
@@ -957,6 +963,69 @@ void JeffLightLine(double goThisLong)
         dTime = TimeNow() - startTime;
     }
 
+    rMotor.Stop();
+    lMotor.Stop();
+}
+
+//METHOD  25
+void unBlackLineFollow(double time){
+    rMotor.SetPercent(-1*60);
+    lMotor.SetPercent(60);
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+
+    while(dTime < time){
+
+        if (optoMid.Value()> bmidOptoThresh){
+            rMotor.SetPercent(-1*60);
+            lMotor.SetPercent(60);
+
+    }
+        else if(optoRight.Value() > brightOptoThresh){
+            rMotor.SetPercent(-1*65);
+            lMotor.SetPercent(25);
+        }
+        else if(optoLeft.Value() > bleftOptoThresh) {
+            rMotor.SetPercent(-1*25);
+            lMotor.SetPercent(65);
+        }
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
+    rMotor.Stop();
+    lMotor.Stop();
+
+}
+
+ // METHOD 26
+void PushButton(){
+    int timesPushed = TheRPS.OvenPressed();
+    int toPush = TheRPS.Oven();
+    while(timesPushed < toPush){
+        EncBackward(1.00);
+        EncForward(1.00);
+        timesPushed = TheRPS.OvenPressed();
+    }
+}
+
+// METHOD 27
+void Micro(double time){
+
+    double startTime = TimeNow();
+    double dTime = 0.0;
+
+    while(dTime < time){
+
+        EncBackward(.1);
+        if(Micro1.Value() && Micro2.Value()){
+            break;
+        }
+
+
+        logDataStuffs();
+        dTime = TimeNow() - startTime;
+    }
     rMotor.Stop();
     lMotor.Stop();
 }
