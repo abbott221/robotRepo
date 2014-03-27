@@ -64,11 +64,14 @@ extern float optoThresh;
 
 extern float bLineDifThresh;
 extern float yLineDifThresh;
-extern float leftOptoThresh;
-extern float rightOptoThresh;
-extern float midOptoThresh;
+extern float bleftOptoThresh;
+extern float brightOptoThresh;
+extern float bmidOptoThresh;
+extern float yleftOptoThresh;
+extern float yrightOptoThresh;
+extern float ymidOptoThresh;
 
-
+extern bool light;
 extern bool configLightStart;
 extern bool configCourseTimer;
 extern bool configDelay;
@@ -130,6 +133,9 @@ extern FEHEncoder  leftEncoder;
 extern FEHEncoder  rightEncoder;
 
 extern AnalogInputPin CDS;
+
+extern DigitalInputPin Micro1;
+extern DigitalInputPin Micro2;
 
 extern AnalogInputPin optoLeft;
 extern AnalogInputPin optoMid;
