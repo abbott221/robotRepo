@@ -99,6 +99,15 @@ void BlackLineFollow(double time);
 //METHOD 22
 void YellowLineFollow(double time);
 
+//METHOD 25
+void unBlackLineFollow(double time);
+
+//METHOD 26
+void PushButton();
+
+//METHOD 27
+void Micro(double time);
+
 
 
 //METHOD 30
