@@ -1,4 +1,3 @@
-
 #include "main.h"
 
 
@@ -273,7 +272,18 @@ void theLoop(movement loopMoves[], int numMoves)
                 YellowLineFollow(useDoubleValue);
             }
 
-
+            else if (loopMoves[currentMove].getOperationType() == 25)
+            {
+                unBlackLineFollow(useDoubleValue);
+            }
+            else if (loopMoves[currentMove].getOperationType() == 26)
+            {
+                PushButton();
+            }
+            else if (loopMoves[currentMove].getOperationType() == 27)
+            {
+                Micro(useDoubleValue);
+            }
 
 
 
