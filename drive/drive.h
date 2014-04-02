@@ -59,7 +59,46 @@ void LightDecisionTurn(double distance);
 void PushButton(); //METHOD 26
 void Micro(double time); //METHOD 27
 
+<<<<<<< HEAD:drive/drive.h
 //REAL RPS
+=======
+//METHOD 20
+void GetOptoThresh();
+
+//METHOD 21
+void BlackLineFollow(double time);
+
+//METHOD 22
+void YellowLineFollow(double time);
+
+//METHOD 25
+void unBlackLineFollow(double time);
+
+//METHOD 26
+void PushButton();
+
+//METHOD 27
+void Micro(double time);
+
+
+
+//METHOD 30
+void SetCustomAction(int action);
+
+
+/*
+//METHOD 31
+void ChangeTolerance(double value);
+/**/
+
+
+
+
+
+
+
+//METHOD 50
+>>>>>>> 70f6fc0b1662953b20afa2c4607eb47364dc4a7f:driveHeaders.h
 void MoveToRealX(double givenX);
 void MoveToRealY(double givenY);
 //void CheckRealX(double givenX);
