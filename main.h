@@ -98,21 +98,10 @@ extern float optoThresh;
 
 extern float bLineDifThresh;
 extern float yLineDifThresh;
-<<<<<<< HEAD
 extern float leftOptoThresh;
 extern float rightOptoThresh;
 extern float midOptoThresh;
 
-=======
-extern float bleftOptoThresh;
-extern float brightOptoThresh;
-extern float bmidOptoThresh;
-extern float yleftOptoThresh;
-extern float yrightOptoThresh;
-extern float ymidOptoThresh;
-
-extern bool light;
->>>>>>> 70f6fc0b1662953b20afa2c4607eb47364dc4a7f
 extern bool configLightStart;
 extern bool configCourseTimer;
 extern bool configDelay;
