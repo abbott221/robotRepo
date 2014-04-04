@@ -253,6 +253,111 @@ int main(void)
     //later, determine dataType from dOp and overload the method?
     int holder = 0;
 
+
+    //************************************************
+    //*              KYLE AND JEFF                   *
+    //*      BEGIN SETTING THE MOVEMENTS HERE        *
+    //*                                              *
+    //************************************************
+
+
+    // PAge 1
+    //start to switch to pin pull
+
+    mTracker.tracker[0].setMovement(8, 130);
+    mTracker.tracker[1].setMovement(4, 28.0);
+    mTracker.tracker[2].setMovement(6, 4.3);
+
+    mTracker.tracker[3].setMovement(8, 45);
+    mTracker.tracker[4].setMovement(8, 130);
+    mTracker.tracker[5].setMovement(7, 2.0);
+    mTracker.tracker[6].setMovement(5, 8.5);
+    mTracker.tracker[7].setMovement(4, 13.0);
+    mTracker.tracker[8].setMovement(7, .4);
+    mTracker.tracker[9].setMovement(8, 90);
+    mTracker.tracker[10].setMovement(5, 1.00);
+
+
+    // Page 2
+    mTracker.tracker[12].setMovement(7, 2.0);
+    mTracker.tracker[13].setMovement(8, 120);
+    mTracker.tracker[14].setMovement(4, 10.0);
+    mTracker.tracker[15].setMovement(7, 4.5);
+    mTracker.tracker[16].setMovement(6, 3.4);
+    mTracker.tracker[17].setMovement(4, 4.2);
+    mTracker.tracker[18].setMovement(7, 1.0);
+    mTracker.tracker[19].setMovement(8, 70);
+    mTracker.tracker[20].setMovement(4, 2.50);
+    mTracker.tracker[21].setMovement(8, 120);
+    mTracker.tracker[22].setMovement(7, 2.50);
+
+
+    // Page 3
+    mTracker.tracker[24].setMovement(8, 70);
+    mTracker.tracker[25].setMovement(4, 2.0);
+    mTracker.tracker[26].setMovement(8, 120);
+
+
+    //Move to Skid to get into shop
+
+
+
+    //PAGE 5 (48-59)
+    mTracker.tracker[27].setMovement(7, .300);
+    mTracker.tracker[28].setMovement(5,3.00);
+    mTracker.tracker[29].setMovement(7,7.00);
+    mTracker.tracker[51].setMovement(8,45);
+    mTracker.tracker[52].setMovement(4,14.00);
+    mTracker.tracker[53].setMovement(8,130);
+    mTracker.tracker[54].setMovement(7,6.800);
+    mTracker.tracker[55].setMovement(5,3.500);
+    mTracker.tracker[56].setMovement(4,5.00);
+    mTracker.tracker[57].setMovement(5,5.463);
+    mTracker.tracker[59].setMovement(4, 27.00);
+
+
+    //move to chiller to move up ramp and line up at switch
+    //PAGE 6 (60-71)
+    mTracker.tracker[60].setMovement(6, 4.00);
+    mTracker.tracker[61].setMovement(4, 9.00);
+    mTracker.tracker[62].setMovement(6, 2.700);
+    mTracker.tracker[63].setMovement(8, 0);
+    mTracker.tracker[64].setMovement(4, 14.00);
+    mTracker.tracker[65].setMovement(7, 17.00);
+    mTracker.tracker[66].setMovement(8,120);
+    mTracker.tracker[67].setMovement(6, 5.3);
+    mTracker.tracker[68].setMovement(7, 6.00);
+    mTracker.tracker[69].setMovement(4, 13.00);
+    mTracker.tracker[70].setMovement(5, 4.00);
+    mTracker.tracker[71].setMovement(7, 3.00);
+
+
+    //PAGE 7 (72-83)
+    mTracker.tracker[72].setMovement(4, 50.00);
+
+
+    // button press to end
+
+    //Page 8
+
+    mTracker.tracker[84].setMovement(5, 3.90);
+    mTracker.tracker[85].setMovement(4, 16.00);
+    mTracker.tracker[86].setMovement(7, 5.00);
+    mTracker.tracker[87].setMovement(6, .2);
+    mTracker.tracker[88].setMovement(4, 7.0);
+    mTracker.tracker[89].setMovement(7, 5.0);
+    mTracker.tracker[90].setMovement(6, .2);
+    mTracker.tracker[91].setMovement(4, 7.0);
+    mTracker.tracker[92].setMovement(6, 6.00);
+    mTracker.tracker[93].setMovement(7, 15.0);
+    mTracker.tracker[94].setMovement(6, 5.00);
+    mTracker.tracker[95].setMovement(7, 22.00);
+
+
+
+
+
+    /*
     mTracker.add_fMovement(0, 1.0);
     mTracker.add_fMovement(1, 1.0);
     mTracker.add_fMovement(2, 1.0);
@@ -267,6 +372,16 @@ int main(void)
     mTracker.add_fMovement(302, 6.0);
     mTracker.add_dMovement(303, 7.0);
     mTracker.add_vMovement(304);
+    /**/
+
+
+
+    //************************************************
+    //*              KYLE AND JEFF                   *
+    //*       STOP SETTING THE MOVEMENTS HERE        *
+    //*                                              *
+    //************************************************
+
 
 
     //movement presets end
